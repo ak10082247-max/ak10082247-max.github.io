@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kurox x402 Protocol — Dual-Chain Security & Alpha Fleet Directory</title>
+  <meta name="description" content="Official directory for 65 dual-chain x402 V2 paid intelligence, security audit, and whale detection endpoints across Base and Solana.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ak10082247-max.github.io/">
+  <style>
+    :root {
+      --bg: #090a0f;
+      --card-bg: #12141e;
+      --accent-sol: #14f195;
+      --accent-base: #0052ff;
+      --accent-cyan: #00f2fe;
+      --text: #f0f3fa;
+      --text-muted: #8892b0;
+      --border: #23293d;
+      --badge-bg: #1e2438;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace; }
+    body { background: var(--bg); color: var(--text); line-height: 1.6; padding: 2rem 1rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    h1 { font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-sol), var(--accent-base)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
+    .subtitle { color: var(--text-muted); font-size: 1.1rem; max-width: 800px; margin: 0 auto 1.5rem; }
+    .badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .badge { background: var(--badge-bg); border: 1px solid var(--border); border-radius: 999px; padding: 0.35rem 1rem; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; }
+    .badge.sol { border-color: var(--accent-sol); color: var(--accent-sol); }
+    .badge.base { border-color: var(--accent-base); color: #4d82ff; }
+    .badge.green { border-color: #10b981; color: #10b981; }
+    
+    .ticker-bar { background: #161a29; border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin-bottom: 2.5rem; }
+    .ticker-title { font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+    .ticker-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .chip { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.4rem 0.8rem; font-size: 0.85rem; text-decoration: none; color: var(--text); transition: all 0.2s; }
+    .chip:hover { border-color: var(--accent-sol); transform: translateY(-2px); }
+    .chip span { color: var(--accent-sol); font-weight: 700; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+    @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.75rem; }
+    .card-title { font-size: 1.3rem; font-weight: 700; color: #fff; }
+    .card-grade { font-size: 0.85rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 4px; }
+    .grade-a { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; }
+    .grade-b { background: rgba(59, 130, 246, 0.2); color: #3b82f6; border: 1px solid #3b82f6; }
+    
+    .endpoint-list { max-height: 280px; overflow-y: auto; padding-right: 0.5rem; }
+    .endpoint-item { display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; }
+    .endpoint-item a { color: var(--accent-cyan); text-decoration: none; word-break: break-all; }
+    .endpoint-item a:hover { text-decoration: underline; }
+    .endpoint-price { color: var(--accent-sol); font-weight: 600; white-space: nowrap; margin-left: 0.5rem; }
+    
+    .section-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.25rem; color: #fff; border-left: 4px solid var(--accent-sol); padding-left: 0.75rem; }
+    
+    .mcp-box { background: #111422; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 3rem; }
+    .mcp-code { background: #07090e; padding: 1rem; border-radius: 6px; overflow-x: auto; font-family: monospace; font-size: 0.9rem; color: #38bdf8; border: 1px solid var(--border); margin-top: 0.75rem; }
+    
+    footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); padding-top: 2rem; margin-top: 3rem; }
+    footer a { color: var(--accent-cyan); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Kurox x402 Protocol Intelligence Fleet</h1>
+      <p class="subtitle">Autonomous AI Agent Defense, Pre-Trade Honeypot Calldata Simulation, Cross-DEX Arbitrage Radar, and Polymarket Whale Orderflow Monetized via x402 V2.</p>
+      
+      <div class="badges">
+        <div class="badge green"><span>●</span> 65 / 65 Endpoints Live &amp; Indexed</div>
+        <div class="badge sol">Solana Mainnet (solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp)</div>
+        <div class="badge base">Base Mainnet (eip155:8453)</div>
+        <div class="badge">Coinbase CDP Verified</div>
+        <div class="badge">PayAI Bazaar Indexed</div>
+        <div class="badge green">IndexNow Active: c402rugshield8453solana91bazaar</div>
+      </div>
+    </header>
+
+    <div class="ticker-bar">
+      <div class="ticker-title">Live 1-Click Instant Security Audit &amp; Honeypot Simulation</div>
+      <div class="ticker-chips">
+        <a class="chip" href="https://rugshield-402.onrender.com/?token=8x5VqbHA8D7NkD52uNuS5nnt3PwA8pLD34ymjejRpump" target="_blank"><span>SOL</span> Pump.fun Trending #1</a>
+        <a class="chip" href="https://rugshield-402.onrender.com/?token=HeLp6NuQkmYB4pYWo2zYs22mESHXPQYzXbB8n4V98jwC" target="_blank"><span>SOL</span> Pump.fun Trending #2</a>
+        <a class="chip" href="https://rugshield-402.onrender.com/?token=DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263" target="_blank"><span>SOL</span> Bonk (DEX High Volume)</a>
+        <a class="chip" href="https://rugshield-402.onrender.com/?token=0x532f27101965dd16442e59d40670faf5ebb142e4" target="_blank"><span>BASE</span> Virtuals Protocol (AI Agents)</a>
+        <a class="chip" href="https://rugshield-402.onrender.com/?token=0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b" target="_blank"><span>BASE</span> Seamless Protocol (DeFi)</a>
+        <a class="chip" href="https://rugshield-402.onrender.com/?token=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913" target="_blank"><span>BASE</span> Native USDC Audit</a>
+      </div>
+    </div>
+
+    <div class="section-title">Fleet Service Matrix (65 Live Endpoints)</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">RugShield 402</div>
+            <div style="font-size:0.85rem; color:var(--text-muted);">Pre-trade honeypot calldata simulation, LP lock verification, and Sybil cluster maps.</div>
+          </div>
+          <div class="card-grade grade-a">Grade A (91/100)</div>
+        </div>
+        <div style="font-size:0.8rem; color:var(--accent-sol); margin-bottom: 0.5rem;">12 Endpoints / MCP Tools</div>
+        <div class="endpoint-list">
+          <div class="endpoint-item">
+            <a href="https://rugshield-402.onrender.com/v1/scan" target="_blank">/v1/scan</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://rugshield-402.onrender.com/v1/audit/liquidity-lock-verify" target="_blank">/v1/audit/liquidity-lock-verify</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://rugshield-402.onrender.com/v1/audit/holder-cluster-map" target="_blank">/v1/audit/holder-cluster-map</a>
+            <span class="endpoint-price">$0.020 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://rugshield-402.onrender.com/v1/audit/swap-simulation-proof" target="_blank">/v1/audit/swap-simulation-proof</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://rugshield-402.onrender.com/v1/audit/cross-chain-bridge-risk" target="_blank">/v1/audit/cross-chain-bridge-risk</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://rugshield-402.onrender.com/v1/risk/institutional-token-report" target="_blank">/v1/risk/institutional-token-report</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://rugshield-402.onrender.com/api/v1/token-screener" target="_blank">/api/v1/token-screener</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://rugshield-402.onrender.com/api/v1/smart-money/netflow" target="_blank">/api/v1/smart-money/netflow</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://rugshield-402.onrender.com/api/v1/smart-money/dex-trades" target="_blank">/api/v1/smart-money/dex-trades</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://rugshield-402.onrender.com/api/v1/tgm/who-bought-sold" target="_blank">/api/v1/tgm/who-bought-sold</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://rugshield-402.onrender.com/api/v1/tgm/holders" target="_blank">/api/v1/tgm/holders</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://rugshield-402.onrender.com/api/v1/profiler/address/current-balance" target="_blank">/api/v1/profiler/address/current-balance</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">CanaryGuard 402</div>
+            <div style="font-size:0.85rem; color:var(--text-muted);">Deterministic prompt-injection firewall, EIP-712 security audit, and Nansen Token God Mode.</div>
+          </div>
+          <div class="card-grade grade-a">Grade A (96/100)</div>
+        </div>
+        <div style="font-size:0.8rem; color:var(--accent-sol); margin-bottom: 0.5rem;">34 Endpoints / MCP Tools</div>
+        <div class="endpoint-list">
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/sanitize" target="_blank">/v1/sanitize</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/base/token" target="_blank">/v1/base/token</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/security/wallet-drainer-check" target="_blank">/v1/security/wallet-drainer-check</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/security/mcp-tool-poisoning-audit" target="_blank">/v1/security/mcp-tool-poisoning-audit</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/security/agent-memory-guard" target="_blank">/v1/security/agent-memory-guard</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/security/phishing-url-inspector" target="_blank">/v1/security/phishing-url-inspector</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/security/smart-contract-honeypot-check" target="_blank">/v1/security/smart-contract-honeypot-check</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/security/eip712-signature-auditor" target="_blank">/v1/security/eip712-signature-auditor</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/alpha/safe-base-trending" target="_blank">/v1/alpha/safe-base-trending</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/alpha/polymarket-verified-odds" target="_blank">/v1/alpha/polymarket-verified-odds</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/risk/full_audit" target="_blank">/v1/risk/full_audit</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/verify/agent-attestation" target="_blank">/v1/verify/agent-attestation</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/ondemand/market-snapshot" target="_blank">/v1/ondemand/market-snapshot</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/tokens/history-and-spread" target="_blank">/v1/tokens/history-and-spread</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/yield/safe-allocation" target="_blank">/v1/yield/safe-allocation</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/wallet-analysis" target="_blank">/v1/wallet-analysis</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/contract-info" target="_blank">/v1/contract-info</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/wallet-sanctions-check" target="_blank">/v1/wallet-sanctions-check</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/uniswap-pool-state" target="_blank">/v1/uniswap-pool-state</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/crypto-price-onchain" target="_blank">/v1/crypto-price-onchain</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/json-repair-and-sanitize" target="_blank">/v1/json-repair-and-sanitize</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/url-agent-readiness" target="_blank">/v1/url-agent-readiness</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/tx-status-base" target="_blank">/v1/tx-status-base</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/polymarket-odds-pulse" target="_blank">/v1/polymarket-odds-pulse</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/defi-yields-safe" target="_blank">/v1/defi-yields-safe</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/llm-token-pricing" target="_blank">/v1/llm-token-pricing</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/eip712-signature-audit" target="_blank">/v1/eip712-signature-audit</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/v1/mcp-tool-auditor" target="_blank">/v1/mcp-tool-auditor</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/api/v1/token-screener" target="_blank">/api/v1/token-screener</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/api/v1/smart-money/netflow" target="_blank">/api/v1/smart-money/netflow</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/api/v1/smart-money/dex-trades" target="_blank">/api/v1/smart-money/dex-trades</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/api/v1/tgm/who-bought-sold" target="_blank">/api/v1/tgm/who-bought-sold</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/api/v1/tgm/holders" target="_blank">/api/v1/tgm/holders</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://canaryguard-402.onrender.com/api/v1/profiler/address/current-balance" target="_blank">/api/v1/profiler/address/current-balance</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">StealthGuard 402</div>
+            <div style="font-size:0.85rem; color:var(--text-muted);">Polymarket whale orderflow, crypto odds divergence, and stealth web sanitization.</div>
+          </div>
+          <div class="card-grade grade-b">Grade B (85/100)</div>
+        </div>
+        <div style="font-size:0.8rem; color:var(--accent-sol); margin-bottom: 0.5rem;">15 Endpoints / MCP Tools</div>
+        <div class="endpoint-list">
+          <div class="endpoint-item">
+            <a href="https://stealthguard-402.onrender.com/v1/stealth_scrape_and_sanitize" target="_blank">/v1/stealth_scrape_and_sanitize</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://stealthguard-402.onrender.com/v1/polymarket_alpha_divergence" target="_blank">/v1/polymarket_alpha_divergence</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://stealthguard-402.onrender.com/v1/pre_trade_agent_gate" target="_blank">/v1/pre_trade_agent_gate</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://stealthguard-402.onrender.com/v1/alpha/polymarket-top-whales" target="_blank">/v1/alpha/polymarket-top-whales</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://stealthguard-402.onrender.com/v1/alpha/polymarket-crypto-odds" target="_blank">/v1/alpha/polymarket-crypto-odds</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://stealthguard-402.onrender.com/v1/alpha/base-trending-tokens" target="_blank">/v1/alpha/base-trending-tokens</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://stealthguard-402.onrender.com/v1/alpha/defi-yield-radar" target="_blank">/v1/alpha/defi-yield-radar</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://stealthguard-402.onrender.com/v1/alpha/hackernews-ai-digest" target="_blank">/v1/alpha/hackernews-ai-digest</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://stealthguard-402.onrender.com/v1/security/prompt-firewall" target="_blank">/v1/security/prompt-firewall</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://stealthguard-402.onrender.com/v1/security/x402-endpoint-verifier" target="_blank">/v1/security/x402-endpoint-verifier</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://stealthguard-402.onrender.com/v1/research/deep-web-dossier" target="_blank">/v1/research/deep-web-dossier</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://stealthguard-402.onrender.com/v1/oracle/perp-funding-and-basis" target="_blank">/v1/oracle/perp-funding-and-basis</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://stealthguard-402.onrender.com/v1/alpha/polymarket-whale-orderflow" target="_blank">/v1/alpha/polymarket-whale-orderflow</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://stealthguard-402.onrender.com/v1/security/attestation-bundle" target="_blank">/v1/security/attestation-bundle</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://stealthguard-402.onrender.com/v1/research/topic-news-scanner" target="_blank">/v1/research/topic-news-scanner</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">x402 Agent Tollbooth</div>
+            <div style="font-size:0.85rem; color:var(--text-muted);">Cross-DEX arbitrage radar, smart order routing, and autonomous contract audits.</div>
+          </div>
+          <div class="card-grade grade-a">Grade A (100/100)</div>
+        </div>
+        <div style="font-size:0.8rem; color:var(--accent-sol); margin-bottom: 0.5rem;">4 Endpoints / MCP Tools</div>
+        <div class="endpoint-list">
+          <div class="endpoint-item">
+            <a href="https://x402-agent-tollbooth.onrender.com/toll/ai_intel" target="_blank">/toll/ai_intel</a>
+            <span class="endpoint-price">$0.001 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://x402-agent-tollbooth.onrender.com/toll/arbitrage_scan" target="_blank">/toll/arbitrage_scan</a>
+            <span class="endpoint-price">$0.001 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://x402-agent-tollbooth.onrender.com/toll/smart_router" target="_blank">/toll/smart_router</a>
+            <span class="endpoint-price">$0.001 USDC</span>
+          </div>
+          <div class="endpoint-item">
+            <a href="https://x402-agent-tollbooth.onrender.com/api/audit" target="_blank">/api/audit</a>
+            <span class="endpoint-price">$0.010 USDC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">Official Model Context Protocol (MCP) Registry</div>
+    <div class="mcp-box">
+      <p style="color:var(--text-muted); margin-bottom: 0.75rem;">All 4 remote MCP servers and the sniper bot are published under the verified <code>io.github.ak10082247-max/*</code> namespace on the Official Model Context Protocol Registry (<code>registry.modelcontextprotocol.io</code>).</p>
+      <div class="mcp-code">
+# Install and run with Claude Desktop, Cursor, VS Code, or Antigravity:
+npx -y @kurox_real/x402-sniper-bot --help
+
+# Remote MCP Server Registry IDs:
+- io.github.ak10082247-max/canaryguard-402 (Remote Streamable HTTP: https://canaryguard-402.onrender.com/mcp)
+- io.github.ak10082247-max/stealthguard-402 (Remote Streamable HTTP: https://stealthguard-402.onrender.com/mcp)
+- io.github.ak10082247-max/rugshield-402 (Remote Streamable HTTP: https://rugshield-402.onrender.com/mcp)
+- io.github.ak10082247-max/x402-agent-tollbooth (Remote Streamable HTTP: https://x402-agent-tollbooth.onrender.com/mcp)
+- io.github.ak10082247-max/x402-sniper-bot (NPM Package: @kurox_real/x402-sniper-bot)
+      </div>
+    </div>
+
+    <footer>
+      <p>Kurox x402 Protocol &bull; Dual-Chain Agent Intelligence &bull; IndexNow Key: <code><a href="/c402rugshield8453solana91bazaar.txt">c402rugshield8453solana91bazaar</a></code> &bull; <a href="/sitemap.xml">XML Sitemap</a></p>
+    </footer>
+  </div>
+</body>
+</html>
