@@ -88,6 +88,25 @@ def publish_teaser_alerts(client: httpx.Client, tokens: list[dict]):
             print(f" - [{chain.upper()}] ${sym} feed error: {e}")
 
 
+def prewarm_stealthguard_cache(client: httpx.Client):
+    """Pings StealthGuard feeds every 15 minutes to keep in-memory cache pre-warmed for <200ms latency SLA."""
+    print("Pre-warming StealthGuard sub-200ms feeds...")
+    for route in [
+        "/v1/alpha/polymarket-top-whales",
+        "/v1/alpha/defi-yield-radar",
+        "/v1/alpha/base-trending-tokens",
+        "/health"
+    ]:
+        try:
+            url = f"https://stealthguard-402.onrender.com{route}"
+            t0 = time.time()
+            r = client.get(url, timeout=5.0) if "health" in route else client.post(url, json={}, timeout=5.0)
+            latency = round((time.time() - t0) * 1000, 1)
+            print(f" - {route} -> HTTP {r.status_code} ({latency}ms)")
+        except Exception as e:
+            print(f" - {route} warm error: {e}")
+
+
 def syndicate_indexnow(client: httpx.Client, tokens: list[dict]):
     urls = [
         f"{BASE_SITE}/",
@@ -169,6 +188,7 @@ def main():
         print(f"Loaded {len(tokens)} hot tokens from Solana & Base.")
 
         publish_teaser_alerts(client, tokens)
+        prewarm_stealthguard_cache(client)
         syndicate_indexnow(client, tokens)
         balances = query_treasury_balances(client)
         update_sitemap_and_status(tokens, balances)
