@@ -13,6 +13,18 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://ak10082247-max.github.io/signals.json</loc>
+    <lastmod>2026-10-17T22:30:00Z</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ak10082247-max.github.io/feed.xml</loc>
+    <lastmod>2026-10-17T22:30:00Z</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://canaryguard-402.onrender.com/</loc>
     <lastmod>2026-10-17T22:05:21Z</lastmod>
     <changefreq>always</changefreq>
