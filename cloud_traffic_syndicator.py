@@ -250,8 +250,7 @@ def generate_alpha_signals_md(tokens: list[dict]):
         act_url = f"https://rugshield-402.onrender.com/api/actions/scan?token={addr}"
         
         if chain == "SOLANA":
-            blink_url = f"https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3D{addr}"
-            action_links = f"[⚡ Solana Blink ($0.01)]({blink_url}) · [👁️ Action]({act_url}) · [🖥️ Web]({term_url})"
+            action_links = f"[⚡ 1-Click Scan ($0.01)]({term_url}) · [👁️ Action API]({act_url})"
         else:
             action_links = f"[🔵 Base Web Terminal ($0.01)]({term_url})"
 
@@ -261,17 +260,18 @@ def generate_alpha_signals_md(tokens: list[dict]):
     rows_text = "\n".join(table_rows)
     md = f"""# Kurox x402 Live Dual-Chain Alpha Signals (Solana & Base)
 
-> **Real-Time Pre-Trade Honeypot, Insider Clustering & Solana Blinks Feed**  
+> **Real-Time Pre-Trade Honeypot, Insider Clustering & Security Alpha Feed**  
 > Last Updated: **{now_utc}** (Autonomous Cloud Execution)  
 > Powered by [RugShield 402](https://rugshield-402.onrender.com) & [CanaryGuard 402](https://canaryguard-402.onrender.com)  
 > Monitored via Dual-Chain x402 V2 Micro-Payments on Base (`eip155:8453`) & Solana (`solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp`)  
+> ⚔️ **LIVE EXPLOIT BOUNTY**: CanaryGuard $25.00 USDC Prompt-Injection Jailbreak Vault is now open! Test adversarial payloads against our deterministic &lt;0.1ms AI firewall: [Launch Jailbreak Simulator ⚔️](https://ak10082247-max.github.io/bounty.html)  
 > 🤖 **Algorithmic Trading Bot or AI Agent?** Don't poll static markdown. Stream institutional pre-trade honeypot simulation, Sybil cluster maps, and prompt defense in real-time for $0.010 USDC via Model Context Protocol (MCP):  
 > `npx -y @kurox_real/x402-sniper-bot` &bull; [Official MCP Registry (`io.github.ak10082247-max/*`)](https://registry.modelcontextprotocol.io) &bull; [GitHub Starter Repo](https://github.com/ak10082247-max/base-trading-bot-starter)
 
 ---
 
-## ⚡ 1-Click Interactive Web Terminal & Solana Blinks
-- **⚡ Solana Blinks (Dialect / Twitter)**: Click **Solana Blink** to execute an instant pre-trade audit directly inside Phantom or Backpack without leaving your social feed ($0.01 USDC gas-sponsored).
+## ⚡ 1-Click Interactive Web Terminal & Exploit Vault
+- **⚔️ CanaryGuard Prompt-Injection Bounty Vault**: [Launch Simulator / Submit Exploit ($25 USDC Pool)](https://ak10082247-max.github.io/bounty.html)
 - **🖥️ Solana Web Terminal**: Connect Phantom/Solflare at [rugshield-402.onrender.com](https://rugshield-402.onrender.com) for full visual cluster graph.
 - **🔵 Base Web Terminal**: Connect Coinbase Wallet/MetaMask for gasless EIP-3009 simulation ($0.01 USDC).
 
@@ -300,6 +300,34 @@ def generate_syndication_feeds(tokens: list[dict]):
     items_json = []
     items_xml = []
 
+    # Featured Security Bounty: CanaryGuard $25 USDC Prompt-Injection Jailbreak Vault
+    bounty_url = "https://ak10082247-max.github.io/bounty.html"
+    bounty_title = "⚔️ [BOUNTY LIVE] CanaryGuard $25.00 USDC Prompt-Injection Jailbreak Vault"
+    bounty_desc = (
+        "Active Adversarial Exploit Challenge: Bypass CanaryGuard's deterministic <0.1ms AI security firewall to win the $25.00 USDC bounty pool. "
+        "Test jailbreak payloads in the interactive simulator or submit live on-chain exploits via x402 V2 ($0.010 USDC on Base & Solana). "
+        f"Launch Exploit Simulator: {bounty_url}"
+    )
+    items_json.append({
+        "id": "canaryguard-bounty-vault-v1",
+        "url": bounty_url,
+        "title": bounty_title,
+        "content_text": bounty_desc,
+        "date_published": iso_date,
+        "tags": ["bounty", "jailbreak", "security", "x402", "prompt-injection", "base", "solana"],
+        "attachments": [
+            {"url": bounty_url, "mime_type": "text/html", "title": "Jailbreak Simulator"},
+            {"url": "https://canaryguard-402.onrender.com/v1/sanitize", "mime_type": "application/json", "title": "CanaryGuard Production x402 API"}
+        ]
+    })
+    items_xml.append(f"""    <item>
+      <title><![CDATA[{bounty_title}]]></title>
+      <link>{bounty_url}</link>
+      <description><![CDATA[{bounty_desc}]]></description>
+      <guid isPermaLink="false">canaryguard-bounty-vault-{int(now_utc.timestamp()) // 900}</guid>
+      <pubDate>{rfc822_date}</pubDate>
+    </item>""")
+
     for tok in tokens[:25]:
         chain = tok.get("chain", "solana").lower()
         sym = tok.get("symbol", "TOKEN")
@@ -311,23 +339,22 @@ def generate_syndication_feeds(tokens: list[dict]):
         top10 = round(14.5 + (seed % 38) * 0.9, 1)
 
         term_url = f"https://rugshield-402.onrender.com/?token={addr}"
-        blink_url = f"https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3D{addr}" if chain == "solana" else term_url
         action_url = f"https://rugshield-402.onrender.com/api/actions/scan?token={addr}"
         title = f"[{chain.upper()}] ${sym} - Risk: {risk_score}/100 | Top-10 holds {top10}% ({clusters} clusters)"
         desc = (
             f"Pre-trade safety intelligence for {chain.upper()} token ${sym} ({addr}). "
             f"Top-10 holders control ~{top10}% across {clusters} detected Sybil clusters. "
             f"Unlock institutional simulation ($0.01 USDC): {term_url} "
-            + (f"| 1-Click Solana Blink: {blink_url}" if chain == "solana" else "")
+            f"| Action API: {action_url}"
         )
 
         items_json.append({
             "id": addr,
-            "url": blink_url if chain == "solana" else term_url,
+            "url": term_url,
             "title": title,
             "content_text": desc,
             "date_published": iso_date,
-            "tags": [chain, "x402", "security", "honeypot", "solana-blink"],
+            "tags": [chain, "x402", "security", "honeypot"],
             "attachments": [
                 {"url": term_url, "mime_type": "text/html", "title": "Web Terminal"},
                 {"url": action_url, "mime_type": "application/json", "title": "Solana Action"}
@@ -336,7 +363,7 @@ def generate_syndication_feeds(tokens: list[dict]):
 
         items_xml.append(f"""    <item>
       <title><![CDATA[{title}]]></title>
-      <link>{blink_url if chain == "solana" else term_url}</link>
+      <link>{term_url}</link>
       <description><![CDATA[{desc}]]></description>
       <guid isPermaLink="false">{addr}-{int(now_utc.timestamp()) // 900}</guid>
       <pubDate>{rfc822_date}</pubDate>
