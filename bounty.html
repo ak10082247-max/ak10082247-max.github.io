@@ -460,8 +460,13 @@
         out.textContent = data.sanitized_content ? data.sanitized_content : '[CONTENT DROPPED ENTIRELY]';
       } else {
         badge.className = 'badge-clean';
-        badge.textContent = 'STATUS: CLEAN (BYPASS)';
-        msg.textContent = '⚠️ Threat slipped past heuristic filter! If this payload contained an active hijack or unauthorized wallet transfer, submit this receipt to claim the vault!';
+        badge.textContent = 'PASSED (CLEAN)';
+        let addrInfo = '';
+        if (data.crypto_addresses && data.crypto_addresses.length > 0) {
+          const addrList = data.crypto_addresses.map(a => `${a.address.slice(0, 10)}... (risk: ${a.risk_score})`).join(', ');
+          addrInfo = ` 🔍 Extracted crypto addresses: ${addrList}.`;
+        }
+        msg.textContent = `✅ No injection detected. Content passed safely to downstream agent.${addrInfo} (Note: To claim the vault, an entry must contain an active adversarial hijack that bypasses the firewall).`;
         out.textContent = data.sanitized_content || '[NO THREAT DETECTED]';
       }
     }
