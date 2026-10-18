@@ -6,17 +6,44 @@
   "description": "Real-time pre-trade honeypot and Sybil cluster detection feed with 1-click $0.01 USDC unlock links and Dialect Solana Blinks.",
   "items": [
     {
+      "id": "canaryguard-bounty-vault-v1",
+      "url": "https://ak10082247-max.github.io/bounty.html",
+      "title": "\u2694\ufe0f [BOUNTY LIVE] CanaryGuard $5.00+ USDC Prompt-Injection Jailbreak Vault",
+      "content_text": "Active Adversarial Exploit Challenge: Bypass CanaryGuard's deterministic <0.1ms AI security firewall to win the $5.00+ USDC bounty pool. Seeded on-chain from live merchant treasury \u2014 grows +0.010 USDC with every attempt! Test jailbreak payloads in the interactive simulator or submit live on-chain exploits via x402 V2 ($0.010 USDC on Base & Solana). Launch Exploit Simulator: https://ak10082247-max.github.io/bounty.html",
+      "date_published": "2026-10-18T02:35:28.389716+00:00",
+      "tags": [
+        "bounty",
+        "jailbreak",
+        "security",
+        "x402",
+        "prompt-injection",
+        "base",
+        "solana"
+      ],
+      "attachments": [
+        {
+          "url": "https://ak10082247-max.github.io/bounty.html",
+          "mime_type": "text/html",
+          "title": "Jailbreak Simulator"
+        },
+        {
+          "url": "https://canaryguard-402.onrender.com/v1/sanitize",
+          "mime_type": "application/json",
+          "title": "CanaryGuard Production x402 API"
+        }
+      ]
+    },
+    {
       "id": "3NxfWMHmfQg8NJFW5AG1ti2xACdczWz24e9SKyk1pump",
-      "url": "https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3D3NxfWMHmfQg8NJFW5AG1ti2xACdczWz24e9SKyk1pump",
+      "url": "https://rugshield-402.onrender.com/?token=3NxfWMHmfQg8NJFW5AG1ti2xACdczWz24e9SKyk1pump",
       "title": "[SOLANA] $3NXFWMHMFQ - Risk: 49/100 | Top-10 holds 33.4% (5 clusters)",
-      "content_text": "Pre-trade safety intelligence for SOLANA token $3NXFWMHMFQ (3NxfWMHmfQg8NJFW5AG1ti2xACdczWz24e9SKyk1pump). Top-10 holders control ~33.4% across 5 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=3NxfWMHmfQg8NJFW5AG1ti2xACdczWz24e9SKyk1pump | 1-Click Solana Blink: https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3D3NxfWMHmfQg8NJFW5AG1ti2xACdczWz24e9SKyk1pump",
-      "date_published": "2026-10-18T00:50:24.887149+00:00",
+      "content_text": "Pre-trade safety intelligence for SOLANA token $3NXFWMHMFQ (3NxfWMHmfQg8NJFW5AG1ti2xACdczWz24e9SKyk1pump). Top-10 holders control ~33.4% across 5 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=3NxfWMHmfQg8NJFW5AG1ti2xACdczWz24e9SKyk1pump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=3NxfWMHmfQg8NJFW5AG1ti2xACdczWz24e9SKyk1pump",
+      "date_published": "2026-10-18T02:35:28.389716+00:00",
       "tags": [
         "solana",
         "x402",
         "security",
-        "honeypot",
-        "solana-blink"
+        "honeypot"
       ],
       "attachments": [
         {
@@ -33,16 +60,15 @@
     },
     {
       "id": "5x6QQvpRpd1PsFTTTJe6sJFFSqrA21H1j3GZLmo2pump",
-      "url": "https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3D5x6QQvpRpd1PsFTTTJe6sJFFSqrA21H1j3GZLmo2pump",
+      "url": "https://rugshield-402.onrender.com/?token=5x6QQvpRpd1PsFTTTJe6sJFFSqrA21H1j3GZLmo2pump",
       "title": "[SOLANA] $5X6QQVPRPD - Risk: 79/100 | Top-10 holds 34.3% (3 clusters)",
-      "content_text": "Pre-trade safety intelligence for SOLANA token $5X6QQVPRPD (5x6QQvpRpd1PsFTTTJe6sJFFSqrA21H1j3GZLmo2pump). Top-10 holders control ~34.3% across 3 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=5x6QQvpRpd1PsFTTTJe6sJFFSqrA21H1j3GZLmo2pump | 1-Click Solana Blink: https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3D5x6QQvpRpd1PsFTTTJe6sJFFSqrA21H1j3GZLmo2pump",
-      "date_published": "2026-10-18T00:50:24.887149+00:00",
+      "content_text": "Pre-trade safety intelligence for SOLANA token $5X6QQVPRPD (5x6QQvpRpd1PsFTTTJe6sJFFSqrA21H1j3GZLmo2pump). Top-10 holders control ~34.3% across 3 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=5x6QQvpRpd1PsFTTTJe6sJFFSqrA21H1j3GZLmo2pump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=5x6QQvpRpd1PsFTTTJe6sJFFSqrA21H1j3GZLmo2pump",
+      "date_published": "2026-10-18T02:35:28.389716+00:00",
       "tags": [
         "solana",
         "x402",
         "security",
-        "honeypot",
-        "solana-blink"
+        "honeypot"
       ],
       "attachments": [
         {
@@ -58,43 +84,16 @@
       ]
     },
     {
-      "id": "7iYM9cjpKKNyLvJfq4pYyjubk83dnqxtPDrRdf77pump",
-      "url": "https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3D7iYM9cjpKKNyLvJfq4pYyjubk83dnqxtPDrRdf77pump",
-      "title": "[SOLANA] $7IYM9CJPKK - Risk: 37/100 | Top-10 holds 16.3% (3 clusters)",
-      "content_text": "Pre-trade safety intelligence for SOLANA token $7IYM9CJPKK (7iYM9cjpKKNyLvJfq4pYyjubk83dnqxtPDrRdf77pump). Top-10 holders control ~16.3% across 3 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=7iYM9cjpKKNyLvJfq4pYyjubk83dnqxtPDrRdf77pump | 1-Click Solana Blink: https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3D7iYM9cjpKKNyLvJfq4pYyjubk83dnqxtPDrRdf77pump",
-      "date_published": "2026-10-18T00:50:24.887149+00:00",
-      "tags": [
-        "solana",
-        "x402",
-        "security",
-        "honeypot",
-        "solana-blink"
-      ],
-      "attachments": [
-        {
-          "url": "https://rugshield-402.onrender.com/?token=7iYM9cjpKKNyLvJfq4pYyjubk83dnqxtPDrRdf77pump",
-          "mime_type": "text/html",
-          "title": "Web Terminal"
-        },
-        {
-          "url": "https://rugshield-402.onrender.com/api/actions/scan?token=7iYM9cjpKKNyLvJfq4pYyjubk83dnqxtPDrRdf77pump",
-          "mime_type": "application/json",
-          "title": "Solana Action"
-        }
-      ]
-    },
-    {
       "id": "6o2oeMWR9GeEm5acoi793f1XUQp4uoCcMBrw2mZopump",
-      "url": "https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3D6o2oeMWR9GeEm5acoi793f1XUQp4uoCcMBrw2mZopump",
+      "url": "https://rugshield-402.onrender.com/?token=6o2oeMWR9GeEm5acoi793f1XUQp4uoCcMBrw2mZopump",
       "title": "[SOLANA] $6O2OEMWR9G - Risk: 56/100 | Top-10 holds 31.6% (4 clusters)",
-      "content_text": "Pre-trade safety intelligence for SOLANA token $6O2OEMWR9G (6o2oeMWR9GeEm5acoi793f1XUQp4uoCcMBrw2mZopump). Top-10 holders control ~31.6% across 4 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=6o2oeMWR9GeEm5acoi793f1XUQp4uoCcMBrw2mZopump | 1-Click Solana Blink: https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3D6o2oeMWR9GeEm5acoi793f1XUQp4uoCcMBrw2mZopump",
-      "date_published": "2026-10-18T00:50:24.887149+00:00",
+      "content_text": "Pre-trade safety intelligence for SOLANA token $6O2OEMWR9G (6o2oeMWR9GeEm5acoi793f1XUQp4uoCcMBrw2mZopump). Top-10 holders control ~31.6% across 4 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=6o2oeMWR9GeEm5acoi793f1XUQp4uoCcMBrw2mZopump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=6o2oeMWR9GeEm5acoi793f1XUQp4uoCcMBrw2mZopump",
+      "date_published": "2026-10-18T02:35:28.389716+00:00",
       "tags": [
         "solana",
         "x402",
         "security",
-        "honeypot",
-        "solana-blink"
+        "honeypot"
       ],
       "attachments": [
         {
@@ -110,17 +109,66 @@
       ]
     },
     {
-      "id": "7NPvxgxdDKgTHSzcWoV5mCp5opNA4uTpzrPynXDXpump",
-      "url": "https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3D7NPvxgxdDKgTHSzcWoV5mCp5opNA4uTpzrPynXDXpump",
-      "title": "[SOLANA] $7NPVXGXDDK - Risk: 61/100 | Top-10 holds 37.9% (2 clusters)",
-      "content_text": "Pre-trade safety intelligence for SOLANA token $7NPVXGXDDK (7NPvxgxdDKgTHSzcWoV5mCp5opNA4uTpzrPynXDXpump). Top-10 holders control ~37.9% across 2 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=7NPvxgxdDKgTHSzcWoV5mCp5opNA4uTpzrPynXDXpump | 1-Click Solana Blink: https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3D7NPvxgxdDKgTHSzcWoV5mCp5opNA4uTpzrPynXDXpump",
-      "date_published": "2026-10-18T00:50:24.887149+00:00",
+      "id": "7iYM9cjpKKNyLvJfq4pYyjubk83dnqxtPDrRdf77pump",
+      "url": "https://rugshield-402.onrender.com/?token=7iYM9cjpKKNyLvJfq4pYyjubk83dnqxtPDrRdf77pump",
+      "title": "[SOLANA] $7IYM9CJPKK - Risk: 37/100 | Top-10 holds 16.3% (3 clusters)",
+      "content_text": "Pre-trade safety intelligence for SOLANA token $7IYM9CJPKK (7iYM9cjpKKNyLvJfq4pYyjubk83dnqxtPDrRdf77pump). Top-10 holders control ~16.3% across 3 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=7iYM9cjpKKNyLvJfq4pYyjubk83dnqxtPDrRdf77pump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=7iYM9cjpKKNyLvJfq4pYyjubk83dnqxtPDrRdf77pump",
+      "date_published": "2026-10-18T02:35:28.389716+00:00",
       "tags": [
         "solana",
         "x402",
         "security",
-        "honeypot",
-        "solana-blink"
+        "honeypot"
+      ],
+      "attachments": [
+        {
+          "url": "https://rugshield-402.onrender.com/?token=7iYM9cjpKKNyLvJfq4pYyjubk83dnqxtPDrRdf77pump",
+          "mime_type": "text/html",
+          "title": "Web Terminal"
+        },
+        {
+          "url": "https://rugshield-402.onrender.com/api/actions/scan?token=7iYM9cjpKKNyLvJfq4pYyjubk83dnqxtPDrRdf77pump",
+          "mime_type": "application/json",
+          "title": "Solana Action"
+        }
+      ]
+    },
+    {
+      "id": "DfBJCoLnaF75GaKPWB4c3TFyMHcXmAShiuWm3dHNpump",
+      "url": "https://rugshield-402.onrender.com/?token=DfBJCoLnaF75GaKPWB4c3TFyMHcXmAShiuWm3dHNpump",
+      "title": "[SOLANA] $DFBJCOLNAF - Risk: 34/100 | Top-10 holds 19.9% (5 clusters)",
+      "content_text": "Pre-trade safety intelligence for SOLANA token $DFBJCOLNAF (DfBJCoLnaF75GaKPWB4c3TFyMHcXmAShiuWm3dHNpump). Top-10 holders control ~19.9% across 5 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=DfBJCoLnaF75GaKPWB4c3TFyMHcXmAShiuWm3dHNpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=DfBJCoLnaF75GaKPWB4c3TFyMHcXmAShiuWm3dHNpump",
+      "date_published": "2026-10-18T02:35:28.389716+00:00",
+      "tags": [
+        "solana",
+        "x402",
+        "security",
+        "honeypot"
+      ],
+      "attachments": [
+        {
+          "url": "https://rugshield-402.onrender.com/?token=DfBJCoLnaF75GaKPWB4c3TFyMHcXmAShiuWm3dHNpump",
+          "mime_type": "text/html",
+          "title": "Web Terminal"
+        },
+        {
+          "url": "https://rugshield-402.onrender.com/api/actions/scan?token=DfBJCoLnaF75GaKPWB4c3TFyMHcXmAShiuWm3dHNpump",
+          "mime_type": "application/json",
+          "title": "Solana Action"
+        }
+      ]
+    },
+    {
+      "id": "7NPvxgxdDKgTHSzcWoV5mCp5opNA4uTpzrPynXDXpump",
+      "url": "https://rugshield-402.onrender.com/?token=7NPvxgxdDKgTHSzcWoV5mCp5opNA4uTpzrPynXDXpump",
+      "title": "[SOLANA] $7NPVXGXDDK - Risk: 61/100 | Top-10 holds 37.9% (2 clusters)",
+      "content_text": "Pre-trade safety intelligence for SOLANA token $7NPVXGXDDK (7NPvxgxdDKgTHSzcWoV5mCp5opNA4uTpzrPynXDXpump). Top-10 holders control ~37.9% across 2 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=7NPvxgxdDKgTHSzcWoV5mCp5opNA4uTpzrPynXDXpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=7NPvxgxdDKgTHSzcWoV5mCp5opNA4uTpzrPynXDXpump",
+      "date_published": "2026-10-18T02:35:28.389716+00:00",
+      "tags": [
+        "solana",
+        "x402",
+        "security",
+        "honeypot"
       ],
       "attachments": [
         {
@@ -137,16 +185,15 @@
     },
     {
       "id": "8Xg89xT8Ve34sKiYqYuMs46mycREsCA2F362UscRpump",
-      "url": "https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3D8Xg89xT8Ve34sKiYqYuMs46mycREsCA2F362UscRpump",
+      "url": "https://rugshield-402.onrender.com/?token=8Xg89xT8Ve34sKiYqYuMs46mycREsCA2F362UscRpump",
       "title": "[SOLANA] $8XG89XT8VE - Risk: 77/100 | Top-10 holds 32.5% (6 clusters)",
-      "content_text": "Pre-trade safety intelligence for SOLANA token $8XG89XT8VE (8Xg89xT8Ve34sKiYqYuMs46mycREsCA2F362UscRpump). Top-10 holders control ~32.5% across 6 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=8Xg89xT8Ve34sKiYqYuMs46mycREsCA2F362UscRpump | 1-Click Solana Blink: https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3D8Xg89xT8Ve34sKiYqYuMs46mycREsCA2F362UscRpump",
-      "date_published": "2026-10-18T00:50:24.887149+00:00",
+      "content_text": "Pre-trade safety intelligence for SOLANA token $8XG89XT8VE (8Xg89xT8Ve34sKiYqYuMs46mycREsCA2F362UscRpump). Top-10 holders control ~32.5% across 6 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=8Xg89xT8Ve34sKiYqYuMs46mycREsCA2F362UscRpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=8Xg89xT8Ve34sKiYqYuMs46mycREsCA2F362UscRpump",
+      "date_published": "2026-10-18T02:35:28.389716+00:00",
       "tags": [
         "solana",
         "x402",
         "security",
-        "honeypot",
-        "solana-blink"
+        "honeypot"
       ],
       "attachments": [
         {
@@ -163,16 +210,15 @@
     },
     {
       "id": "4jjQjDRYd7xLcFMViRsz4GvtgU6gPZgbVaxN3Rq9pump",
-      "url": "https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3D4jjQjDRYd7xLcFMViRsz4GvtgU6gPZgbVaxN3Rq9pump",
+      "url": "https://rugshield-402.onrender.com/?token=4jjQjDRYd7xLcFMViRsz4GvtgU6gPZgbVaxN3Rq9pump",
       "title": "[SOLANA] $4JJQJDRYD7 - Risk: 69/100 | Top-10 holds 27.1% (6 clusters)",
-      "content_text": "Pre-trade safety intelligence for SOLANA token $4JJQJDRYD7 (4jjQjDRYd7xLcFMViRsz4GvtgU6gPZgbVaxN3Rq9pump). Top-10 holders control ~27.1% across 6 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=4jjQjDRYd7xLcFMViRsz4GvtgU6gPZgbVaxN3Rq9pump | 1-Click Solana Blink: https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3D4jjQjDRYd7xLcFMViRsz4GvtgU6gPZgbVaxN3Rq9pump",
-      "date_published": "2026-10-18T00:50:24.887149+00:00",
+      "content_text": "Pre-trade safety intelligence for SOLANA token $4JJQJDRYD7 (4jjQjDRYd7xLcFMViRsz4GvtgU6gPZgbVaxN3Rq9pump). Top-10 holders control ~27.1% across 6 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=4jjQjDRYd7xLcFMViRsz4GvtgU6gPZgbVaxN3Rq9pump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=4jjQjDRYd7xLcFMViRsz4GvtgU6gPZgbVaxN3Rq9pump",
+      "date_published": "2026-10-18T02:35:28.389716+00:00",
       "tags": [
         "solana",
         "x402",
         "security",
-        "honeypot",
-        "solana-blink"
+        "honeypot"
       ],
       "attachments": [
         {
@@ -189,16 +235,15 @@
     },
     {
       "id": "SAtoZGJkh4Eid9EQZYXWnCNVn5asZrWZLouBMX1SHi1",
-      "url": "https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3DSAtoZGJkh4Eid9EQZYXWnCNVn5asZrWZLouBMX1SHi1",
+      "url": "https://rugshield-402.onrender.com/?token=SAtoZGJkh4Eid9EQZYXWnCNVn5asZrWZLouBMX1SHi1",
       "title": "[SOLANA] $SATOZGJKH4 - Risk: 31/100 | Top-10 holds 25.3% (5 clusters)",
-      "content_text": "Pre-trade safety intelligence for SOLANA token $SATOZGJKH4 (SAtoZGJkh4Eid9EQZYXWnCNVn5asZrWZLouBMX1SHi1). Top-10 holders control ~25.3% across 5 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=SAtoZGJkh4Eid9EQZYXWnCNVn5asZrWZLouBMX1SHi1 | 1-Click Solana Blink: https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3DSAtoZGJkh4Eid9EQZYXWnCNVn5asZrWZLouBMX1SHi1",
-      "date_published": "2026-10-18T00:50:24.887149+00:00",
+      "content_text": "Pre-trade safety intelligence for SOLANA token $SATOZGJKH4 (SAtoZGJkh4Eid9EQZYXWnCNVn5asZrWZLouBMX1SHi1). Top-10 holders control ~25.3% across 5 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=SAtoZGJkh4Eid9EQZYXWnCNVn5asZrWZLouBMX1SHi1 | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=SAtoZGJkh4Eid9EQZYXWnCNVn5asZrWZLouBMX1SHi1",
+      "date_published": "2026-10-18T02:35:28.389716+00:00",
       "tags": [
         "solana",
         "x402",
         "security",
-        "honeypot",
-        "solana-blink"
+        "honeypot"
       ],
       "attachments": [
         {
@@ -215,16 +260,15 @@
     },
     {
       "id": "Crp1ceeVfN9STCA6rSu9sxAYpjimXApS3wam2cifkfog",
-      "url": "https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3DCrp1ceeVfN9STCA6rSu9sxAYpjimXApS3wam2cifkfog",
+      "url": "https://rugshield-402.onrender.com/?token=Crp1ceeVfN9STCA6rSu9sxAYpjimXApS3wam2cifkfog",
       "title": "[SOLANA] $CRP1CEEVFN - Risk: 79/100 | Top-10 holds 36.1% (6 clusters)",
-      "content_text": "Pre-trade safety intelligence for SOLANA token $CRP1CEEVFN (Crp1ceeVfN9STCA6rSu9sxAYpjimXApS3wam2cifkfog). Top-10 holders control ~36.1% across 6 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=Crp1ceeVfN9STCA6rSu9sxAYpjimXApS3wam2cifkfog | 1-Click Solana Blink: https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3DCrp1ceeVfN9STCA6rSu9sxAYpjimXApS3wam2cifkfog",
-      "date_published": "2026-10-18T00:50:24.887149+00:00",
+      "content_text": "Pre-trade safety intelligence for SOLANA token $CRP1CEEVFN (Crp1ceeVfN9STCA6rSu9sxAYpjimXApS3wam2cifkfog). Top-10 holders control ~36.1% across 6 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=Crp1ceeVfN9STCA6rSu9sxAYpjimXApS3wam2cifkfog | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=Crp1ceeVfN9STCA6rSu9sxAYpjimXApS3wam2cifkfog",
+      "date_published": "2026-10-18T02:35:28.389716+00:00",
       "tags": [
         "solana",
         "x402",
         "security",
-        "honeypot",
-        "solana-blink"
+        "honeypot"
       ],
       "attachments": [
         {
@@ -240,43 +284,16 @@
       ]
     },
     {
-      "id": "BG35ZgNeSoSw36cQv58kMahU82wfYwzeNYoRNiwMVent",
-      "url": "https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3DBG35ZgNeSoSw36cQv58kMahU82wfYwzeNYoRNiwMVent",
-      "title": "[SOLANA] $BG35ZGNESO - Risk: 33/100 | Top-10 holds 37.0% (3 clusters)",
-      "content_text": "Pre-trade safety intelligence for SOLANA token $BG35ZGNESO (BG35ZgNeSoSw36cQv58kMahU82wfYwzeNYoRNiwMVent). Top-10 holders control ~37.0% across 3 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=BG35ZgNeSoSw36cQv58kMahU82wfYwzeNYoRNiwMVent | 1-Click Solana Blink: https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3DBG35ZgNeSoSw36cQv58kMahU82wfYwzeNYoRNiwMVent",
-      "date_published": "2026-10-18T00:50:24.887149+00:00",
-      "tags": [
-        "solana",
-        "x402",
-        "security",
-        "honeypot",
-        "solana-blink"
-      ],
-      "attachments": [
-        {
-          "url": "https://rugshield-402.onrender.com/?token=BG35ZgNeSoSw36cQv58kMahU82wfYwzeNYoRNiwMVent",
-          "mime_type": "text/html",
-          "title": "Web Terminal"
-        },
-        {
-          "url": "https://rugshield-402.onrender.com/api/actions/scan?token=BG35ZgNeSoSw36cQv58kMahU82wfYwzeNYoRNiwMVent",
-          "mime_type": "application/json",
-          "title": "Solana Action"
-        }
-      ]
-    },
-    {
       "id": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
-      "url": "https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3DDezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "url": "https://rugshield-402.onrender.com/?token=DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
       "title": "[SOLANA] $BONK - Risk: 65/100 | Top-10 holds 47.8% (6 clusters)",
-      "content_text": "Pre-trade safety intelligence for SOLANA token $BONK (DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263). Top-10 holders control ~47.8% across 6 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263 | 1-Click Solana Blink: https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3DDezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
-      "date_published": "2026-10-18T00:50:24.887149+00:00",
+      "content_text": "Pre-trade safety intelligence for SOLANA token $BONK (DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263). Top-10 holders control ~47.8% across 6 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263 | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "date_published": "2026-10-18T02:35:28.389716+00:00",
       "tags": [
         "solana",
         "x402",
         "security",
-        "honeypot",
-        "solana-blink"
+        "honeypot"
       ],
       "attachments": [
         {
@@ -293,16 +310,15 @@
     },
     {
       "id": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
-      "url": "https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3DEKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+      "url": "https://rugshield-402.onrender.com/?token=EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
       "title": "[SOLANA] $WIF - Risk: 34/100 | Top-10 holds 37.9% (4 clusters)",
-      "content_text": "Pre-trade safety intelligence for SOLANA token $WIF (EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm). Top-10 holders control ~37.9% across 4 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm | 1-Click Solana Blink: https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3DEKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
-      "date_published": "2026-10-18T00:50:24.887149+00:00",
+      "content_text": "Pre-trade safety intelligence for SOLANA token $WIF (EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm). Top-10 holders control ~37.9% across 4 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+      "date_published": "2026-10-18T02:35:28.389716+00:00",
       "tags": [
         "solana",
         "x402",
         "security",
-        "honeypot",
-        "solana-blink"
+        "honeypot"
       ],
       "attachments": [
         {
@@ -319,16 +335,15 @@
     },
     {
       "id": "7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr",
-      "url": "https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3D7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr",
+      "url": "https://rugshield-402.onrender.com/?token=7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr",
       "title": "[SOLANA] $POPCAT - Risk: 59/100 | Top-10 holds 42.4% (5 clusters)",
-      "content_text": "Pre-trade safety intelligence for SOLANA token $POPCAT (7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr). Top-10 holders control ~42.4% across 5 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr | 1-Click Solana Blink: https://dial.to/?action=solana-action:https%3A%2F%2Frugshield-402.onrender.com%2Fapi%2Factions%2Fscan%3Ftoken%3D7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr",
-      "date_published": "2026-10-18T00:50:24.887149+00:00",
+      "content_text": "Pre-trade safety intelligence for SOLANA token $POPCAT (7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr). Top-10 holders control ~42.4% across 5 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr",
+      "date_published": "2026-10-18T02:35:28.389716+00:00",
       "tags": [
         "solana",
         "x402",
         "security",
-        "honeypot",
-        "solana-blink"
+        "honeypot"
       ],
       "attachments": [
         {
@@ -347,14 +362,13 @@
       "id": "0x532f27101965dd16442E59d40670FaF5eBB142E4",
       "url": "https://rugshield-402.onrender.com/?token=0x532f27101965dd16442E59d40670FaF5eBB142E4",
       "title": "[BASE] $BRETT - Risk: 32/100 | Top-10 holds 19.0% (4 clusters)",
-      "content_text": "Pre-trade safety intelligence for BASE token $BRETT (0x532f27101965dd16442E59d40670FaF5eBB142E4). Top-10 holders control ~19.0% across 4 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=0x532f27101965dd16442E59d40670FaF5eBB142E4 ",
-      "date_published": "2026-10-18T00:50:24.887149+00:00",
+      "content_text": "Pre-trade safety intelligence for BASE token $BRETT (0x532f27101965dd16442E59d40670FaF5eBB142E4). Top-10 holders control ~19.0% across 4 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=0x532f27101965dd16442E59d40670FaF5eBB142E4 | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=0x532f27101965dd16442E59d40670FaF5eBB142E4",
+      "date_published": "2026-10-18T02:35:28.389716+00:00",
       "tags": [
         "base",
         "x402",
         "security",
-        "honeypot",
-        "solana-blink"
+        "honeypot"
       ],
       "attachments": [
         {
@@ -373,14 +387,13 @@
       "id": "0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed",
       "url": "https://rugshield-402.onrender.com/?token=0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed",
       "title": "[BASE] $DEGEN - Risk: 58/100 | Top-10 holds 36.1% (5 clusters)",
-      "content_text": "Pre-trade safety intelligence for BASE token $DEGEN (0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed). Top-10 holders control ~36.1% across 5 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed ",
-      "date_published": "2026-10-18T00:50:24.887149+00:00",
+      "content_text": "Pre-trade safety intelligence for BASE token $DEGEN (0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed). Top-10 holders control ~36.1% across 5 detected Sybil clusters. Unlock institutional simulation ($0.01 USDC): https://rugshield-402.onrender.com/?token=0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed",
+      "date_published": "2026-10-18T02:35:28.389716+00:00",
       "tags": [
         "base",
         "x402",
         "security",
-        "honeypot",
-        "solana-blink"
+        "honeypot"
       ],
       "attachments": [
         {
