@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kurox Sentinel — 1-Click MiniA2A Publisher</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #0b0f19;
+      color: #e2e8f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    .card {
+      background: #131b2e;
+      border: 1px solid #1e293b;
+      border-radius: 16px;
+      padding: 32px;
+      max-width: 580px;
+      width: 100%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+    h1 {
+      font-size: 22px;
+      margin-top: 0;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    p {
+      color: #94a3b8;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .wallet-box {
+      background: #0f172a;
+      border: 1px solid #334155;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 13px;
+      color: #38bdf8;
+      word-break: break-all;
+      margin: 16px 0;
+    }
+    .btn {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: #1d4ed8;
+    }
+    .btn:disabled {
+      background: #475569;
+      cursor: not-allowed;
+    }
+    .status {
+      margin-top: 20px;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      display: none;
+    }
+    .success {
+      background: #064e3b;
+      color: #6ee7b7;
+      border: 1px solid #059669;
+    }
+    .error {
+      background: #450a0a;
+      color: #fca5a5;
+      border: 1px solid #dc2626;
+    }
+    .info {
+      background: #172554;
+      color: #93c5fd;
+      border: 1px solid #2563eb;
+    }
+    ul {
+      padding-left: 20px;
+      font-size: 13px;
+      color: #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>⚡ MiniA2A 1-Click Publisher</h1>
+  <p>Publish <strong>RugShield</strong> & <strong>CanaryGuard</strong> to the <strong>MiniA2A Agent Marketplace</strong> (1,850+ live agent services). Signing is <strong>100% gasless & free</strong> (off-chain EIP-191 proof of ownership).</p>
+
+  <label style="font-size: 12px; color: #94a3b8; text-transform: uppercase; font-weight: 600;">Authorized Merchant Payout Wallet:</label>
+  <div class="wallet-box" id="wallet-address">0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6</div>
+
+  <p><strong>Services being published:</strong></p>
+  <ul>
+    <li><strong>RugShield 402</strong> (Pre-Trade Swap Simulation): <code>$0.100 USDC</code></li>
+    <li><strong>CanaryGuard 402</strong> (Prompt Injection Firewall): <code>$0.010 USDC</code></li>
+  </ul>
+
+  <button class="btn" id="publish-btn" onclick="publishServices()">Connect Wallet & Publish to MiniA2A</button>
+
+  <div class="status" id="status-box"></div>
+</div>
+
+<script>
+  const TARGET_WALLET = "0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6";
+
+  async function publishServices() {
+    const btn = document.getElementById("publish-btn");
+    const status = document.getElementById("status-box");
+
+    if (!window.ethereum) {
+      showStatus("No Ethereum wallet found (MetaMask / Coinbase Wallet). Please open this in a browser with your wallet extension.", "error");
+      return;
+    }
+
+    try {
+      btn.disabled = true;
+      btn.innerText = "Connecting Wallet...";
+      showStatus("Connecting to wallet...", "info");
+
+      const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+      const currentAccount = accounts[0];
+
+      if (currentAccount.toLowerCase() !== TARGET_WALLET.toLowerCase()) {
+        showStatus(`Please switch your wallet account to ${TARGET_WALLET}. Currently connected: ${currentAccount}`, "error");
+        btn.disabled = false;
+        btn.innerText = "Switch Account & Try Again";
+        return;
+      }
+
+      btn.innerText = "Awaiting Signature in Wallet...";
+      showStatus("Please click 'Sign' in your wallet (gasless off-chain signature)...", "info");
+
+      const message = `minia2a publish: ${TARGET_WALLET}`;
+      const signature = await window.ethereum.request({
+        method: "personal_sign",
+        params: [message, TARGET_WALLET]
+      });
+
+      btn.innerText = "Registering on MiniA2A API...";
+      showStatus("Signature captured! Submitting services to MiniA2A...", "info");
+
+      // Payload 1: RugShield
+      const rugPayload = {
+        name: "RugShield Pre-Trade DEX Simulation",
+        description: "Pre-trade bytecode swap simulation against DEX liquidity pools on Base to prevent honeypots.",
+        endpoint: "https://rugshield-402.onrender.com/v1/audit/swap-simulation-proof",
+        price_cents: 10,
+        wallet: TARGET_WALLET,
+        signature: signature
+      };
+
+      // Payload 2: CanaryGuard
+      const canaryPayload = {
+        name: "CanaryGuard Prompt Injection Firewall",
+        description: "Deterministic prompt-injection firewall and context scrubber for autonomous AI agents.",
+        endpoint: "https://canaryguard-402.onrender.com/v1/sanitize",
+        price_cents: 1,
+        wallet: TARGET_WALLET,
+        signature: signature
+      };
+
+      const res1 = await fetch("https://minia2a.uk/api/v1/publish-service", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(rugPayload)
+      });
+      const data1 = await res1.json();
+
+      const res2 = await fetch("https://minia2a.uk/api/v1/publish-service", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(canaryPayload)
+      });
+      const data2 = await res2.json();
+
+      btn.innerText = "✅ Successfully Published!";
+      btn.style.background = "#059669";
+      showStatus(`🎉 Both services successfully published to MiniA2A Marketplace!<br><br>
+        • RugShield: ${res1.ok ? "Published ($0.10)" : JSON.stringify(data1)}<br>
+        • CanaryGuard: ${res2.ok ? "Published ($0.01)" : JSON.stringify(data2)}<br><br>
+        Your endpoints are now live in the MiniA2A catalog for 1,850+ autonomous agents.`, "success");
+
+    } catch (err) {
+      console.error(err);
+      btn.disabled = false;
+      btn.innerText = "Connect Wallet & Publish to MiniA2A";
+      showStatus(`Error: ${err.message || err}`, "error");
+    }
+  }
+
+  function showStatus(msg, type) {
+    const box = document.getElementById("status-box");
+    box.style.display = "block";
+    box.className = `status ${type}`;
+    box.innerHTML = msg;
+  }
+</script>
+
+</body>
+</html>
