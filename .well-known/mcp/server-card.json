@@ -1,0 +1,42 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json",
+  "name": "network.kurox.sentinel-suite",
+  "title": "Kurox Sentinel Suite",
+  "version": "1.0.1",
+  "description": "Enterprise autonomous security & pre-trade risk simulation suite for AI agents and trading bots on Base and Solana. Features deterministic prompt injection firewalls and pre-trade DEX honeypot calldata simulation via x402 V2.",
+  "websiteUrl": "https://ak10082247-max.github.io",
+  "repository": "https://github.com/ak10082247-max/elizaos-plugin-kurox-sentinel",
+  "transports": [
+    {
+      "type": "http",
+      "url": "https://canaryguard-402.onrender.com/v1/sanitize",
+      "protocolVersions": [
+        "2026-07-28",
+        "2024-11-05"
+      ]
+    },
+    {
+      "type": "http",
+      "url": "https://rugshield-402.onrender.com/v1/audit/swap-simulation-proof",
+      "protocolVersions": [
+        "2026-07-28",
+        "2024-11-05"
+      ]
+    }
+  ],
+  "_meta": {
+    "x402": {
+      "version": 2,
+      "networks": [
+        "eip155:8453",
+        "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp"
+      ],
+      "facilitators": [
+        "coinbase-cdp",
+        "payai"
+      ],
+      "toolsManifest": "https://ak10082247-max.github.io/mcp_bundle_kurox.json",
+      "npmPackage": "elizaos-plugin-kurox-sentinel"
+    }
+  }
+}
