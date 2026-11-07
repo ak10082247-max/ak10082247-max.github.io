@@ -11,10 +11,10 @@ INDEXNOW_KEY = os.getenv("INDEXNOW_KEY", "c402rugshield8453solana91bazaar")
 INDEXNOW_KEY_LOCATION = os.getenv("INDEXNOW_KEY_LOCATION", "https://ak10082247-max.github.io/c402rugshield8453solana91bazaar.txt")
 BASE_SITE = "https://ak10082247-max.github.io"
 
-BASE_MERCHANT_WALLET = "0x73279fa4BadA7CAC888c62CDa4f5c8104765f6f1".lower()
+BASE_MERCHANT_WALLET = "0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6".lower()
 BASE_USDC_CONTRACT = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913".lower()
-SOLANA_MERCHANT_ATA = "3shUSbf9mkGabKqa2pdV7ZrstYvHozwusurLLuugf4dc"
-SOLANA_MERCHANT_WALLET = "3tQ4GthjUMqNsyrb1rZMocMHoNewFQWjDUvHZqWeYuCN"
+SOLANA_MERCHANT_ATA = "DD3A7jaXFeHcif9eYj6Vhomuxypat5Yxi8ow6wxz27yL"
+SOLANA_MERCHANT_WALLET = "9wuMysgXwNhtQeqJgGByAiMYc4EjzZ5wUSmnjrrt3ffh"
 
 INTERNAL_WALLETS = {
     "0x6b5f275f028a214fb2e6d21061db791e3b07beed",
@@ -417,8 +417,8 @@ def generate_revenue_log_md(deliveries: list[dict], balances: dict):
 ---
 
 ### 🏛️ Verified Merchant Treasury Wallets
-- **Base Mainnet (`eip155:8453`)**: [`0x73279fa4BadA7CAC888c62CDa4f5c8104765f6f1`](https://basescan.org/address/0x73279fa4BadA7CAC888c62CDa4f5c8104765f6f1) &bull; **`{base_usdc} USDC`**
-- **Solana Mainnet (`solana:5eykt...`)**: [`3shUSbf9mkGabKqa2pdV7ZrstYvHozwusurLLuugf4dc`](https://solscan.io/account/3shUSbf9mkGabKqa2pdV7ZrstYvHozwusurLLuugf4dc) &bull; **`{sol_usdc} USDC`**
+- **Base Mainnet (`eip155:8453`)**: [`0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6`](https://basescan.org/address/0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6) &bull; **`{base_usdc} USDC`**
+- **Solana Mainnet (`solana:5eykt...`)**: [`DD3A7jaXFeHcif9eYj6Vhomuxypat5Yxi8ow6wxz27yL`](https://solscan.io/account/DD3A7jaXFeHcif9eYj6Vhomuxypat5Yxi8ow6wxz27yL) &bull; **`{sol_usdc} USDC`**
 
 ---
 
