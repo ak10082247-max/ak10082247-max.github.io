@@ -180,7 +180,7 @@
       font-family: monospace;
       font-size: 12px;
       color: #a7f3d0;
-      max-height: 260px;
+      max-height: 280px;
       overflow-y: auto;
       display: none;
       word-break: break-all;
@@ -411,7 +411,8 @@
       }
 
       const now = Math.floor(Date.now() / 1000);
-      const validBefore = String(now + 3600);
+      // Protocol requires validBefore to be within maxTimeoutSeconds (<= now + 300s). We pin to 240s.
+      const validBefore = String(now + 240);
       const nonce = getRandomNonce();
 
       const domain = {
@@ -560,16 +561,14 @@
         }
         await refreshBalance();
       } else {
-        throw new Error(data.message || data.error || `HTTP ${response.status}`);
+        const reason = data.details || data.error_description || data.message || data.error || `HTTP ${response.status}`;
+        throw new Error(reason);
       }
     } catch (err) {
       console.error(err);
       btn.disabled = false;
       btn.innerText = `Retry Seed (${cfg.priceDisplay})`;
       log(`❌ Error: ${err.message || err}`);
-      if (err.message && err.message.includes("invalid_payment_ownership")) {
-        log(`💡 Tip: Try clicking <strong>RugShield ($0.010 USDC)</strong> above — RugShield uses dual authorization schemes and settles immediately!`);
-      }
     }
   }
 
