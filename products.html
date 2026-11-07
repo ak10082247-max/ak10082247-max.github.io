@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kurox Developer Marketplace — Turnkey Web3 & AI Software</title>
+  <style>
+    :root {
+      --bg: #0a0e17;
+      --card-bg: #111827;
+      --border: #1f2937;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --text: #f9fafb;
+      --text-muted: #9ca3af;
+      --success: #10b981;
+      --warning: #f59e0b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); padding: 2rem 1rem; line-height: 1.6; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 3rem; }
+    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; background: linear-gradient(90deg, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    p.subtitle { color: var(--text-muted); font-size: 1.1rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+    .card { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between; }
+    .badge { display: inline-block; padding: 0.25rem 0.6rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin-bottom: 1rem; }
+    .badge-blue { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); }
+    .badge-green { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+    .badge-purple { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); }
+    .price { font-size: 1.8rem; font-weight: 700; margin: 1rem 0; color: #fff; }
+    .price span { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+    ul.features { list-style: none; margin-bottom: 1.5rem; font-size: 0.95rem; }
+    ul.features li { margin-bottom: 0.5rem; display: flex; align-items: center; }
+    ul.features li::before { content: "✓"; color: var(--success); font-weight: bold; margin-right: 0.5rem; }
+    .btn { display: block; text-align: center; background: var(--accent); color: white; padding: 0.75rem 1.25rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background 0.2s; border: none; cursor: pointer; width: 100%; }
+    .btn:hover { background: var(--accent-hover); }
+    .payment-box { background: #131d31; border: 1px solid #1e3a8a; border-radius: 12px; padding: 2rem; margin-top: 2rem; }
+    .payment-box h3 { margin-bottom: 1rem; color: #93c5fd; }
+    .address-card { background: #0b1120; border: 1px solid #1f2937; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; font-family: monospace; font-size: 0.9rem; word-break: break-all; }
+    .address-label { font-size: 0.8rem; color: #9ca3af; text-transform: uppercase; margin-bottom: 0.3rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Kurox Developer Marketplace</h1>
+      <p class="subtitle">Turnkey, production-grade source code packages & trading software for Base & Solana.</p>
+    </header>
+
+    <div class="grid">
+      <!-- Product 1 -->
+      <div class="card">
+        <div>
+          <span class="badge badge-blue">Base Mainnet</span>
+          <h2>BaseSniper Pro v1.0.0</h2>
+          <p style="color: #9ca3af; font-size: 0.9rem; margin-top: 0.5rem;">Autonomous DEX Trading Bot with Pre-Trade Honeypot Calldata Gate & Aerodrome Router.</p>
+          <div class="price">$29 <span>USDC / One-time</span></div>
+          <ul class="features">
+            <li>Pre-trade state-override simulation (<8ms)</li>
+            <li>Zero gas loss on un-sellable honeypots</li>
+            <li>Aerodrome Router + Uniswap v3 support</li>
+            <li>Full Dry-Run simulation runner included</li>
+            <li>100% TypeScript source code & docs</li>
+          </ul>
+        </div>
+        <a href="#payment" class="btn">Buy with USDC ($29)</a>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="card">
+        <div>
+          <span class="badge badge-purple">AI & LLM Security</span>
+          <h2>CanaryGuard AI Firewall v1.0.0</h2>
+          <p style="color: #9ca3af; font-size: 0.9rem; margin-top: 0.5rem;">Deterministic Prompt Injection Defense & Reverse Proxy for OpenAI, Claude & Gemini.</p>
+          <div class="price">$39 <span>USDC / One-time</span></div>
+          <ul class="features">
+            <li>Zero-latency regex & AST token normalizer</li>
+            <li>Neutralizes zero-width unicode smuggling</li>
+            <li>Role delimiter & DAN jailbreak protection</li>
+            <li>Drop-in OpenAI SDK reverse proxy</li>
+            <li>Cryptographic SHA-256 safety receipts</li>
+          </ul>
+        </div>
+        <a href="#payment" class="btn">Buy with USDC ($39)</a>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="card">
+        <div>
+          <span class="badge badge-green">Dual Chain</span>
+          <h2>RugShield Pre-Trade Scanner v1.0.0</h2>
+          <p style="color: #9ca3af; font-size: 0.9rem; margin-top: 0.5rem;">Pre-Trade Bytecode Simulator & LP Lock Verifier for Base and Solana Tokens.</p>
+          <div class="price">$39 <span>USDC / One-time</span></div>
+          <ul class="features">
+            <li>Dual-chain Base & Solana token verification</li>
+            <li>Detects hidden 99% buy/sell transfer taxes</li>
+            <li>Solana mint & freeze authority audits</li>
+            <li>REST API server + CLI tool included</li>
+            <li>Full commercial license rights</li>
+          </ul>
+        </div>
+        <a href="#payment" class="btn">Buy with USDC ($39)</a>
+      </div>
+    </div>
+
+    <!-- Payment Section -->
+    <div class="payment-box" id="payment">
+      <h3>Direct On-Chain Purchase (Instant Delivery)</h3>
+      <p style="color: #9ca3af; font-size: 0.95rem; margin-bottom: 1.5rem;">
+        Send the exact USDC amount to either of our authorized merchant addresses below. Once sent, email your transaction hash to <strong style="color: #60a5fa;">armkhan18@gmail.com</strong> for instant download delivery!
+      </p>
+
+      <div class="address-card">
+        <div class="address-label">Base Mainnet (USDC - Chain ID 8453)</div>
+        <div>0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6</div>
+      </div>
+
+      <div class="address-card">
+        <div class="address-label">Solana Mainnet (USDC ATA)</div>
+        <div>DD3A7jaXFeHcif9eYj6Vhomuxypat5Yxi8ow6wxz27yL</div>
+      </div>
+
+      <p style="font-size: 0.85rem; color: #6b7280; text-align: center; margin-top: 1rem;">
+        All code packages include full commercial rights, complete TypeScript source code, and lifetime updates. Zero recurring fees.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
