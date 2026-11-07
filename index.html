@@ -423,6 +423,24 @@
       </div>
     </div>
 
+    <div class="section-title">Autonomous Agent Client Plugins & Starter Bots</div>
+    <div class="mcp-box" style="border-color: var(--accent-cyan);">
+      <h3 style="color:#fff; margin-bottom: 0.5rem;">ElizaOS Pre-Trade DEX Defense Plugin (NPM: <code>elizaos-plugin-kurox-sentinel@1.0.3</code>)</h3>
+      <p style="color:var(--text-muted); margin-bottom: 0.75rem;">Embed real-time honeypot bytecode simulations and prompt-injection firewalls directly into autonomous ElizaOS trading agents on Base and Solana with gasless x402 V2 settlement.</p>
+      <div class="mcp-code">
+npm install elizaos-plugin-kurox-sentinel
+
+# In your Eliza character configuration:
+import { kuroxSentinelPlugin } from "elizaos-plugin-kurox-sentinel";
+export const character = {
+  name: "Autonomous DeFi Sniper",
+  plugins: [kuroxSentinelPlugin],
+  settings: { secrets: { EVM_PRIVATE_KEY: process.env.EVM_PRIVATE_KEY } }
+};
+      </div>
+      <p style="margin-top: 0.75rem;"><a href="https://github.com/ak10082247-max/base-trading-bot-starter" target="_blank" style="color:var(--accent-sol); font-weight:600; text-decoration:none;">⚡ View Base Sniper Pro Starter Bot on GitHub &rarr;</a></p>
+    </div>
+
     <div class="section-title">Official Model Context Protocol (MCP) Registry</div>
     <div class="mcp-box">
       <p style="color:var(--text-muted); margin-bottom: 0.75rem;">All 4 remote MCP servers and the sniper bot are published under the verified <code>io.github.ak10082247-max/*</code> namespace on the Official Model Context Protocol Registry (<code>registry.modelcontextprotocol.io</code>).</p>
