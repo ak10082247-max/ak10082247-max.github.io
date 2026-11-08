@@ -282,6 +282,61 @@
       </div>
     </div>
 
+    <div class="section-title">AgentFuel402 Consumable Data Factory (Edge x402)</div>
+    <div class="actions-grid">
+      <!-- AgentFuel B2B Intent Leads -->
+      <div class="action-card">
+        <div class="action-title">
+          <span>AgentFuel B2B Intent Leads</span>
+          <span class="badge">$0.010 USDC</span>
+        </div>
+        <div class="action-desc">
+          Route: <code>/v1/fuel/b2b-intent-leads</code><br>
+          Real-time B2B buying signals from Show HN, ProductHunt, and GitHub trending.
+        </div>
+        <button class="btn-seed" id="btn-fuel-leads" onclick="seedEndpoint('fuel-leads')">⚡ Seed B2B Intent Leads ($0.010 USDC)</button>
+      </div>
+
+      <!-- AgentFuel LLM Clean Markdown -->
+      <div class="action-card">
+        <div class="action-title">
+          <span>AgentFuel LLM Clean Markdown</span>
+          <span class="badge">$0.005 USDC</span>
+        </div>
+        <div class="action-desc">
+          Route: <code>/v1/fuel/llm-clean-markdown</code><br>
+          SSRF-protected ad-free clean Markdown extraction with prompt-injection defense.
+        </div>
+        <button class="btn-seed" id="btn-fuel-markdown" onclick="seedEndpoint('fuel-markdown')">⚡ Seed Clean Markdown ($0.005 USDC)</button>
+      </div>
+
+      <!-- AgentFuel E-Com Price & Stock -->
+      <div class="action-card">
+        <div class="action-title">
+          <span>AgentFuel E-Commerce Price & Stock</span>
+          <span class="badge">$0.005 USDC</span>
+        </div>
+        <div class="action-desc">
+          Route: <code>/v1/fuel/ecom-price-stock</code><br>
+          Live price, currency, SKU, and in-stock monitoring for Shopify and Schema.org products.
+        </div>
+        <button class="btn-seed" id="btn-fuel-ecom" onclick="seedEndpoint('fuel-ecom')">⚡ Seed E-Com Price ($0.005 USDC)</button>
+      </div>
+
+      <!-- AgentFuel SDK Live Spec -->
+      <div class="action-card">
+        <div class="action-title">
+          <span>AgentFuel SDK Live Spec</span>
+          <span class="badge">$0.005 USDC</span>
+        </div>
+        <div class="action-desc">
+          Route: <code>/v1/fuel/sdk-live-spec</code><br>
+          Live PyPI & npm registry package metadata and breaking change alerts.
+        </div>
+        <button class="btn-seed" id="btn-fuel-sdk" onclick="seedEndpoint('fuel-sdk')">⚡ Seed SDK Spec ($0.005 USDC)</button>
+      </div>
+    </div>
+
   </div>
 
   <div class="log-box" id="log-box"></div>
@@ -392,6 +447,38 @@
       amountMicro: "100000",
       priceDisplay: "$0.100 USDC",
       body: { target_address: BASE_USDC, chain_id: 8453 }
+    },
+    "fuel-leads": {
+      btnId: "btn-fuel-leads",
+      name: "AgentFuel B2B Intent Leads",
+      url: "https://agentfuel402.ak10082247.workers.dev/v1/fuel/b2b-intent-leads",
+      amountMicro: "10000",
+      priceDisplay: "$0.010 USDC",
+      body: { category: "all", limit: 5 }
+    },
+    "fuel-markdown": {
+      btnId: "btn-fuel-markdown",
+      name: "AgentFuel LLM Clean Markdown",
+      url: "https://agentfuel402.ak10082247.workers.dev/v1/fuel/llm-clean-markdown",
+      amountMicro: "5000",
+      priceDisplay: "$0.005 USDC",
+      body: { url: "https://news.ycombinator.com" }
+    },
+    "fuel-ecom": {
+      btnId: "btn-fuel-ecom",
+      name: "AgentFuel E-Commerce Price & Stock",
+      url: "https://agentfuel402.ak10082247.workers.dev/v1/fuel/ecom-price-stock",
+      amountMicro: "5000",
+      priceDisplay: "$0.005 USDC",
+      body: { url: "https://shop.allbirds.com/products/mens-tree-runners" }
+    },
+    "fuel-sdk": {
+      btnId: "btn-fuel-sdk",
+      name: "AgentFuel SDK Live Spec",
+      url: "https://agentfuel402.ak10082247.workers.dev/v1/fuel/sdk-live-spec",
+      amountMicro: "5000",
+      priceDisplay: "$0.005 USDC",
+      body: { ecosystem: "pypi", package: "fastapi" }
     }
   };
 
