@@ -1,13 +1,13 @@
 # Kurox x402 Live External Revenue & Settlement Log
 
 > **Autonomous Multi-Chain Merchant Treasury Flight Recorder**  
-> Last Synchronized: **2026-11-08 08:27:14 UTC**  
+> Last Synchronized: **2026-11-08 15:29:08 UTC**  
 > Monitored 24/7/365 in the Cloud via GitHub Actions  
 
 ---
 
 ### 🏛️ Verified Merchant Treasury Wallets
-- **Base Mainnet (`eip155:8453`)**: [`0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6`](https://basescan.org/address/0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6) &bull; **`0.333000 USDC`**
+- **Base Mainnet (`eip155:8453`)**: [`0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6`](https://basescan.org/address/0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6) &bull; **`0.363000 USDC`**
 - **Solana Mainnet (`solana:5eykt...`)**: [`DD3A7jaXFeHcif9eYj6Vhomuxypat5Yxi8ow6wxz27yL`](https://solscan.io/account/DD3A7jaXFeHcif9eYj6Vhomuxypat5Yxi8ow6wxz27yL) &bull; **`0.072 USDC`**
 
 ---
