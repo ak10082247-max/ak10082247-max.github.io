@@ -462,7 +462,7 @@
       url: "https://agentfuel402.ak10082247.workers.dev/v1/fuel/llm-clean-markdown",
       amountMicro: "5000",
       priceDisplay: "$0.005 USDC",
-      body: { url: "https://news.ycombinator.com" }
+      body: { url: "https://example.com" }
     },
     "fuel-ecom": {
       btnId: "btn-fuel-ecom",
@@ -470,7 +470,7 @@
       url: "https://agentfuel402.ak10082247.workers.dev/v1/fuel/ecom-price-stock",
       amountMicro: "5000",
       priceDisplay: "$0.005 USDC",
-      body: { url: "https://shop.allbirds.com/products/mens-tree-runners" }
+      body: { url: "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html" }
     },
     "fuel-sdk": {
       btnId: "btn-fuel-sdk",
@@ -636,6 +636,7 @@
       }
       if (!txHash && data.transaction) txHash = data.transaction;
       if (!txHash && data.txHash) txHash = data.txHash;
+      if (!txHash && data.receipt?.transaction) txHash = data.receipt.transaction;
 
       if (response.ok) {
         btn.innerText = "✅ SEEDED & CONFIRMED!";
