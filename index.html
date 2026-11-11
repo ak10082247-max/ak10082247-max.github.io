@@ -3,169 +3,393 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kurox x402 Protocol — Dual-Chain Security & Alpha Fleet Directory</title>
-  <meta name="description" content="Official directory for 65 dual-chain x402 V2 paid intelligence, security audit, and whale detection endpoints across Base and Solana.">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://ak10082247-max.github.io/">
+  <title>Kurox x402 Protocol — Big 3 Dual-Chain AI Data, Security &amp; Apify Fleet</title>
+  <meta name="description" content="Official directory for AgentFuel402, CanaryGuard 402, and RugShield 402 — x402 V2 dual-chain (Base & Solana USDC) and Apify Store credit-card APIs & MCP servers.">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.2/ethers.umd.min.js"></script>
   <style>
     :root {
-      --bg: #090a0f;
-      --card-bg: #12141e;
-      --accent-sol: #14f195;
-      --accent-base: #0052ff;
-      --accent-cyan: #00f2fe;
-      --text: #f0f3fa;
-      --text-muted: #8892b0;
-      --border: #23293d;
-      --badge-bg: #1e2438;
+      --bg: #080b12;
+      --surface: #111623;
+      --surface-2: #161d2f;
+      --border: #232c42;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --blue: #3b82f6;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --purple: #a78bfa;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace; }
-    body { background: var(--bg); color: var(--text); line-height: 1.6; padding: 2rem 1rem; }
-    .container { max-width: 1200px; margin: 0 auto; }
-    header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
-    h1 { font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-sol), var(--accent-base)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
-    .subtitle { color: var(--text-muted); font-size: 1.1rem; max-width: 800px; margin: 0 auto 1.5rem; }
-    .badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-bottom: 1.5rem; }
-    .badge { background: var(--badge-bg); border: 1px solid var(--border); border-radius: 999px; padding: 0.35rem 1rem; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; }
-    .badge.sol { border-color: var(--accent-sol); color: var(--accent-sol); }
-    .badge.base { border-color: var(--accent-base); color: #4d82ff; }
-    .badge.green { border-color: #10b981; color: #10b981; }
-    
-    .ticker-bar { background: #161a29; border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin-bottom: 2.5rem; }
-    .ticker-title { font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 0.75rem; }
-    .ticker-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .chip { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.4rem 0.8rem; font-size: 0.85rem; text-decoration: none; color: var(--text); transition: all 0.2s; }
-    .chip:hover { border-color: var(--accent-sol); transform: translateY(-2px); }
-    .chip span { color: var(--accent-sol); font-weight: 700; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at 20% 0%, rgba(56, 189, 248, 0.08), transparent 45%),
+                  radial-gradient(circle at 80% 0%, rgba(16, 185, 129, 0.07), transparent 45%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem 1rem 4rem;
+    }
+    .container { max-width: 1140px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 2.25rem; }
+    h1 {
+      font-size: clamp(1.9rem, 4vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      background: linear-gradient(90deg, #38bdf8, #34d399, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.65rem;
+    }
+    .subtitle { color: var(--text-muted); max-width: 780px; margin: 0 auto 1.25rem; font-size: 1.02rem; }
+    .badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-bottom: 1.35rem; }
+    .badge {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .badge.green { border-color: rgba(16, 185, 129, 0.45); color: #34d399; background: rgba(16, 185, 129, 0.08); }
+    .badge.blue { border-color: rgba(56, 189, 248, 0.45); color: #38bdf8; background: rgba(56, 189, 248, 0.08); }
+    .badge.purple { border-color: rgba(167, 139, 250, 0.45); color: #c4b5fd; background: rgba(167, 139, 250, 0.08); }
+    .cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.65rem 1.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #fff;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    .cta:hover { transform: translateY(-1px); opacity: 0.95; }
+    .cta-apify { background: linear-gradient(135deg, #059669, #047857); border: 1px solid #10b981; }
+    .cta-pass { background: linear-gradient(135deg, #2563eb, #1d4ed8); border: 1px solid #60a5fa; }
+    .cta-edge { background: var(--surface-2); border: 1px solid var(--border); color: #38bdf8; }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
-    @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
-    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
-    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.75rem; }
-    .card-title { font-size: 1.3rem; font-weight: 700; color: #fff; }
-    .card-grade { font-size: 0.85rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 4px; }
-    .grade-a { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; }
-    .grade-b { background: rgba(59, 130, 246, 0.2); color: #3b82f6; border: 1px solid #3b82f6; }
-    
-    .endpoint-list { max-height: 280px; overflow-y: auto; padding-right: 0.5rem; }
-    .endpoint-item { display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; }
-    .endpoint-item a { color: var(--accent-cyan); text-decoration: none; word-break: break-all; }
-    .endpoint-item a:hover { text-decoration: underline; }
-    .endpoint-price { color: var(--accent-sol); font-weight: 600; white-space: nowrap; margin-left: 0.5rem; }
-    
-    .section-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.25rem; color: #fff; border-left: 4px solid var(--accent-sol); padding-left: 0.75rem; }
-    
-    .mcp-box { background: #111422; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 3rem; }
-    .mcp-code { background: #07090e; padding: 1rem; border-radius: 6px; overflow-x: auto; font-family: monospace; font-size: 0.9rem; color: #38bdf8; border: 1px solid var(--border); margin-top: 0.75rem; }
-    
-    footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); padding-top: 2rem; margin-top: 3rem; }
-    footer a { color: var(--accent-cyan); text-decoration: none; }
+    .demo-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .demo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; }
+    .demo-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.15rem;
+    }
+    .demo-head { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+    .pill-free {
+      background: rgba(16, 185, 129, 0.14);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      padding: 0.15rem 0.55rem;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .input-row { display: flex; gap: 0.5rem; margin: 0.75rem 0; flex-wrap: wrap; }
+    .input-row input {
+      flex: 1;
+      min-width: 200px;
+      background: #090d16;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.55rem 0.75rem;
+      color: #fff;
+      font-family: monospace;
+      font-size: 0.85rem;
+    }
+    .btn {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.55rem 1rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .btn:disabled { opacity: 0.6; cursor: wait; }
+    .btn-green { background: linear-gradient(135deg, #059669, #047857); }
+    .presets { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.65rem; }
+    .preset {
+      background: #090d16;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.25rem 0.55rem;
+      font-size: 0.75rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .preset:hover { color: #fff; border-color: var(--accent); }
+    #scanResult, #leadResult {
+      margin-top: 0.75rem;
+      background: #090d16;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.85rem;
+      display: none;
+      font-size: 0.85rem;
+    }
+
+    .ticker-bar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.9rem 1.25rem;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+    .ticker-title { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); }
+    .ticker-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .chip {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      padding: 0.3rem 0.65rem;
+      border-radius: 7px;
+      font-size: 0.8rem;
+    }
+    .chip span { color: var(--accent); font-weight: 700; margin-right: 0.25rem; }
+    .chip:hover { border-color: var(--accent); }
+
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin: 2rem 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .section-sub { font-size: 0.88rem; color: var(--text-muted); font-weight: 400; }
+
+    .fleet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 1.25rem; }
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .service-card h2 { font-size: 1.25rem; margin-bottom: 0.35rem; }
+    .svc-url { font-family: monospace; font-size: 0.78rem; color: var(--accent); word-break: break-all; display: block; margin-bottom: 0.65rem; }
+    .svc-desc { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+    .route-list { list-style: none; margin-bottom: 1rem; max-height: 300px; overflow-y: auto; padding-right: 0.25rem; }
+    .route-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.42rem 0;
+      border-bottom: 1px solid rgba(35, 44, 66, 0.7);
+      font-size: 0.81rem;
+    }
+    .route-list code { color: #e2e8f0; font-family: monospace; font-size: 0.78rem; }
+    .price { font-family: monospace; font-weight: 700; color: #34d399; white-space: nowrap; }
+    .card-links { display: flex; flex-wrap: wrap; gap: 0.5rem; padding-top: 0.5rem; }
+    .card-link {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .card-link:hover { border-color: var(--accent); }
+
+    .apify-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+    .apify-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem;
+      text-decoration: none;
+      color: var(--text);
+      display: block;
+      transition: border-color 0.15s;
+    }
+    .apify-card:hover { border-color: var(--green); }
+    .apify-card h3 { font-size: 1rem; color: #34d399; margin-bottom: 0.3rem; }
+    .apify-card p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .apify-tag { font-family: monospace; font-size: 0.75rem; color: var(--accent); }
+
+    .pass-box {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.14), rgba(16, 185, 129, 0.1));
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    .mono-box {
+      background: #060910;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.85rem;
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: #93c5fd;
+      overflow-x: auto;
+      margin-top: 0.75rem;
+    }
+    .vaults-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .vault-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; }
+    .vault-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 0.25rem; }
+    .vault-addr { font-family: monospace; font-size: 0.82rem; color: var(--accent); word-break: break-all; }
+    footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    footer a { color: var(--accent); text-decoration: none; }
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.2/ethers.umd.min.js"></script>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>Kurox x402 Protocol Intelligence Fleet</h1>
-      <p class="subtitle">Autonomous AI Agent Defense, Pre-Trade Honeypot Calldata Simulation, Cross-DEX Arbitrage Radar, and Polymarket Whale Orderflow Monetized via x402 V2.</p>
-      
+      <h1>Kurox x402 Protocol — Big 3 Flagship Fleet</h1>
+      <p class="subtitle">
+        Production B2B intelligence, AI prompt-injection security, and pre-trade honeypot simulation across
+        <strong>AgentFuel402</strong>, <strong>CanaryGuard 402</strong>, and <strong>RugShield 402</strong> — pay per call via
+        x402 V2 (Base &amp; Solana USDC), the <strong>$5.00 USDC Agency Pass</strong>, or <strong>Credit Card on Apify Store</strong>.
+      </p>
       <div class="badges">
-        <div class="badge green"><span>●</span> 65 / 65 Endpoints Live &amp; Indexed</div>
-        <div class="badge sol">Solana Mainnet (solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp)</div>
-        <div class="badge base">Base Mainnet (eip155:8453)</div>
-        <div class="badge">Coinbase CDP Verified</div>
-        <div class="badge">PayAI Bazaar Indexed</div>
-        <div class="badge green">IndexNow Active: c402rugshield8453solana91bazaar</div>
+        <div class="badge green"><span>●</span> Big 3 Services Live (50+ Routes)</div>
+        <div class="badge blue">x402 V2 • Base (eip155:8453) &amp; Solana</div>
+        <div class="badge purple">Glama Rated B MCP • Official Registry</div>
+        <div class="badge green">6 Apify Store Actors (Card / Free Credits)</div>
       </div>
-
-      <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-        <a href="products.html" style="background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; padding: 0.6rem 1.25rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 1px solid #3b82f6;">📦 Commercial Products Marketplace ($29 - $39)</a>
-        <a href="raptorx.html" style="background: linear-gradient(135deg, #059669, #047857); color: white; padding: 0.6rem 1.25rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 1px solid #10b981;">🔬 RaptorX 125 USDC Research Dossier</a>
+      <div class="cta-row">
+        <a class="cta cta-apify" href="https://apify.com/kuroxreal" target="_blank" rel="noopener">💳 Run with Credit Card / Free Apify Trial</a>
+        <a class="cta cta-pass" href="#agency-pass">🎟️ $5.00 USDC Agency Pass (1,000 Calls)</a>
+        <a class="cta cta-edge" href="https://agentfuel402.ak10082247.workers.dev/" target="_blank" rel="noopener">⚡ AgentFuel402 Edge Portal</a>
+        <a class="cta cta-edge" href="https://glama.ai/mcp/servers/ak10082247-max/agentfuel402" target="_blank" rel="noopener">🧩 Glama MCP Listing</a>
       </div>
     </header>
 
-
-    <!-- Interactive Pre-Trade Honeypot Scanner Widget -->
-    <div class="interactive-scanner" style="background: linear-gradient(180deg, #161b2e 0%, #0f1322 100%); border: 1px solid #2a3456; border-radius: 12px; padding: 1.5rem; margin-bottom: 2.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
-        <div style="font-size: 1.25rem; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 0.5rem;">
-          <span style="color: #10b981;">🛡️</span> Live Pre-Trade Honeypot &amp; DEX Swap Simulator
+    <!-- Live Interactive Free Preview + Gasless On-Chain Test -->
+    <div class="demo-panel">
+      <div class="demo-grid">
+        <div class="demo-card">
+          <div class="demo-head">
+            <strong>⚡ AgentFuel402 — Live B2B Intent Leads Preview</strong>
+            <span class="pill-free">FREE LIVE PREVIEW</span>
+          </div>
+          <p style="font-size:0.86rem;color:var(--text-muted);margin-bottom:0.65rem;">
+            Fetch real-time B2B engineering &amp; founder buying intent signals directly from Cloudflare Workers Edge, zero auth required.
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+            <button id="leadBtn" class="btn btn-green" onclick="runLeadPreview()">Fetch Free Leads Preview</button>
+            <a class="preset" style="display:inline-flex;align-items:center;" href="https://apify.com/kuroxreal/b2b-intent-leads-ppe" target="_blank" rel="noopener">Run Full Feed on Apify (Card) →</a>
+          </div>
+          <div id="leadResult"></div>
         </div>
-        <span style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid #10b981; padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">1 FREE DAILY AUDIT / BOT</span>
+
+        <div class="demo-card">
+          <div class="demo-head">
+            <strong>🛡️ RugShield 402 — Live Token Safety Preview</strong>
+            <span class="pill-free">FREE PREVIEW + x402 ($0.010)</span>
+          </div>
+          <div class="presets">
+            <button class="preset" onclick="setAuditToken('0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913')">USDC (Base)</button>
+            <button class="preset" onclick="setAuditToken('0x940181a94A35A4569E4529A3CDfB74e38FD98631')">AERO (Base)</button>
+            <button class="preset" onclick="setAuditToken('0x532f27101965dd16442e59d40670faf5ebb142e4')">BRETT (Base)</button>
+            <button class="preset" onclick="setAuditToken('DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263')">BONK (Solana)</button>
+          </div>
+          <div class="input-row">
+            <input id="tokenInput" type="text" value="0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913" placeholder="Token address (Base 0x... or Solana mint)">
+            <button id="scanBtn" class="btn" onclick="runAudit()">Run Free Preview</button>
+          </div>
+          <div id="scanResult"></div>
+        </div>
       </div>
-      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
-        Simulate Uniswap buy &amp; sell execution, calculate exact transfer taxes down to 1 bps, and verify pool liquidity depth before broadcasting your swap to the mempool:
-      </p>
-      <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
-        <input id="tokenInput" type="text" placeholder="Paste Base token address (0x...)" value="0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913" style="flex: 1; min-width: 280px; background: #090a0f; border: 1px solid #2a3456; border-radius: 8px; padding: 0.75rem 1rem; color: #fff; font-family: monospace; font-size: 0.9rem; outline: none;" />
-        <button onclick="runLiveScan()" id="scanBtn" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff; border: none; border-radius: 8px; padding: 0.75rem 1.5rem; font-weight: 700; font-size: 0.9rem; cursor: pointer;">Run Instant Audit</button>
-      </div>
-      <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-bottom: 1rem;">
-        <span style="color: var(--text-muted); font-size: 0.8rem;">Quick test:</span>
-        <button onclick="setToken('0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913')" style="background: #1e2438; border: 1px solid #2a3456; color: #38bdf8; padding: 0.25rem 0.6rem; border-radius: 4px; font-size: 0.75rem; cursor: pointer;">Base USDC</button>
-        <button onclick="setToken('0x0b3e328455c4059EEb9e3f84b5543F74E24e7E1b')" style="background: #1e2438; border: 1px solid #2a3456; color: #38bdf8; padding: 0.25rem 0.6rem; border-radius: 4px; font-size: 0.75rem; cursor: pointer;">Seamless (DeFi)</button>
-        <button onclick="setToken('0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed')" style="background: #1e2438; border: 1px solid #2a3456; color: #38bdf8; padding: 0.25rem 0.6rem; border-radius: 4px; font-size: 0.75rem; cursor: pointer;">DEGEN (Base)</button>
-      </div>
-      <div id="scanResult" style="display: none; background: #090a0f; border: 1px solid #2a3456; border-radius: 8px; padding: 1.25rem; margin-top: 1rem;"></div>
     </div>
 
     <script>
-      function setToken(addr) {
+      function setAuditToken(addr) {
         document.getElementById('tokenInput').value = addr;
-        runLiveScan();
       }
 
-      async function runLiveScan() {
+      async function runLeadPreview() {
+        const btn = document.getElementById('leadBtn');
+        const box = document.getElementById('leadResult');
+        btn.disabled = true;
+        btn.innerText = 'Fetching...';
+        box.style.display = 'block';
+        box.innerHTML = '<div style="color:#94a3b8;">Querying https://agentfuel402.ak10082247.workers.dev/v1/preview/leads ...</div>';
+        try {
+          const res = await fetch('https://agentfuel402.ak10082247.workers.dev/v1/preview/leads');
+          const data = await res.json();
+          box.innerHTML = `
+            <div style="color:#34d399;font-weight:700;margin-bottom:0.4rem;">✓ HTTP 200 OK (${data.count || (data.leads ? data.leads.length : 0)} sample leads returned)</div>
+            <pre style="overflow-x:auto;color:#38bdf8;font-size:0.76rem;max-height:200px;">${JSON.stringify(data, null, 2)}</pre>
+          `;
+        } catch (err) {
+          box.innerHTML = `<div style="color:#ef4444;">Preview error: ${err.message}</div>`;
+        } finally {
+          btn.disabled = false;
+          btn.innerText = 'Fetch Free Leads Preview';
+        }
+      }
+
+      async function runAudit() {
         const token = document.getElementById('tokenInput').value.trim();
+        if (!token) return;
         const btn = document.getElementById('scanBtn');
         const box = document.getElementById('scanResult');
-        if (!token) return;
-
         btn.disabled = true;
-        btn.innerText = 'Auditing...';
+        btn.innerText = 'Scanning...';
         box.style.display = 'block';
-        box.innerHTML = '<div style="color:#38bdf8;font-family:monospace;">Simulating buy/sell state overrides via RugShield 402...</div>';
-
+        box.innerHTML = '<div style="color:#94a3b8;">Fetching free preview via /v1/scan/preview...</div>';
         try {
-          const res = await fetch('https://rugshield-402.onrender.com/v1/scan', {
+          const chain = token.startsWith('0x') ? 'base' : 'solana';
+          const res = await fetch('https://rugshield-402.onrender.com/v1/scan/preview', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token_address: token, chain: 'base', simulate_sell: true })
+            body: JSON.stringify({ token_address: token, chain })
           });
-
-          if (res.status === 200) {
+          if (res.ok) {
             const data = await res.json();
-            const honeypot = data.is_honeypot ? 'DANGEROUS (HONEYPOT DETECTED)' : 'PASSED (SELLABLE)';
-            const color = data.is_honeypot ? '#ef4444' : '#10b981';
+            const safeColor = data.is_honeypot ? '#ef4444' : '#10b981';
             box.innerHTML = `
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;border-bottom:1px solid #23293d;padding-bottom:0.5rem;">
-                <span style="font-weight:700;color:#fff;">${data.name || 'Token'} (${data.symbol || ''})</span>
-                <span style="background:${color}22;color:${color};border:1px solid ${color};padding:0.2rem 0.5rem;border-radius:4px;font-weight:700;font-size:0.8rem;">${data.recommendation || honeypot}</span>
+              <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #232c42;padding-bottom:0.45rem;margin-bottom:0.55rem;">
+                <strong style="color:#fff;">${data.name || 'Token'} (${data.symbol || 'PREVIEW'})</strong>
+                <span style="color:${safeColor};font-weight:700;font-size:0.78rem;">${data.recommendation || (data.is_honeypot ? 'HIGH RISK' : 'PREVIEW OK')}</span>
               </div>
-              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0.75rem;font-family:monospace;font-size:0.85rem;">
-                <div><span style="color:var(--text-muted);">Buy Tax:</span> <strong style="color:#fff;">${(data.buy_tax_bps || 0) / 100}%</strong></div>
-                <div><span style="color:var(--text-muted);">Sell Tax:</span> <strong style="color:#fff;">${(data.sell_tax_bps || 0) / 100}%</strong></div>
-                <div><span style="color:var(--text-muted);">Liquidity:</span> <strong style="color:#38bdf8;">$${(data.liquidity_usd || 0).toLocaleString()}</strong></div>
-                <div><span style="color:var(--text-muted);">Network:</span> <strong style="color:#0052ff;">Base (8453)</strong></div>
+              <pre style="overflow-x:auto;color:#38bdf8;font-size:0.75rem;max-height:140px;margin-bottom:0.65rem;">${JSON.stringify(data, null, 2)}</pre>
+              <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+                <button onclick="payAndAudit('${token}')" class="btn">Unlock Full Simulation ($0.010 Base USDC Gasless)</button>
+                <a class="preset" style="display:inline-flex;align-items:center;" href="https://apify.com/kuroxreal/rugshield-402" target="_blank" rel="noopener">Or Run on Apify (Card) →</a>
               </div>
-              <div style="margin-top:0.75rem;font-size:0.75rem;color:#10b981;">✓ 1 free daily alpha scan consumed. Real-time on-chain verification complete.</div>
-            `;
-          } else if (res.status === 402) {
-            box.innerHTML = `
-              <div style="border-left:4px solid #f59e0b;padding-left:0.75rem;margin-bottom:0.75rem;">
-                <strong style="color:#f59e0b;">HTTP 402 Payment Required: Free Daily Alpha Scan Consumed</strong>
-                <p style="color:var(--text-muted);font-size:0.85rem;margin-top:0.25rem;">Unlock continuous pre-trade simulation with gasless EIP-712 settlement ($0.010 USDC) directly into merchant vault.</p>
-              </div>
-              <button onclick="payAndAudit('${token}')" style="background:linear-gradient(135deg,#0052ff,#1d4ed8);color:#fff;border:none;border-radius:6px;padding:0.6rem 1.2rem;font-weight:700;cursor:pointer;font-size:0.85rem;">Connect Wallet &amp; Unlock Full Audit ($0.010 USDC Gasless)</button>
             `;
           } else {
-            box.innerHTML = `<div style="color:#ef4444;">Error ${res.status}: Failed to reach RugShield service.</div>`;
+            box.innerHTML = `<div style="color:#ef4444;">Error ${res.status}: Could not reach RugShield preview service.</div>`;
           }
         } catch (err) {
           box.innerHTML = `<div style="color:#ef4444;">Error: ${err.message}</div>`;
         } finally {
           btn.disabled = false;
-          btn.innerText = 'Run Instant Audit';
+          btn.innerText = 'Run Free Preview';
         }
       }
 
@@ -179,8 +403,7 @@
           await provider.send('eth_requestAccounts', []);
           const signer = await provider.getSigner();
           const userAddress = await signer.getAddress();
-          
-          // Switch to Base Mainnet
+
           try {
             await window.ethereum.request({
               method: 'wallet_switchEthereumChain',
@@ -263,7 +486,7 @@
             box.innerHTML = `
               <div style="border-left:4px solid #10b981;padding-left:0.75rem;margin-bottom:0.75rem;">
                 <strong style="color:#10b981;">✓ On-Chain Settlement Confirmed ($0.010 USDC)</strong>
-                <p style="color:#fff;font-size:0.9rem;margin-top:0.25rem;">Full Institutional Cryptographic Audit Unlocked for ${data.name || token}</p>
+                <p style="color:#fff;font-size:0.9rem;margin-top:0.25rem;">Full Institutional Audit Unlocked for ${data.name || token}</p>
               </div>
               <pre style="background:#000;padding:0.75rem;border-radius:6px;overflow-x:auto;color:#38bdf8;font-size:0.8rem;">${JSON.stringify(data, null, 2)}</pre>
             `;
@@ -278,381 +501,199 @@
     </script>
 
     <div class="ticker-bar">
-      <div class="ticker-title">Live 1-Click Instant Security Audit &amp; Honeypot Simulation</div>
+      <div class="ticker-title">Quick Pre-Trade Terminal Links</div>
       <div class="ticker-chips">
-        <a class="chip" href="https://rugshield-402.onrender.com/?token=8x5VqbHA8D7NkD52uNuS5nnt3PwA8pLD34ymjejRpump" target="_blank"><span>SOL</span> Pump.fun Trending #1</a>
-        <a class="chip" href="https://rugshield-402.onrender.com/?token=HeLp6NuQkmYB4pYWo2zYs22mESHXPQYzXbB8n4V98jwC" target="_blank"><span>SOL</span> Pump.fun Trending #2</a>
-        <a class="chip" href="https://rugshield-402.onrender.com/?token=DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263" target="_blank"><span>SOL</span> Bonk (DEX High Volume)</a>
-        <a class="chip" href="https://rugshield-402.onrender.com/?token=0x532f27101965dd16442e59d40670faf5ebb142e4" target="_blank"><span>BASE</span> Virtuals Protocol (AI Agents)</a>
-        <a class="chip" href="https://rugshield-402.onrender.com/?token=0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b" target="_blank"><span>BASE</span> Seamless Protocol (DeFi)</a>
-        <a class="chip" href="https://rugshield-402.onrender.com/?token=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913" target="_blank"><span>BASE</span> Native USDC Audit</a>
+        <a class="chip" href="https://rugshield-402.onrender.com/?token=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913" target="_blank" rel="noopener"><span>BASE</span> Native USDC</a>
+        <a class="chip" href="https://rugshield-402.onrender.com/?token=0x940181a94A35A4569E4529A3CDfB74e38FD98631" target="_blank" rel="noopener"><span>BASE</span> Aerodrome (AERO)</a>
+        <a class="chip" href="https://rugshield-402.onrender.com/?token=0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed" target="_blank" rel="noopener"><span>BASE</span> DEGEN</a>
+        <a class="chip" href="https://rugshield-402.onrender.com/?token=DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263" target="_blank" rel="noopener"><span>SOL</span> BONK</a>
+        <a class="chip" href="https://rugshield-402.onrender.com/?token=EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm" target="_blank" rel="noopener"><span>SOL</span> WIF</a>
+        <a class="chip" href="https://agentfuel402.ak10082247.workers.dev/v1/preview/sdk-live-spec" target="_blank" rel="noopener"><span>EDGE</span> Live SDK Spec Preview</a>
       </div>
     </div>
 
-    <!-- Prompt-Injection Bounty Vault Banner -->
-    <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(239, 68, 68, 0.1)); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 12px; padding: 1.5rem; margin-bottom: 2.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
-      <div>
-        <div style="font-size: 0.8rem; font-weight: 700; color: #fbbf24; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">⚡ Live AI Security Red-Team Challenge</div>
-        <div style="font-size: 1.4rem; font-weight: 800; color: #fff;">CanaryGuard Benchmark Mode Security Benchmark</div>
-        <div style="color: var(--text-muted); font-size: 0.9rem; max-width: 650px; margin-top: 0.25rem;">Test your adversarial prompt payloads against CanaryGuard's deterministic &lt;0.1ms AI security firewall. Seeded 100% on-chain from live treasury — grows +$0.010 with every verification attempt!</div>
-      </div>
-      <div style="display: flex; gap: 0.75rem; align-items: center;">
-        <a href="bounty.html" style="background: #f59e0b; color: #000; font-weight: 700; padding: 0.75rem 1.25rem; border-radius: 8px; text-decoration: none; font-size: 0.95rem; transition: transform 0.2s;">Launch Security Challenge ⚔️</a>
-      </div>
+    <div class="section-title">
+      <span>Big 3 Flagship x402 Services</span>
+      <span class="section-sub">Dual-chain USDC via x402 V2 (Base + Solana) &bull; MCP JSON-RPC 2.0</span>
     </div>
 
-    <div class="section-title">Fleet Service Matrix (65 Live Endpoints)</div>
-    <div class="grid">
-
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <div class="card-title">RugShield 402</div>
-            <div style="font-size:0.85rem; color:var(--text-muted);">Pre-trade honeypot calldata simulation, LP lock verification, and Sybil cluster maps.</div>
-          </div>
-          <div class="card-grade grade-a">Grade A (91/100)</div>
+    <div class="fleet-grid">
+      <!-- 1. AgentFuel402 -->
+      <div class="service-card">
+        <div>
+          <h2>1. AgentFuel402</h2>
+          <a class="svc-url" href="https://agentfuel402.ak10082247.workers.dev/" target="_blank" rel="noopener">https://agentfuel402.ak10082247.workers.dev</a>
+          <p class="svc-desc">Cloudflare Workers Edge data factory (0ms cold start): B2B buying-intent leads, prompt-safe Markdown, live e-commerce price/stock, SDK breaking-change diffs, and hidden API schema extraction.</p>
+          <ul class="route-list">
+            <li><code>GET /v1/fuel/b2b-intent-leads</code> <span class="price">$0.010</span></li>
+            <li><code>GET /v1/fuel/llm-clean-markdown</code> <span class="price">$0.005</span></li>
+            <li><code>GET /v1/fuel/ecom-price-stock</code> <span class="price">$0.005</span></li>
+            <li><code>GET /v1/fuel/sdk-live-spec</code> <span class="price">$0.005</span></li>
+            <li><code>POST /v1/fuel/reverse-engineer</code> <span class="price">$0.020</span></li>
+            <li><code>POST /v1/pass/prepay</code> <span class="price">$5.000 (1k calls)</span></li>
+            <li><code>GET /v1/preview/leads</code> <span class="price">FREE</span></li>
+            <li><code>GET /v1/preview/ecom-price-stock</code> <span class="price">FREE</span></li>
+            <li><code>GET /v1/preview/sdk-live-spec</code> <span class="price">FREE</span></li>
+          </ul>
         </div>
-        <div style="font-size:0.8rem; color:var(--accent-sol); margin-bottom: 0.5rem;">12 Endpoints / MCP Tools</div>
-        <div class="endpoint-list">
-          <div class="endpoint-item">
-            <a href="https://rugshield-402.onrender.com/v1/scan" target="_blank">/v1/scan</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://rugshield-402.onrender.com/v1/audit/liquidity-lock-verify" target="_blank">/v1/audit/liquidity-lock-verify</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://rugshield-402.onrender.com/v1/audit/holder-cluster-map" target="_blank">/v1/audit/holder-cluster-map</a>
-            <span class="endpoint-price">$0.020 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://rugshield-402.onrender.com/v1/audit/swap-simulation-proof" target="_blank">/v1/audit/swap-simulation-proof</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://rugshield-402.onrender.com/v1/audit/cross-chain-bridge-risk" target="_blank">/v1/audit/cross-chain-bridge-risk</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://rugshield-402.onrender.com/v1/risk/institutional-token-report" target="_blank">/v1/risk/institutional-token-report</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://rugshield-402.onrender.com/api/v1/token-screener" target="_blank">/api/v1/token-screener</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://rugshield-402.onrender.com/api/v1/smart-money/netflow" target="_blank">/api/v1/smart-money/netflow</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://rugshield-402.onrender.com/api/v1/smart-money/dex-trades" target="_blank">/api/v1/smart-money/dex-trades</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://rugshield-402.onrender.com/api/v1/tgm/who-bought-sold" target="_blank">/api/v1/tgm/who-bought-sold</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://rugshield-402.onrender.com/api/v1/tgm/holders" target="_blank">/api/v1/tgm/holders</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://rugshield-402.onrender.com/api/v1/profiler/address/current-balance" target="_blank">/api/v1/profiler/address/current-balance</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
+        <div class="card-links">
+          <a class="card-link" href="https://glama.ai/mcp/servers/ak10082247-max/agentfuel402" target="_blank" rel="noopener">Glama MCP (B)</a>
+          <a class="card-link" href="https://github.com/ak10082247-max/agentfuel402" target="_blank" rel="noopener">GitHub</a>
+          <a class="card-link" href="https://agentfuel402.ak10082247.workers.dev/.well-known/x402" target="_blank" rel="noopener">.well-known/x402</a>
+          <a class="card-link" href="https://apify.com/kuroxreal/b2b-intent-leads-ppe" target="_blank" rel="noopener">Apify (Card)</a>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <div class="card-title">CanaryGuard 402</div>
-            <div style="font-size:0.85rem; color:var(--text-muted);">Deterministic prompt-injection firewall, EIP-712 security audit, and Nansen Token God Mode.</div>
-          </div>
-          <div class="card-grade grade-a">Grade A (96/100)</div>
+      <!-- 2. CanaryGuard 402 -->
+      <div class="service-card">
+        <div>
+          <h2>2. CanaryGuard 402</h2>
+          <a class="svc-url" href="https://canaryguard-402.onrender.com/" target="_blank" rel="noopener">https://canaryguard-402.onrender.com</a>
+          <p class="svc-desc">Deterministic &lt;0.1ms AI prompt-injection firewall, EIP-712 &amp; MCP tool-poisoning auditor, wallet-drainer check, JSON repair, and Base/DeFi safety telemetry.</p>
+          <ul class="route-list">
+            <li><code>POST /v1/sanitize</code> <span class="price">$0.015</span></li>
+            <li><code>POST /v1/security/mcp-tool-poisoning-audit</code> <span class="price">$0.020</span></li>
+            <li><code>POST /v1/security/eip712-signature-auditor</code> <span class="price">$0.020</span></li>
+            <li><code>POST /v1/security/wallet-drainer-check</code> <span class="price">$0.015</span></li>
+            <li><code>POST /v1/security/agent-memory-guard</code> <span class="price">$0.015</span></li>
+            <li><code>POST /v1/security/phishing-url-inspector</code> <span class="price">$0.010</span></li>
+            <li><code>POST /v1/security/smart-contract-honeypot-check</code> <span class="price">$0.020</span></li>
+            <li><code>POST /v1/json-repair-and-sanitize</code> <span class="price">$0.010</span></li>
+            <li><code>POST /v1/url-agent-readiness</code> <span class="price">$0.010</span></li>
+            <li><code>GET /api/v1/token-screener</code> <span class="price">$0.020</span></li>
+            <li><code>GET /api/v1/smart-money/netflow</code> <span class="price">$0.020</span></li>
+            <li><code>GET /api/v1/tgm/holders</code> <span class="price">$0.020</span></li>
+          </ul>
         </div>
-        <div style="font-size:0.8rem; color:var(--accent-sol); margin-bottom: 0.5rem;">34 Endpoints / MCP Tools</div>
-        <div class="endpoint-list">
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/sanitize" target="_blank">/v1/sanitize</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/base/token" target="_blank">/v1/base/token</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/security/wallet-drainer-check" target="_blank">/v1/security/wallet-drainer-check</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/security/mcp-tool-poisoning-audit" target="_blank">/v1/security/mcp-tool-poisoning-audit</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/security/agent-memory-guard" target="_blank">/v1/security/agent-memory-guard</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/security/phishing-url-inspector" target="_blank">/v1/security/phishing-url-inspector</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/security/smart-contract-honeypot-check" target="_blank">/v1/security/smart-contract-honeypot-check</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/security/eip712-signature-auditor" target="_blank">/v1/security/eip712-signature-auditor</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/alpha/safe-base-trending" target="_blank">/v1/alpha/safe-base-trending</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/alpha/polymarket-verified-odds" target="_blank">/v1/alpha/polymarket-verified-odds</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/risk/full_audit" target="_blank">/v1/risk/full_audit</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/verify/agent-attestation" target="_blank">/v1/verify/agent-attestation</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/ondemand/market-snapshot" target="_blank">/v1/ondemand/market-snapshot</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/tokens/history-and-spread" target="_blank">/v1/tokens/history-and-spread</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/yield/safe-allocation" target="_blank">/v1/yield/safe-allocation</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/wallet-analysis" target="_blank">/v1/wallet-analysis</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/contract-info" target="_blank">/v1/contract-info</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/wallet-sanctions-check" target="_blank">/v1/wallet-sanctions-check</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/uniswap-pool-state" target="_blank">/v1/uniswap-pool-state</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/crypto-price-onchain" target="_blank">/v1/crypto-price-onchain</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/json-repair-and-sanitize" target="_blank">/v1/json-repair-and-sanitize</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/url-agent-readiness" target="_blank">/v1/url-agent-readiness</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/tx-status-base" target="_blank">/v1/tx-status-base</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/polymarket-odds-pulse" target="_blank">/v1/polymarket-odds-pulse</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/defi-yields-safe" target="_blank">/v1/defi-yields-safe</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/llm-token-pricing" target="_blank">/v1/llm-token-pricing</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/eip712-signature-audit" target="_blank">/v1/eip712-signature-audit</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/v1/mcp-tool-auditor" target="_blank">/v1/mcp-tool-auditor</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/api/v1/token-screener" target="_blank">/api/v1/token-screener</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/api/v1/smart-money/netflow" target="_blank">/api/v1/smart-money/netflow</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/api/v1/smart-money/dex-trades" target="_blank">/api/v1/smart-money/dex-trades</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/api/v1/tgm/who-bought-sold" target="_blank">/api/v1/tgm/who-bought-sold</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/api/v1/tgm/holders" target="_blank">/api/v1/tgm/holders</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://canaryguard-402.onrender.com/api/v1/profiler/address/current-balance" target="_blank">/api/v1/profiler/address/current-balance</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
+        <div class="card-links">
+          <a class="card-link" href="https://canaryguard-402.onrender.com/mcp" target="_blank" rel="noopener">MCP /mcp</a>
+          <a class="card-link" href="https://github.com/ak10082247-max/canaryguard-402" target="_blank" rel="noopener">GitHub</a>
+          <a class="card-link" href="https://apify.com/kuroxreal/canaryguard-402" target="_blank" rel="noopener">Apify (Card)</a>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <div class="card-title">StealthGuard 402</div>
-            <div style="font-size:0.85rem; color:var(--text-muted);">Polymarket whale orderflow, crypto odds divergence, and stealth web sanitization.</div>
-          </div>
-          <div class="card-grade grade-a">Grade A (90/100 ToolVet)</div>
+      <!-- 3. RugShield 402 -->
+      <div class="service-card">
+        <div>
+          <h2>3. RugShield 402</h2>
+          <a class="svc-url" href="https://rugshield-402.onrender.com/" target="_blank" rel="noopener">https://rugshield-402.onrender.com</a>
+          <p class="svc-desc">Pre-trade DEX honeypot calldata simulator, Base/Solana swap simulation proof, LP lock verifier, and insider Sybil holder cluster mapping with Solana Actions support.</p>
+          <ul class="route-list">
+            <li><code>POST /v1/scan</code> <span class="price">$0.010</span></li>
+            <li><code>POST /v1/scan/preview</code> <span class="price">FREE</span></li>
+            <li><code>POST /v1/audit/swap-simulation-proof</code> <span class="price">$0.015</span></li>
+            <li><code>POST /v1/audit/liquidity-lock-verify</code> <span class="price">$0.015</span></li>
+            <li><code>POST /v1/audit/holder-cluster-map</code> <span class="price">$0.015</span></li>
+            <li><code>POST /v1/audit/cross-chain-bridge-risk</code> <span class="price">$0.015</span></li>
+            <li><code>POST /v1/risk/institutional-token-report</code> <span class="price">$0.020</span></li>
+            <li><code>GET /api/v1/token-screener</code> <span class="price">$0.020</span></li>
+            <li><code>GET /api/v1/tgm/who-bought-sold</code> <span class="price">$0.020</span></li>
+            <li><code>GET /api/actions/scan</code> <span class="price">Solana Action</span></li>
+          </ul>
         </div>
-        <div style="font-size:0.8rem; color:var(--accent-sol); margin-bottom: 0.5rem;">15 Endpoints / MCP Tools</div>
-        <div class="endpoint-list">
-          <div class="endpoint-item">
-            <a href="https://stealthguard-402.onrender.com/v1/stealth_scrape_and_sanitize" target="_blank">/v1/stealth_scrape_and_sanitize</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://stealthguard-402.onrender.com/v1/polymarket_alpha_divergence" target="_blank">/v1/polymarket_alpha_divergence</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://stealthguard-402.onrender.com/v1/pre_trade_agent_gate" target="_blank">/v1/pre_trade_agent_gate</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://stealthguard-402.onrender.com/v1/alpha/polymarket-top-whales" target="_blank">/v1/alpha/polymarket-top-whales</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://stealthguard-402.onrender.com/v1/alpha/polymarket-crypto-odds" target="_blank">/v1/alpha/polymarket-crypto-odds</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://stealthguard-402.onrender.com/v1/alpha/base-trending-tokens" target="_blank">/v1/alpha/base-trending-tokens</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://stealthguard-402.onrender.com/v1/alpha/defi-yield-radar" target="_blank">/v1/alpha/defi-yield-radar</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://stealthguard-402.onrender.com/v1/alpha/hackernews-ai-digest" target="_blank">/v1/alpha/hackernews-ai-digest</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://stealthguard-402.onrender.com/v1/security/prompt-firewall" target="_blank">/v1/security/prompt-firewall</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://stealthguard-402.onrender.com/v1/security/x402-endpoint-verifier" target="_blank">/v1/security/x402-endpoint-verifier</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://stealthguard-402.onrender.com/v1/research/deep-web-dossier" target="_blank">/v1/research/deep-web-dossier</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://stealthguard-402.onrender.com/v1/oracle/perp-funding-and-basis" target="_blank">/v1/oracle/perp-funding-and-basis</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://stealthguard-402.onrender.com/v1/alpha/polymarket-whale-orderflow" target="_blank">/v1/alpha/polymarket-whale-orderflow</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://stealthguard-402.onrender.com/v1/security/attestation-bundle" target="_blank">/v1/security/attestation-bundle</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://stealthguard-402.onrender.com/v1/research/topic-news-scanner" target="_blank">/v1/research/topic-news-scanner</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <div class="card-title">x402 Agent Tollbooth</div>
-            <div style="font-size:0.85rem; color:var(--text-muted);">Cross-DEX arbitrage radar, smart order routing, and autonomous contract audits.</div>
-          </div>
-          <div class="card-grade grade-a">Grade A (100/100)</div>
-        </div>
-        <div style="font-size:0.8rem; color:var(--accent-sol); margin-bottom: 0.5rem;">4 Endpoints / MCP Tools</div>
-        <div class="endpoint-list">
-          <div class="endpoint-item">
-            <a href="https://x402-agent-tollbooth.onrender.com/toll/ai_intel" target="_blank">/toll/ai_intel</a>
-            <span class="endpoint-price">$0.001 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://x402-agent-tollbooth.onrender.com/toll/arbitrage_scan" target="_blank">/toll/arbitrage_scan</a>
-            <span class="endpoint-price">$0.001 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://x402-agent-tollbooth.onrender.com/toll/smart_router" target="_blank">/toll/smart_router</a>
-            <span class="endpoint-price">$0.001 USDC</span>
-          </div>
-          <div class="endpoint-item">
-            <a href="https://x402-agent-tollbooth.onrender.com/api/audit" target="_blank">/api/audit</a>
-            <span class="endpoint-price">$0.010 USDC</span>
-          </div>
+        <div class="card-links">
+          <a class="card-link" href="https://rugshield-402.onrender.com/mcp" target="_blank" rel="noopener">MCP /mcp</a>
+          <a class="card-link" href="https://github.com/ak10082247-max/rugshield-402" target="_blank" rel="noopener">GitHub</a>
+          <a class="card-link" href="https://apify.com/kuroxreal/rugshield-402" target="_blank" rel="noopener">Apify (Card)</a>
         </div>
       </div>
     </div>
 
-    <div class="section-title">Autonomous Agent Client Plugins & Starter Bots</div>
-    <div class="mcp-box" style="border-color: var(--accent-cyan);">
-      <h3 style="color:#fff; margin-bottom: 0.5rem;">ElizaOS Pre-Trade DEX Defense Plugin (NPM: <code>elizaos-plugin-kurox-sentinel@1.0.3</code>)</h3>
-      <p style="color:var(--text-muted); margin-bottom: 0.75rem;">Embed real-time honeypot bytecode simulations and prompt-injection firewalls directly into autonomous ElizaOS trading agents on Base and Solana with gasless x402 V2 settlement.</p>
-      <div class="mcp-code">
-npm install elizaos-plugin-kurox-sentinel
-
-# In your Eliza character configuration:
-import { kuroxSentinelPlugin } from "elizaos-plugin-kurox-sentinel";
-export const character = {
-  name: "Autonomous DeFi Sniper",
-  plugins: [kuroxSentinelPlugin],
-  settings: { secrets: { EVM_PRIVATE_KEY: process.env.EVM_PRIVATE_KEY } }
-};
-      </div>
-      <p style="margin-top: 0.75rem;"><a href="https://github.com/ak10082247-max/base-trading-bot-starter" target="_blank" style="color:var(--accent-sol); font-weight:600; text-decoration:none;">⚡ View Base Sniper Pro Starter Bot on GitHub &rarr;</a></p>
+    <div class="section-title">
+      <span>Pay by Credit Card on Apify Store</span>
+      <span class="section-sub">Zero wallet setup required &bull; Free monthly Apify credits supported</span>
     </div>
 
-    <div class="section-title">Official Model Context Protocol (MCP) Registry</div>
-    <div class="mcp-box">
-      <p style="color:var(--text-muted); margin-bottom: 0.75rem;">All 4 remote MCP servers and the sniper bot are published under the verified <code>io.github.ak10082247-max/*</code> namespace on the Official Model Context Protocol Registry (<code>registry.modelcontextprotocol.io</code>).</p>
-      <div class="mcp-code">
-# Install and run with Claude Desktop, Cursor, VS Code, or Antigravity:
-npx -y @kurox_real/x402-sniper-bot --help
+    <div class="apify-grid">
+      <a class="apify-card" href="https://apify.com/kuroxreal/b2b-intent-leads-ppe" target="_blank" rel="noopener">
+        <h3>B2B Buying Intent Leads</h3>
+        <p>Live hiring, engineering migration, and infrastructure buying signals with structured JSON output.</p>
+        <div class="apify-tag">kuroxreal/b2b-intent-leads-ppe</div>
+      </a>
+      <a class="apify-card" href="https://apify.com/kuroxreal/llm-clean-markdown-ppe" target="_blank" rel="noopener">
+        <h3>LLM Clean Markdown</h3>
+        <p>Convert arbitrary webpages into prompt-injection-stripped, RAG-ready Markdown.</p>
+        <div class="apify-tag">kuroxreal/llm-clean-markdown-ppe</div>
+      </a>
+      <a class="apify-card" href="https://apify.com/kuroxreal/ecom-price-stock-ppe" target="_blank" rel="noopener">
+        <h3>E-Com Price &amp; Stock Extractor</h3>
+        <p>Real-time SKU pricing, stock availability, and currency extraction from product URLs.</p>
+        <div class="apify-tag">kuroxreal/ecom-price-stock-ppe</div>
+      </a>
+      <a class="apify-card" href="https://apify.com/kuroxreal/reverse-engineer-anything" target="_blank" rel="noopener">
+        <h3>Reverse Engineer Anything</h3>
+        <p>Discover hidden JSON APIs, OpenAPI schemas, and Next.js/Remix data contracts automatically.</p>
+        <div class="apify-tag">kuroxreal/reverse-engineer-anything</div>
+      </a>
+      <a class="apify-card" href="https://apify.com/kuroxreal/canaryguard-402" target="_blank" rel="noopener">
+        <h3>CanaryGuard 402 Firewall</h3>
+        <p>Guard LLM inputs and external web payloads against indirect prompt injection &amp; MCP poisoning.</p>
+        <div class="apify-tag">kuroxreal/canaryguard-402</div>
+      </a>
+      <a class="apify-card" href="https://apify.com/kuroxreal/rugshield-402" target="_blank" rel="noopener">
+        <h3>RugShield 402 Token Auditor</h3>
+        <p>Pre-trade honeypot simulation, transfer tax verification, and Sybil holder clustering.</p>
+        <div class="apify-tag">kuroxreal/rugshield-402</div>
+      </a>
+    </div>
 
-# Remote MCP Server Registry IDs:
-- io.github.ak10082247-max/canaryguard-402 (Remote Streamable HTTP: https://canaryguard-402.onrender.com/mcp)
-- io.github.ak10082247-max/stealthguard-402 (Remote Streamable HTTP: https://stealthguard-402.onrender.com/mcp)
-- io.github.ak10082247-max/rugshield-402 (Remote Streamable HTTP: https://rugshield-402.onrender.com/mcp)
-- io.github.ak10082247-max/x402-agent-tollbooth (Remote Streamable HTTP: https://x402-agent-tollbooth.onrender.com/mcp)
-- io.github.ak10082247-max/x402-sniper-bot (NPM Package: @kurox_real/x402-sniper-bot)
+    <div class="pass-box" id="agency-pass">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem;margin-bottom:0.5rem;">
+        <h2 style="font-size:1.3rem;">🎟️ AgentFuel402 Agency Pass — $5.00 USDC (1,000 Calls)</h2>
+        <span class="pill-free">$0.005 / CALL EFFECTIVE RATE</span>
+      </div>
+      <p style="font-size:0.92rem;color:var(--text-muted);">
+        Need high-volume access without per-request EIP-712/Solana signing? Purchase a 1,000-call prepaid API key in a single
+        gasless x402 V2 transaction via <code>POST https://agentfuel402.ak10082247.workers.dev/v1/pass/prepay</code> and pass
+        <code>X-API-Key: &lt;issued-key&gt;</code> on subsequent calls across all 5 AgentFuel feeds.
+      </p>
+      <div class="mono-box">curl -X POST https://agentfuel402.ak10082247.workers.dev/v1/pass/prepay -H "Content-Type: application/json"</div>
+    </div>
+
+    <div class="section-title">
+      <span>Official MCP Servers &amp; Claude / Cursor Config</span>
+      <span class="section-sub">Registered on registry.modelcontextprotocol.io &amp; Glama</span>
+    </div>
+    <div class="mono-box">{
+  "mcpServers": {
+    "agentfuel402": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://agentfuel402.ak10082247.workers.dev/mcp"]
+    },
+    "canaryguard-402": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://canaryguard-402.onrender.com/mcp"]
+    },
+    "rugshield-402": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://rugshield-402.onrender.com/mcp"]
+    }
+  }
+}</div>
+
+    <div class="section-title">
+      <span>Verified Merchant Treasury Vaults</span>
+      <span class="section-sub">Coinbase CDP (Base) &amp; PayAI Facilitator (Base + Solana)</span>
+    </div>
+    <div class="vaults-grid">
+      <div class="vault-card">
+        <div class="vault-label">Base Mainnet (eip155:8453) USDC</div>
+        <div class="vault-addr">0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6</div>
+      </div>
+      <div class="vault-card">
+        <div class="vault-label">Solana Mainnet Merchant Owner &amp; USDC ATA</div>
+        <div class="vault-addr">Owner: 9wuMysgXwNhtQeqJgGByAiMYc4EjzZ5wUSmnjrrt3ffh<br>ATA: DD3A7jaXFeHcif9eYj6Vhomuxypat5Yxi8ow6wxz27yL</div>
       </div>
     </div>
 
     <footer>
-      <p>Kurox x402 Protocol &bull; Dual-Chain Agent Intelligence &bull; IndexNow Key: <code><a href="/c402rugshield8453solana91bazaar.txt">c402rugshield8453solana91bazaar</a></code> &bull; <a href="/sitemap.xml">XML Sitemap</a></p>
+      <p>
+        Kurox x402 Protocol &bull;
+        <a href="/mcp_bundle_kurox.json">mcp_bundle_kurox.json</a> &bull;
+        <a href="/.well-known/mcp/server-card.json">server-card.json</a> &bull;
+        <a href="/sitemap.xml">sitemap.xml</a> &bull;
+        <a href="mailto:armkhan18@gmail.com">armkhan18@gmail.com</a>
+      </p>
     </footer>
   </div>
 </body>

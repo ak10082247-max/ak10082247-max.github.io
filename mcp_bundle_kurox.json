@@ -1,11 +1,12 @@
 {
-  "name": "kurox-agent-security-and-alpha-suite",
-  "version": "2.0.0",
-  "description": "Consolidated dual-chain AI security, pre-trade DEX honeypot simulation, and on-chain alpha suite with x402 V2 micropayment rails.",
+  "name": "kurox-big3-x402-suite",
+  "version": "3.0.0",
+  "description": "Big 3 dual-chain AI data, prompt-injection defense, and pre-trade DEX honeypot simulation suite with x402 V2 micropayments and Apify credit-card billing.",
   "publisher": {
     "name": "Kurox Autonomous Systems",
     "email": "armkhan18@gmail.com",
-    "url": "https://ak10082247-max.github.io"
+    "url": "https://ak10082247-max.github.io",
+    "apifyStore": "https://apify.com/kuroxreal"
   },
   "payment_rails": {
     "protocol": "x402 V2",
@@ -31,100 +32,84 @@
   },
   "tools": [
     {
-      "name": "guard_agent_inputs",
-      "description": "Universal prompt-injection firewall, invisible unicode smuggling neutralizer, role-hijacking defense, and malformed JSON repair engine for AI agents.",
-      "price_usd": "0.015",
-      "amount_micro": "15000",
-      "endpoint": "https://canaryguard-402.onrender.com/v1/sanitize",
+      "name": "b2b_intent_leads",
+      "description": "Fetch live B2B engineering, hiring, and SaaS buying-intent signals structured for outbound automation.",
+      "price_usd": "0.010",
+      "amount_micro": "10000",
+      "endpoint": "https://agentfuel402.ak10082247.workers.dev/v1/fuel/b2b-intent-leads",
+      "apify_url": "https://apify.com/kuroxreal/b2b-intent-leads-ppe",
       "parameters": {
         "type": "object",
         "properties": {
-          "content": {
-            "type": "string",
-            "description": "The raw prompt, user input, or external web payload to scan and sanitize."
-          },
-          "strict_mode": {
-            "type": "boolean",
-            "default": true,
-            "description": "Whether to block attacks completely or return sanitized safe text."
-          }
-        },
-        "required": [
-          "content"
-        ]
-      }
-    },
-    {
-      "name": "simulate_dex_trade",
-      "description": "Pre-trade DEX state-override simulation for Base & Solana. Tests buy/sell orders in EVM sandbox, computes exact transfer taxes in bps, detects honeypots, and verifies LP locks.",
-      "price_usd": "0.100",
-      "amount_micro": "100000",
-      "endpoint": "https://rugshield-402.onrender.com/v1/audit/swap-simulation-proof",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "token_address": {
-            "type": "string",
-            "description": "The token mint or ERC-20 contract address."
-          },
-          "chain_id": {
+          "limit": {
             "type": "integer",
-            "enum": [
-              8453,
-              501
-            ],
-            "default": 8453,
-            "description": "Chain ID: 8453 for Base Mainnet, 501 for Solana Mainnet."
-          },
-          "trade_amount_usd": {
-            "type": "number",
-            "default": 1000,
-            "description": "Simulated swap order size in USD to calculate exact slippage and price impact."
-          }
-        },
-        "required": [
-          "token_address"
-        ]
-      }
-    },
-    {
-      "name": "fetch_onchain_alpha",
-      "description": "Real-time Polymarket whale orderflow, cross-DEX price divergence radar, and high-momentum smart-money movement signals.",
-      "price_usd": "0.050",
-      "amount_micro": "50000",
-      "endpoint": "https://stealthguard-402.onrender.com/v1/alpha/polymarket-verified-odds",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "market_id": {
-            "type": "string",
-            "description": "Target prediction market or token symbol."
-          },
-          "min_confidence": {
-            "type": "number",
-            "default": 0.85,
-            "description": "Minimum statistical confidence score required (0.0 to 1.0)."
+            "default": 10,
+            "description": "Maximum leads to return."
           }
         }
       }
     },
     {
-      "name": "generate_audit_dossier",
-      "description": "Comprehensive 7-vector institutional token security report: bytecode decompilation, honeypot tax simulation, LP lock proofs, holder clusters, and bridge risks.",
-      "price_usd": "0.150",
-      "amount_micro": "150000",
-      "endpoint": "https://rugshield-402.onrender.com/v1/risk/institutional-token-report",
+      "name": "llm_clean_markdown",
+      "description": "Fetch any URL and return prompt-injection-stripped, RAG-ready clean Markdown.",
+      "price_usd": "0.005",
+      "amount_micro": "5000",
+      "endpoint": "https://agentfuel402.ak10082247.workers.dev/v1/fuel/llm-clean-markdown",
+      "apify_url": "https://apify.com/kuroxreal/llm-clean-markdown-ppe",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Target webpage URL to convert."
+          }
+        },
+        "required": ["url"]
+      }
+    },
+    {
+      "name": "guard_agent_inputs",
+      "description": "Deterministic prompt-injection firewall, invisible unicode smuggling neutralizer, and malformed JSON repair engine.",
+      "price_usd": "0.015",
+      "amount_micro": "15000",
+      "endpoint": "https://canaryguard-402.onrender.com/v1/sanitize",
+      "apify_url": "https://apify.com/kuroxreal/canaryguard-402",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "Raw prompt or external web payload to sanitize."
+          },
+          "strict_mode": {
+            "type": "boolean",
+            "default": true
+          }
+        },
+        "required": ["content"]
+      }
+    },
+    {
+      "name": "simulate_dex_trade",
+      "description": "Pre-trade DEX honeypot detection, tax simulation, LP lock check, and holder cluster risk audit on Base & Solana.",
+      "price_usd": "0.010",
+      "amount_micro": "10000",
+      "endpoint": "https://rugshield-402.onrender.com/v1/scan",
+      "apify_url": "https://apify.com/kuroxreal/rugshield-402",
       "parameters": {
         "type": "object",
         "properties": {
           "token_address": {
             "type": "string",
-            "description": "Contract address of the token to audit."
+            "description": "Token mint or ERC-20 contract address."
+          },
+          "chain": {
+            "type": "string",
+            "enum": ["base", "solana"],
+            "default": "base"
           }
         },
-        "required": [
-          "token_address"
-        ]
+        "required": ["token_address"]
       }
     }
   ]

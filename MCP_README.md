@@ -1,153 +1,63 @@
-# 🛡️ Kurox Sentinel: Autonomous Agent Security & Pre-Trade DEX Simulation MCP Suite
+# 🛡️ Kurox Big 3 x402 Suite: Data Feeds, AI Firewall & Pre-Trade DEX Simulation
 
 > **Canonical Manifest**: [`https://ak10082247-max.github.io/mcp_bundle_kurox.json`](https://ak10082247-max.github.io/mcp_bundle_kurox.json)  
-> **Protocol**: Model Context Protocol (MCP) + x402 V2 Dual-Chain Micropayments  
+> **Protocol**: Model Context Protocol (MCP) + x402 V2 Dual-Chain Micropayments + Apify Store (Credit Card)  
 > **Supported Networks**: Base Mainnet (`eip155:8453`) & Solana Mainnet (`solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp`)  
-> **Gasless Execution**: 100% gas-sponsored via PayAI relayer / EIP-3009 transfer authorizations  
+> **Gasless Execution**: 100% gas-sponsored via Coinbase CDP / PayAI relayer (`EIP-3009` & `TransferChecked`)
 
 ---
 
-## ⚡ Why Autonomous Agents Need Kurox Sentinel
+## 🛠️ The Big 3 Production Services
 
-Autonomous trading agents and LLM copilots fail in two primary ways:
-1. **Capital Loss on Malicious Swaps**: Swapping into honeypots, un-sellable tokens, 99% fee-on-transfer traps, or drained liquidity pools.
-2. **Context Poisoning & Prompt Injection**: External web data or user inputs injecting hidden instructions, stealing agent wallet keys, or breaking structured JSON outputs.
-
-**Kurox Sentinel** provides a drop-in, 4-tool perimeter defense and simulation layer that any MCP-compliant agent can invoke in real-time.
-
----
-
-## 🛠️ The 4 Consolidated Tools
-
-| Tool Name | Price (USDC) | Network | Core Capability |
-| :--- | :---: | :---: | :--- |
-| **`simulate_dex_trade`** | **`$0.100`** | Base & Solana | **Pre-trade state-override swap simulation**. Computes exact buy/sell transfer taxes in bps, simulates liquidity exit, and verifies LP lock contracts before broadcasting trades. |
-| **`guard_agent_inputs`** | **`$0.015`** | Dual-Chain | **Deterministic prompt-injection firewall**. Neutralizes zero-width unicode smuggling, zalgo obfuscations, role-hijacking tokens (`[INST]`, `<|im_start|>`), and auto-repairs malformed JSON. |
-| **`fetch_onchain_alpha`** | **`$0.050`** | Base & Solana | **Real-time whale orderflow & arbitrage radar**. Analyzes Polymarket CLOB implied probabilities vs. spot prices and tracks cross-DEX liquidity imbalances. |
-| **`generate_audit_dossier`** | **`$0.150`** | Base & Solana | **7-vector institutional token security report**. Covers bytecode decompilation, holder sybil rings, dev wallet funding clusters, and bridge replay vulnerabilities. |
+| Service / Tool | Price (USDC) | Rail / Access | Core Capability |
+| :--- | :---: | :--- | :--- |
+| **`AgentFuel402`** (`b2b_intent_leads`, `llm_clean_markdown`, `ecom_price_stock`, `sdk_live_spec`, `reverse_engineer`) | **`$0.005 – $0.020`** | Base & Solana (`x402`), **`$5.00` Agency Pass**, Apify (Card), Glama MCP | Cloudflare Edge B2B intent leads, RAG-safe Markdown, e-commerce price/stock, live SDK diffs, and hidden API schema discovery. |
+| **`CanaryGuard 402`** (`guard_agent_inputs`) | **`$0.015 – $0.020`** | Base & Solana (`x402`), Apify (Card), Remote MCP | Deterministic `<0.1ms` prompt-injection firewall, unicode smuggling sanitizer, MCP tool-poisoning audit, and EIP-712 signer audit. |
+| **`RugShield 402`** (`simulate_dex_trade`) | **`$0.010 – $0.020`** | Base & Solana (`x402`), Apify (Card), Remote MCP | Pre-trade DEX honeypot calldata simulation, buy/sell tax estimation, LP lock check, and insider Sybil holder clustering. |
 
 ---
 
-## 🚀 60-Second Setup Guide
+## 🚀 60-Second MCP Setup
 
-### 1. Claude Desktop Setup
-Add this block to your `claude_desktop_config.json`:
-- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
-- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+Add all three flagship servers to `claude_desktop_config.json`, `.cursor/mcp.json`, or `.windsurf/mcp.json`:
 
 ```json
 {
   "mcpServers": {
-    "kurox-sentinel": {
+    "agentfuel402": {
       "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote",
-        "https://canaryguard-402.onrender.com/mcp"
-      ],
-      "env": {
-        "X402_NETWORK": "base",
-        "X402_PAYMENT_WALLET": "0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6"
-      }
+      "args": ["-y", "mcp-remote", "https://agentfuel402.ak10082247.workers.dev/mcp"]
     },
-    "rugshield-simulator": {
+    "canaryguard-402": {
       "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote",
-        "https://rugshield-402.onrender.com/mcp"
-      ],
-      "env": {
-        "X402_NETWORK": "base"
-      }
+      "args": ["-y", "mcp-remote", "https://canaryguard-402.onrender.com/mcp"]
+    },
+    "rugshield-402": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://rugshield-402.onrender.com/mcp"]
     }
   }
 }
 ```
 
----
-
-### 2. Cursor / Windsurf IDE Setup
-Add to `.cursor/mcp.json` or `.windsurf/mcp.json`:
-
-```json
-{
-  "mcpServers": {
-    "kurox-security-suite": {
-      "url": "https://canaryguard-402.onrender.com/mcp",
-      "transport": "sse"
-    },
-    "rugshield-simulator": {
-      "url": "https://rugshield-402.onrender.com/mcp",
-      "transport": "sse"
-    }
-  }
-}
-```
+Or install AgentFuel402 directly from Glama:
+- [`https://glama.ai/mcp/servers/ak10082247-max/agentfuel402`](https://glama.ai/mcp/servers/ak10082247-max/agentfuel402)
 
 ---
 
-### 3. Coinbase AgentKit Integration
-If you are running agents with `@coinbase/agentkit`:
+## 💳 Credit Card (Apify Store) or `$5.00` USDC Agency Pass
 
-```typescript
-import { AgentKit } from "@coinbase/agentkit";
-import { KuroxSecurityActionProvider } from "./COINBASE_AGENTKIT_INTEGRATION";
+- **No crypto wallet needed?** Run any of the 6 live actors on [Apify Store (`kuroxreal`)](https://apify.com/kuroxreal) using a credit card or free monthly Apify credits.
+- **High-volume teams?** Mint a 1,000-call prepaid key (`$5.00 USDC` one-time = `$0.005`/call) via `POST https://agentfuel402.ak10082247.workers.dev/v1/pass/prepay`.
 
-const agentKit = await AgentKit.from({
-  actionProviders: [
-    new KuroxSecurityActionProvider()
-  ]
-});
-
-// Agent can now autonomously call:
-// agentKit.runAction("simulate_dex_trade", { tokenAddress: "0x...", tradeAmountUsd: 1000 });
-```
-
----
-
-### 4. Eliza (ai16z) Autonomous Agent Integration
-If you are running an autonomous Eliza character:
-
-```typescript
-import { kuroxPlugin } from "./ELIZA_PLUGIN";
-
-export const character = {
-  name: "Autonomous DeFi Sniper",
-  plugins: [kuroxPlugin],
-  // ...
-};
-```
-
----
-
-## 💳 How Autonomous x402 Micropayments Work
-
-You never need a monthly subscription or API key. Payment is settled on-demand per request:
-
-```
-[ Autonomous AI Agent ]
-         │
-         ▼ (1. Request Tool Execution)
-[ Kurox Sentinel MCP Server ]
-         │
-         ▼ (2. HTTP 402: Payment Required — $0.015 to $0.100 USDC)
-[ Agent Signs EIP-712 (Base) or SPL Partial Tx (Solana) ]
-         │
-         ▼ (3. Re-send with PAYMENT-SIGNATURE Header)
-[ Coinbase CDP / PayAI Facilitator Settles On-Chain (Zero Gas for Agent) ]
-         │
-         ▼ (4. HTTP 200 OK: Execution Result + Cryptographic Receipt)
-[ Tool Call Complete ]
-```
-
-### Authorized Merchant Settlement Addresses:
+### Authorized Merchant Settlement Addresses
 - **Base Mainnet (ERC-20 USDC)**: `0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6`
+- **Solana Mainnet (Owner)**: `9wuMysgXwNhtQeqJgGByAiMYc4EjzZ5wUSmnjrrt3ffh`
 - **Solana Mainnet (SPL USDC ATA)**: `DD3A7jaXFeHcif9eYj6Vhomuxypat5Yxi8ow6wxz27yL`
 
 ---
 
-## 📜 Full Documentation & Links
+## 📜 Links & Support
+- **Storefront Directory**: [`https://ak10082247-max.github.io`](https://ak10082247-max.github.io)
 - **Machine-Readable Manifest**: [`https://ak10082247-max.github.io/mcp_bundle_kurox.json`](https://ak10082247-max.github.io/mcp_bundle_kurox.json)
-- **Turnkey Software Packages ($29 - $39)**: [`https://ak10082247-max.github.io/products.html`](https://ak10082247-max.github.io/products.html)
-- **Support & Developer Inquiries**: `armkhan18@gmail.com`
+- **Support**: `armkhan18@gmail.com`

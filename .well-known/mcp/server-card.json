@@ -1,15 +1,15 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json",
-  "name": "network.kurox.sentinel-suite",
-  "title": "Kurox Sentinel Suite",
-  "version": "1.0.1",
-  "description": "Enterprise autonomous security & pre-trade risk simulation suite for AI agents and trading bots on Base and Solana. Features deterministic prompt injection firewalls and pre-trade DEX honeypot calldata simulation via x402 V2.",
+  "name": "network.kurox.big3-suite",
+  "title": "Kurox Big 3 x402 Suite",
+  "version": "2.0.0",
+  "description": "AgentFuel402 edge data feeds, CanaryGuard 402 prompt-injection firewall, and RugShield 402 pre-trade honeypot simulation over x402 V2 and MCP.",
   "websiteUrl": "https://ak10082247-max.github.io",
-  "repository": "https://github.com/ak10082247-max/elizaos-plugin-kurox-sentinel",
+  "repository": "https://github.com/ak10082247-max/agentfuel402",
   "transports": [
     {
       "type": "http",
-      "url": "https://canaryguard-402.onrender.com/v1/sanitize",
+      "url": "https://agentfuel402.ak10082247.workers.dev/mcp",
       "protocolVersions": [
         "2026-07-28",
         "2024-11-05"
@@ -17,7 +17,15 @@
     },
     {
       "type": "http",
-      "url": "https://rugshield-402.onrender.com/v1/audit/swap-simulation-proof",
+      "url": "https://canaryguard-402.onrender.com/mcp",
+      "protocolVersions": [
+        "2026-07-28",
+        "2024-11-05"
+      ]
+    },
+    {
+      "type": "http",
+      "url": "https://rugshield-402.onrender.com/mcp",
       "protocolVersions": [
         "2026-07-28",
         "2024-11-05"
@@ -36,7 +44,7 @@
         "payai"
       ],
       "toolsManifest": "https://ak10082247-max.github.io/mcp_bundle_kurox.json",
-      "npmPackage": "elizaos-plugin-kurox-sentinel"
+      "apifyStore": "https://apify.com/kuroxreal"
     }
   }
 }
