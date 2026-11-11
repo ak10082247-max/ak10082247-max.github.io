@@ -99,31 +99,6 @@ def warm_big3_services(client: httpx.Client):
             print(f" - {s['name']} warm error: {e}")
 
 
-def publish_teaser_alerts(client: httpx.Client, tokens: list[dict]):
-    print("Publishing teaser alerts to RugShield live feed...")
-    for t in tokens[:6]:
-        addr = t["address"]
-        chain = t["chain"]
-        sym = t["symbol"]
-        seed = sum(ord(c) for c in addr)
-        clusters = 2 + (seed % 6)
-        top10 = round(12.0 + (seed % 40) * 0.9, 1)
-
-        payload = {
-            "chain": chain,
-            "symbol": sym,
-            "address": addr,
-            "unlock_terminal_url": f"https://rugshield-402.onrender.com/?token={addr}",
-            "action_url": f"https://rugshield-402.onrender.com/api/actions/scan?token={addr}",
-            "teaser_message": f"Free Preview: Top-10 holds ~{top10}%, {clusters} Sybil clusters detected. Unlock full simulation ($0.01 USDC).",
-        }
-        try:
-            r = client.post("https://rugshield-402.onrender.com/v1/feed/live-alerts", json=payload, timeout=6.0)
-            print(f" - [{chain.upper()}] ${sym} -> HTTP {r.status_code}")
-        except Exception as e:
-            print(f" - [{chain.upper()}] ${sym} feed error: {e}")
-
-
 def syndicate_indexnow(client: httpx.Client):
     urls = [
         f"{BASE_SITE}/",
@@ -449,7 +424,6 @@ def main():
         warm_big3_services(client)
         tokens = fetch_trending_tokens(client)
         print(f"Loaded {len(tokens)} trending tokens.")
-        publish_teaser_alerts(client, tokens)
         syndicate_indexnow(client)
         generate_alpha_signals_md(tokens)
         generate_syndication_feeds(tokens)
