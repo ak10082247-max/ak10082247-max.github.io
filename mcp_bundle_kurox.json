@@ -70,8 +70,8 @@
     {
       "name": "guard_agent_inputs",
       "description": "Deterministic prompt-injection firewall, invisible unicode smuggling neutralizer, and malformed JSON repair engine.",
-      "price_usd": "0.015",
-      "amount_micro": "15000",
+      "price_usd": "0.010",
+      "amount_micro": "10000",
       "endpoint": "https://canaryguard-402.onrender.com/v1/sanitize",
       "apify_url": "https://apify.com/kuroxreal/canaryguard-402",
       "parameters": {

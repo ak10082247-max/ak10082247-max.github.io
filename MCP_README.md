@@ -12,8 +12,8 @@
 | Service / Tool | Price (USDC) | Rail / Access | Core Capability |
 | :--- | :---: | :--- | :--- |
 | **`AgentFuel402`** (`b2b_intent_leads`, `llm_clean_markdown`, `ecom_price_stock`, `sdk_live_spec`, `reverse_engineer`) | **`$0.005 – $0.020`** | Base & Solana (`x402`), **`$5.00` Agency Pass**, Apify (Card), Glama MCP | Cloudflare Edge B2B intent leads, RAG-safe Markdown, e-commerce price/stock, live SDK diffs, and hidden API schema discovery. |
-| **`CanaryGuard 402`** (`guard_agent_inputs`) | **`$0.015 – $0.020`** | Base & Solana (`x402`), Apify (Card), Remote MCP | Deterministic `<0.1ms` prompt-injection firewall, unicode smuggling sanitizer, MCP tool-poisoning audit, and EIP-712 signer audit. |
-| **`RugShield 402`** (`simulate_dex_trade`) | **`$0.010 – $0.020`** | Base & Solana (`x402`), Apify (Card), Remote MCP | Pre-trade DEX honeypot calldata simulation, buy/sell tax estimation, LP lock check, and insider Sybil holder clustering. |
+| **`CanaryGuard 402`** (`guard_agent_inputs`) | **`$0.010 – $0.020`** | Base (CDP + PayAI) & Solana (`x402`), Apify (Card), Remote MCP | Deterministic `<0.1ms` prompt-injection firewall, unicode smuggling sanitizer, MCP tool-poisoning audit, and EIP-712 signer audit. |
+| **`RugShield 402`** (`simulate_dex_trade`) | **`$0.010 – $0.020`** | Base & Solana (`x402`), Apify (Card), Remote MCP | Pre-trade DEX honeypot simulation on Base (Uniswap V2 calldata + LP/Sybil checks) and Solana (Token-2022 audit + Jupiter/Raydium round-trip quotes). |
 
 ---
 

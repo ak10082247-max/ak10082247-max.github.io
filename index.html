@@ -378,7 +378,10 @@
               </div>
               <pre style="overflow-x:auto;color:#38bdf8;font-size:0.75rem;max-height:140px;margin-bottom:0.65rem;">${JSON.stringify(data, null, 2)}</pre>
               <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
-                <button onclick="payAndAudit('${token}')" class="btn">Unlock Full Simulation ($0.010 Base USDC Gasless)</button>
+                ${chain === 'base'
+                  ? `<button onclick="payAndAudit('${token}')" class="btn">Unlock Full Simulation ($0.010 Base USDC Gasless)</button>`
+                  : `<span style="color:#94a3b8;font-size:0.8rem;">Solana swap simulation (Token-2022 + Jupiter/Raydium) is live via x402 API (<code>POST /v1/scan</code>, $0.010 Solana USDC) &amp; MCP (<code>/mcp</code>).</span>`
+                }
                 <a class="preset" style="display:inline-flex;align-items:center;" href="https://apify.com/kuroxreal/rugshield-402" target="_blank" rel="noopener">Or Run on Apify (Card) →</a>
               </div>
             `;
@@ -549,9 +552,9 @@
         <div>
           <h2>2. CanaryGuard 402</h2>
           <a class="svc-url" href="https://canaryguard-402.onrender.com/" target="_blank" rel="noopener">https://canaryguard-402.onrender.com</a>
-          <p class="svc-desc">Deterministic &lt;0.1ms AI prompt-injection firewall, EIP-712 &amp; MCP tool-poisoning auditor, wallet-drainer check, JSON repair, and Base/DeFi safety telemetry.</p>
+          <p class="svc-desc">Deterministic &lt;0.1ms AI prompt-injection firewall, EIP-712 &amp; MCP tool-poisoning auditor, wallet-drainer check, JSON repair, and Base/Solana safety telemetry (Coinbase CDP + PayAI).</p>
           <ul class="route-list">
-            <li><code>POST /v1/sanitize</code> <span class="price">$0.015</span></li>
+            <li><code>POST /v1/sanitize</code> <span class="price">$0.010</span></li>
             <li><code>POST /v1/security/mcp-tool-poisoning-audit</code> <span class="price">$0.020</span></li>
             <li><code>POST /v1/security/eip712-signature-auditor</code> <span class="price">$0.020</span></li>
             <li><code>POST /v1/security/wallet-drainer-check</code> <span class="price">$0.015</span></li>
@@ -577,7 +580,7 @@
         <div>
           <h2>3. RugShield 402</h2>
           <a class="svc-url" href="https://rugshield-402.onrender.com/" target="_blank" rel="noopener">https://rugshield-402.onrender.com</a>
-          <p class="svc-desc">Pre-trade DEX honeypot calldata simulator, Base/Solana swap simulation proof, LP lock verifier, and insider Sybil holder cluster mapping with Solana Actions support.</p>
+          <p class="svc-desc">Pre-trade DEX honeypot simulator on Base (Uniswap V2 calldata, LP lock verify, Sybil clusters) and Solana (Token-2022 extension audit + Jupiter/Raydium round-trip quote simulation) with Solana Actions.</p>
           <ul class="route-list">
             <li><code>POST /v1/scan</code> <span class="price">$0.010</span></li>
             <li><code>POST /v1/scan/preview</code> <span class="price">FREE</span></li>
