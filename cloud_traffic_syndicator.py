@@ -13,13 +13,31 @@ BASE_SITE = "https://ak10082247-max.github.io"
 
 BASE_MERCHANT_WALLET = "0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6".lower()
 BASE_USDC_CONTRACT = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913".lower()
+BASE_TRANSFER_TOPIC = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
 SOLANA_MERCHANT_OWNER = "9wuMysgXwNhtQeqJgGByAiMYc4EjzZ5wUSmnjrrt3ffh"
 SOLANA_MERCHANT_ATA = "DD3A7jaXFeHcif9eYj6Vhomuxypat5Yxi8ow6wxz27yL"
+SOLANA_USDC_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+SOLANA_FEE_PAYER = "CjNFTjvBhbJJd2B5ePPMHRLx1ELZpa8dwQgGL727eKww"
+LEDGER_FILE = "external_deliveries_ledger.json"
+
+BASE_CALL_RPCS = ["https://mainnet.base.org", "https://base-rpc.publicnode.com"]
+BASE_LOG_RPCS = [
+    ("https://base-rpc.publicnode.com", 40000),
+    ("https://mainnet.base.org", 9000),
+]
+SOLANA_RPCS = ["https://api.mainnet-beta.solana.com"]
 
 INTERNAL_WALLETS = {
     "0x6b5f275f028a214fb2e6d21061db791e3b07beed",
     "0x4b5c71082d027d16d2a146465d66f9eec11634f6",
+    "0x1457433d8a396e5e339b184fddfc394d76a97488",
+    "0xf202f4f9899ddef61d7b278c026545666d987cdb",
+    "0x986bb51db93224f9c201c35d9cbb79be950be964",
+    "0x194711b63e4a47f8699cf9205ef22bf2ff3a01f9",
     "exhrwrmnqlhxzpfxns2e5x82wzzz79gyqw9zmnwxspcq",
+    "98huxhzjryzu5mmhm16vswxwkexxsvuhbc8xfccqwjy2",
+    "5uaxvwhob15aumlivboenmpegsrjtxjgswjpjykcjnmm",
+    "e47kzynbzliryzrarwbtge8fbjiy9dsdkztqp6kamw2c",
     "127.0.0.1",
     "localhost",
     "unpaid_probe",
@@ -127,50 +145,256 @@ def syndicate_indexnow(client: httpx.Client):
         print(f"IndexNow error: {e}")
 
 
+def rpc_post(client: httpx.Client, url: str, method: str, params: list) -> dict | None:
+    try:
+        res = client.post(
+            url,
+            json={"jsonrpc": "2.0", "id": 1, "method": method, "params": params},
+            timeout=10.0,
+        )
+        if res.status_code == 200:
+            body = res.json()
+            if isinstance(body, dict) and not body.get("error"):
+                return body
+    except Exception as exc:
+        print(f"RPC error ({url} {method}): {exc}")
+    return None
+
+
 def query_treasury_balances(client: httpx.Client) -> dict:
     balances = {
         "base_merchant_usdc": "unknown",
         "solana_merchant_usdc": "unknown",
         "timestamp": datetime.now(timezone.utc).isoformat(),
     }
-    try:
-        padded_addr = BASE_MERCHANT_WALLET[2:].lower().zfill(64)
-        call_data = "0x70a08231" + padded_addr
-        rpc_payload = {
-            "jsonrpc": "2.0",
-            "method": "eth_call",
-            "params": [{"to": BASE_USDC_CONTRACT, "data": call_data}, "latest"],
-            "id": 1,
-        }
-        res = client.post("https://mainnet.base.org", json=rpc_payload, timeout=8.0)
-        if res.status_code == 200:
-            hex_val = res.json().get("result", "0x0")
-            raw_units = int(hex_val, 16)
+    padded_addr = BASE_MERCHANT_WALLET[2:].lower().zfill(64)
+    call_data = "0x70a08231" + padded_addr
+    for rpc_url in BASE_CALL_RPCS:
+        body = rpc_post(client, rpc_url, "eth_call", [{"to": BASE_USDC_CONTRACT, "data": call_data}, "latest"])
+        if body and body.get("result"):
+            raw_units = int(body["result"], 16)
             balances["base_merchant_usdc"] = f"{raw_units / 1_000_000:.6f}"
-    except Exception as be:
-        print(f"Base RPC query error: {be}")
+            break
 
-    try:
-        sol_payload = {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "getTokenAccountBalance",
-            "params": [SOLANA_MERCHANT_ATA],
-        }
-        res = client.post("https://api.mainnet-beta.solana.com", json=sol_payload, timeout=8.0)
-        if res.status_code == 200:
-            ui_amount = res.json().get("result", {}).get("value", {}).get("uiAmountString", "unknown")
+    for rpc_url in SOLANA_RPCS:
+        body = rpc_post(client, rpc_url, "getTokenAccountBalance", [SOLANA_MERCHANT_ATA])
+        ui_amount = (body or {}).get("result", {}).get("value", {}).get("uiAmountString")
+        if ui_amount is not None:
             balances["solana_merchant_usdc"] = ui_amount
-    except Exception as se:
-        print(f"Solana RPC query error: {se}")
+            break
 
     return balances
 
 
-def poll_fleet_deliveries(client: httpx.Client) -> list[dict]:
-    external_deliveries = []
-    seen_txs = set()
+def load_deliveries_ledger() -> dict:
+    if os.path.exists(LEDGER_FILE):
+        try:
+            with open(LEDGER_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                if isinstance(data, dict):
+                    return data
+        except Exception as exc:
+            print(f"Ledger read warning: {exc}")
+    return {"last_base_block": 0, "last_solana_signature": None, "external_deliveries": []}
 
+
+def save_deliveries_ledger(ledger: dict):
+    with open(LEDGER_FILE, "w", encoding="utf-8") as f:
+        json.dump(ledger, f, indent=2)
+
+
+def scan_base_onchain_deliveries(client: httpx.Client, ledger: dict) -> list[dict]:
+    found = []
+    latest_block = None
+    for rpc_url in BASE_CALL_RPCS:
+        bn = rpc_post(client, rpc_url, "eth_blockNumber", [])
+        if bn and bn.get("result"):
+            latest_block = int(bn["result"], 16)
+            break
+    if not latest_block:
+        return found
+
+    last_scanned = int(ledger.get("last_base_block") or 0)
+    # Catch up at most ~800k blocks (~44h at ~5 blocks/sec) per run
+    start_block = max(latest_block - 800_000, last_scanned + 1) if last_scanned > 0 else max(0, latest_block - 200_000)
+    if start_block > latest_block:
+        return found
+
+    padded_merchant = "0x" + BASE_MERCHANT_WALLET[2:].zfill(64)
+    block_ts_cache: dict[str, str] = {}
+    cursor = start_block
+    highest_ok = last_scanned
+
+    for _ in range(25):
+        if cursor > latest_block:
+            break
+        logs_ok = False
+        for rpc_url, max_span in BASE_LOG_RPCS:
+            end_block = min(latest_block, cursor + max_span - 1)
+            body = rpc_post(
+                client,
+                rpc_url,
+                "eth_getLogs",
+                [{
+                    "address": BASE_USDC_CONTRACT,
+                    "topics": [BASE_TRANSFER_TOPIC, None, padded_merchant],
+                    "fromBlock": hex(cursor),
+                    "toBlock": hex(end_block),
+                }],
+            )
+            if body is None:
+                continue
+            logs_ok = True
+            highest_ok = end_block
+            for log in body.get("result") or []:
+                topics = log.get("topics") or []
+                if len(topics) < 2:
+                    continue
+                payer = ("0x" + topics[1][-40:]).lower()
+                if payer in INTERNAL_WALLETS:
+                    continue
+                amount_usdc = int(log.get("data", "0x0"), 16) / 1_000_000
+                if amount_usdc <= 0:
+                    continue
+                blk_hex = log.get("blockNumber", "0x0")
+                if blk_hex not in block_ts_cache:
+                    blk = rpc_post(client, rpc_url, "eth_getBlockByNumber", [blk_hex, False])
+                    ts_hex = (blk or {}).get("result", {}).get("timestamp")
+                    block_ts_cache[blk_hex] = (
+                        datetime.fromtimestamp(int(ts_hex, 16), tz=timezone.utc).isoformat()
+                        if ts_hex
+                        else datetime.now(timezone.utc).isoformat()
+                    )
+                found.append({
+                    "timestamp": block_ts_cache[blk_hex],
+                    "chain": "base",
+                    "server": "Base x402 (on-chain)",
+                    "payer": payer,
+                    "amount_usdc": round(amount_usdc, 6),
+                    "endpoint": "on-chain USDC",
+                    "tx_hash": (log.get("transactionHash") or "").strip(),
+                    "block": int(blk_hex, 16),
+                })
+            cursor = end_block + 1
+            break
+        if not logs_ok:
+            print(f"Base getLogs chunk failed at block {cursor}")
+            break
+
+    if highest_ok > last_scanned:
+        ledger["last_base_block"] = highest_ok
+    return found
+
+
+def extract_solana_signer_and_delta(tx_res: dict) -> tuple[str, float]:
+    meta = tx_res.get("meta") or {}
+    pre_amt = 0.0
+    post_amt = 0.0
+    for bal in meta.get("preTokenBalances") or []:
+        if bal.get("owner") == SOLANA_MERCHANT_OWNER and bal.get("mint") == SOLANA_USDC_MINT:
+            pre_amt = float((bal.get("uiTokenAmount") or {}).get("uiAmount") or 0.0)
+    for bal in meta.get("postTokenBalances") or []:
+        if bal.get("owner") == SOLANA_MERCHANT_OWNER and bal.get("mint") == SOLANA_USDC_MINT:
+            post_amt = float((bal.get("uiTokenAmount") or {}).get("uiAmount") or 0.0)
+    delta = round(post_amt - pre_amt, 6)
+
+    payer = ""
+    msg = (tx_res.get("transaction") or {}).get("message") or {}
+    for ix in msg.get("instructions") or []:
+        parsed = ix.get("parsed") if isinstance(ix, dict) else None
+        if isinstance(parsed, dict) and parsed.get("type") in ("transferChecked", "transfer"):
+            auth = (parsed.get("info") or {}).get("authority")
+            if auth:
+                payer = str(auth)
+                break
+    if not payer:
+        for key in msg.get("accountKeys") or []:
+            pub = key.get("pubkey") if isinstance(key, dict) else str(key)
+            if pub and pub not in (SOLANA_FEE_PAYER, SOLANA_MERCHANT_OWNER, SOLANA_MERCHANT_ATA):
+                payer = pub
+                break
+    return payer, delta
+
+
+def scan_solana_onchain_deliveries(client: httpx.Client, ledger: dict) -> list[dict]:
+    found = []
+    rpc_url = SOLANA_RPCS[0]
+    last_sig = ledger.get("last_solana_signature")
+    params = [SOLANA_MERCHANT_ATA, {"limit": 20}]
+    if last_sig:
+        params[1]["until"] = last_sig
+    body = rpc_post(client, rpc_url, "getSignaturesForAddress", params)
+    if body is None and last_sig:
+        body = rpc_post(client, rpc_url, "getSignaturesForAddress", [SOLANA_MERCHANT_ATA, {"limit": 20}])
+    sigs = (body or {}).get("result") or []
+    if not sigs:
+        return found
+
+    newest_ok = None
+    for s in reversed(sigs):
+        if s.get("err") is not None:
+            sig = s.get("signature")
+            if sig:
+                newest_ok = sig
+            continue
+        sig = s.get("signature")
+        if not sig:
+            continue
+        tx_body = rpc_post(
+            client,
+            rpc_url,
+            "getTransaction",
+            [sig, {"encoding": "jsonParsed", "maxSupportedTransactionVersion": 0}],
+        )
+        tx_res = (tx_body or {}).get("result")
+        if not tx_res:
+            break
+        newest_ok = sig
+        payer, delta_usdc = extract_solana_signer_and_delta(tx_res)
+        if delta_usdc > 0 and payer.lower() not in INTERNAL_WALLETS:
+            bt = s.get("blockTime")
+            ts_iso = (
+                datetime.fromtimestamp(int(bt), tz=timezone.utc).isoformat()
+                if bt
+                else datetime.now(timezone.utc).isoformat()
+            )
+            found.append({
+                "timestamp": ts_iso,
+                "chain": "solana",
+                "server": "Solana x402 (on-chain)",
+                "payer": payer,
+                "amount_usdc": delta_usdc,
+                "endpoint": "on-chain USDC",
+                "tx_hash": sig,
+            })
+        time.sleep(0.15)
+
+    if newest_ok:
+        ledger["last_solana_signature"] = newest_ok
+    return found
+
+
+def poll_fleet_deliveries(client: httpx.Client) -> list[dict]:
+    ledger = load_deliveries_ledger()
+    by_tx: dict[str, dict] = {}
+
+    for d in ledger.get("external_deliveries") or []:
+        tx_key = (d.get("tx_hash") or "").strip().lower()
+        payer_key = (d.get("payer") or "").strip().lower()
+        if tx_key and payer_key and payer_key not in INTERNAL_WALLETS:
+            by_tx[tx_key] = d
+
+    for d in scan_base_onchain_deliveries(client, ledger):
+        tx_key = (d.get("tx_hash") or "").strip().lower()
+        if tx_key and tx_key not in by_tx:
+            by_tx[tx_key] = d
+
+    for d in scan_solana_onchain_deliveries(client, ledger):
+        tx_key = (d.get("tx_hash") or "").strip().lower()
+        if tx_key and tx_key not in by_tx:
+            by_tx[tx_key] = d
+
+    # Enrich endpoint/service attribution from active HTTP telemetry endpoints when present
     for s in SERVERS:
         if not s.get("telemetry"):
             continue
@@ -178,27 +402,36 @@ def poll_fleet_deliveries(client: httpx.Client) -> list[dict]:
             r = client.get(s["telemetry"], headers={"Accept": "application/json"}, timeout=8.0)
             if r.status_code == 200:
                 data = r.json()
-                items = data.get("deliveries", []) or data.get("paid_deliveries", [])
+                items = data.get("paid_deliveries") or data.get("deliveries") or []
                 for d in items:
-                    payer = (d.get("payer_wallet") or d.get("payer") or "").lower()
+                    if d.get("settled") is False:
+                        continue
+                    payer_raw = (d.get("payer_wallet") or d.get("payer") or "").strip()
+                    payer = payer_raw.lower()
                     tx_hash = (d.get("tx_hash") or d.get("transaction") or "").strip()
                     if payer and payer not in INTERNAL_WALLETS and tx_hash:
                         tx_key = tx_hash.lower()
-                        if tx_key not in seen_txs:
-                            seen_txs.add(tx_key)
-                            external_deliveries.append({
-                                "server": s["name"],
+                        amt = float(d.get("amount_usdc", 0.0) or (int(d.get("amount", 0)) / 1e6 if d.get("amount") else 0.01))
+                        ep = d.get("endpoint") or d.get("path") or "on-chain USDC"
+                        if tx_key in by_tx:
+                            by_tx[tx_key]["server"] = s["name"]
+                            by_tx[tx_key]["endpoint"] = ep
+                        else:
+                            by_tx[tx_key] = {
                                 "timestamp": d.get("timestamp_utc") or d.get("ts") or datetime.now(timezone.utc).isoformat(),
-                                "payer": payer,
-                                "amount_usdc": float(d.get("amount_usdc", 0.0) or (int(d.get("amount", 0)) / 1e6 if d.get("amount") else 0.01)),
-                                "endpoint": d.get("endpoint") or d.get("path") or "/v1/scan",
+                                "chain": "base" if tx_hash.startswith("0x") else "solana",
+                                "server": s["name"],
+                                "payer": payer_raw,
+                                "amount_usdc": amt,
+                                "endpoint": ep,
                                 "tx_hash": tx_hash,
-                                "latency_ms": d.get("latency_ms", "N/A"),
-                                "user_agent": d.get("user_agent") or d.get("userAgent") or "external_agent/1.0",
-                            })
+                            }
         except Exception as e:
             print(f"Telemetry fetch error for {s['name']}: {e}")
 
+    external_deliveries = sorted(by_tx.values(), key=lambda x: x.get("timestamp", ""), reverse=True)
+    ledger["external_deliveries"] = external_deliveries
+    save_deliveries_ledger(ledger)
     return external_deliveries
 
 
@@ -371,6 +604,8 @@ def generate_revenue_log_md(deliveries: list[dict], balances: dict):
     base_usdc = balances.get("base_merchant_usdc", "unknown")
     sol_usdc = balances.get("solana_merchant_usdc", "unknown")
 
+    total_ext = sum(float(d.get("amount_usdc") or 0.0) for d in deliveries)
+
     md = f"""# Kurox Big 3 x402 Revenue & Settlement Log
 
 > **Multi-Chain Merchant Treasury Flight Recorder**  
@@ -382,6 +617,7 @@ def generate_revenue_log_md(deliveries: list[dict], balances: dict):
 - **Base Mainnet (`eip155:8453`)**: [`0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6`](https://basescan.org/address/0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6) &bull; **`{base_usdc} USDC`**
 - **Solana Mainnet Owner**: `{SOLANA_MERCHANT_OWNER}`
 - **Solana Mainnet (`USDC ATA`)**: [`{SOLANA_MERCHANT_ATA}`](https://solscan.io/account/{SOLANA_MERCHANT_ATA}) &bull; **`{sol_usdc} USDC`**
+- **Verified External Settlements (Post-Rebind Active Vaults)**: **{len(deliveries)} tx** &bull; **`${total_ext:.6f} USDC`**
 
 ---
 
@@ -391,7 +627,7 @@ def generate_revenue_log_md(deliveries: list[dict], balances: dict):
 | :--- | :--- | :--- | :---: | :--- | :--- |
 """
     if deliveries:
-        for d in deliveries[:25]:
+        for d in deliveries[:50]:
             ts = d["timestamp"][:19].replace("T", " ")
             srv = d["server"]
             payer = d["payer"]
@@ -406,7 +642,7 @@ def generate_revenue_log_md(deliveries: list[dict], balances: dict):
                 payer_link = f"[`{payer[:10]}...`](https://solscan.io/account/{payer})"
             md += f"| {ts} | {srv} | {payer_link} | `${amt:.4f} USDC` | `{ep}` | {tx_link} |\n"
     else:
-        md += "| 2026-10-17 21:05:39 | RugShield-402 | [`0xec2abd...`](https://basescan.org/address/0xec2abd3eda89bed90124736e317e847d5fb6d034) | `$0.0100 USDC` | `/v1/scan` | [`0x3936b1...`](https://basescan.org/tx/0x3936b19686509af9c15501f09808a9b91856efcc33364527ff338eaf2bc664ce) |\n"
+        md += "| — | — | `none` | `$0.0000 USDC` | — | — |\n"
 
     md += "\n---\n*Captured live by Kurox Autonomous Telemetry Flight Recorder.*\n"
     with open("LIVE_EXTERNAL_REVENUE_LOG.md", "w", encoding="utf-8") as f:
@@ -430,13 +666,15 @@ def main():
 
         balances = query_treasury_balances(client)
         deliveries = poll_fleet_deliveries(client)
-        print(f"Captured {len(deliveries)} external settled deliveries.")
+        total_ext = sum(float(d.get("amount_usdc") or 0.0) for d in deliveries)
+        print(f"Captured {len(deliveries)} external settled deliveries (${total_ext:.6f} USDC).")
         generate_revenue_log_md(deliveries, balances)
 
         with open("live_treasury_status.json", "w", encoding="utf-8") as f:
             json.dump({
                 **balances,
                 "external_deliveries_count": len(deliveries),
+                "external_usdc_total": f"{total_ext:.6f}",
                 "last_sync": datetime.now(timezone.utc).isoformat(),
             }, f, indent=2)
 
