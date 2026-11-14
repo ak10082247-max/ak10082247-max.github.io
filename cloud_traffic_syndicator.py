@@ -67,13 +67,63 @@ SERVERS = [
 ]
 
 FALLBACK_TOKENS = [
-    {"chain": "solana", "symbol": "BONK", "address": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263", "liquidity_usd": 14800000},
-    {"chain": "solana", "symbol": "WIF", "address": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm", "liquidity_usd": 31200000},
-    {"chain": "solana", "symbol": "POPCAT", "address": "7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr", "liquidity_usd": 19500000},
-    {"chain": "base", "symbol": "BRETT", "address": "0x532f27101965dd16442E59d40670FaF5eBB142E4", "liquidity_usd": 22400000},
-    {"chain": "base", "symbol": "DEGEN", "address": "0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed", "liquidity_usd": 9800000},
-    {"chain": "base", "symbol": "AERO", "address": "0x940181a94A35A4569E4529A3CDfB74e38FD98631", "liquidity_usd": 45100000},
+    {"chain": "solana", "symbol": "BONK", "address": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263"},
+    {"chain": "solana", "symbol": "WIF", "address": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm"},
+    {"chain": "solana", "symbol": "POPCAT", "address": "7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr"},
+    {"chain": "base", "symbol": "BRETT", "address": "0x532f27101965dd16442E59d40670FaF5eBB142E4"},
+    {"chain": "base", "symbol": "DEGEN", "address": "0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed"},
+    {"chain": "base", "symbol": "AERO", "address": "0x940181a94A35A4569E4529A3CDfB74e38FD98631"},
 ]
+
+
+def enrich_token_live_data(client: httpx.Client, tok: dict) -> dict:
+    """Attach live DEX pool liquidity and RugShield preview verdict without fabricated heuristics."""
+    addr = tok.get("address", "")
+    chain = tok.get("chain", "solana").lower()
+    liq_usd = None
+    dex_id = ""
+    try:
+        r = client.get(f"https://api.dexscreener.com/latest/dex/tokens/{addr}", timeout=5.0)
+        if r.status_code == 200:
+            pairs = [p for p in (r.json().get("pairs") or []) if (p.get("chainId") or "").lower() == chain]
+            if pairs:
+                best = max(pairs, key=lambda p: float((p.get("liquidity") or {}).get("usd") or 0.0))
+                liq_val = (best.get("liquidity") or {}).get("usd")
+                if liq_val is not None:
+                    liq_usd = float(liq_val)
+                sym = ((best.get("baseToken") or {}).get("symbol") or "").strip()
+                if sym:
+                    tok["symbol"] = sym[:12]
+                dex_id = str(best.get("dexId") or "")
+    except Exception:
+        pass
+
+    preview_status = "Preview unavailable — run POST /v1/scan ($0.010 USDC)"
+    try:
+        pr = client.post(
+            "https://rugshield-402.onrender.com/v1/scan/preview",
+            json={"token_address": addr, "chain": chain},
+            timeout=5.0,
+        )
+        if pr.status_code == 200:
+            pd = pr.json()
+            rec = pd.get("recommendation") or pd.get("simulation_status") or "PREVIEW_OK"
+            hp = pd.get("is_honeypot")
+            if hp is True:
+                preview_status = f"HONEYPOT DETECTED ({rec})"
+            elif hp is False:
+                preview_status = f"Preview: {rec}"
+            else:
+                preview_status = f"{rec} (pay $0.010 USDC for full swap simulation)"
+    except Exception:
+        pass
+
+    return {
+        **tok,
+        "liquidity_usd": liq_usd,
+        "dex_id": dex_id,
+        "preview_status": preview_status,
+    }
 
 
 def fetch_trending_tokens(client: httpx.Client) -> list[dict]:
@@ -89,9 +139,8 @@ def fetch_trending_tokens(client: httpx.Client) -> list[dict]:
                     seen.add(addr)
                     tokens.append({
                         "chain": cid,
-                        "symbol": (item.get("url") or "").split("/")[-1][:10].upper() or "HOT",
+                        "symbol": (item.get("url") or "").split("/")[-1][:10].upper() or "TOKEN",
                         "address": addr,
-                        "liquidity_usd": 75000,
                     })
     except Exception as e:
         print(f"DexScreener boosts error: {e}")
@@ -99,9 +148,9 @@ def fetch_trending_tokens(client: httpx.Client) -> list[dict]:
     for fb in FALLBACK_TOKENS:
         if fb["address"] not in seen:
             seen.add(fb["address"])
-            tokens.append(fb)
+            tokens.append(dict(fb))
 
-    return tokens[:15]
+    return [enrich_token_live_data(client, t) for t in tokens[:15]]
 
 
 def warm_big3_services(client: httpx.Client):
@@ -442,14 +491,12 @@ def generate_alpha_signals_md(tokens: list[dict]):
         chain = tok.get("chain", "solana").upper()
         sym = tok.get("symbol", "TOKEN")
         addr = tok.get("address", "")
-        liq = float(tok.get("liquidity_usd", 45000))
-        seed = sum(ord(c) for c in addr)
-        risk_score = 18 + (seed % 67)
-        clusters = 2 + (seed % 5)
-        top10 = round(14.5 + (seed % 38) * 0.9, 1)
-
-        liq_str = f"${liq:,.0f}" if liq < 1_000_000 else f"${liq/1_000_000:.1f}M"
-        risk_str = f"Top-10 ~{top10}% ({clusters} clusters) | Score: {risk_score}/100"
+        liq = tok.get("liquidity_usd")
+        if isinstance(liq, (int, float)) and liq > 0:
+            liq_str = f"${liq:,.0f}" if liq < 1_000_000 else f"${liq/1_000_000:.1f}M"
+        else:
+            liq_str = "Live on terminal"
+        risk_str = tok.get("preview_status") or "Run live /v1/scan ($0.010 USDC)"
         term_url = f"https://rugshield-402.onrender.com/?token={addr}"
         act_url = f"https://rugshield-402.onrender.com/api/actions/scan?token={addr}"
 
@@ -473,7 +520,7 @@ def generate_alpha_signals_md(tokens: list[dict]):
 ---
 
 ## ⚡ Access Options (x402 Crypto or Credit Card)
-- **⚡ AgentFuel402 Edge Feeds & $5.00 Agency Pass (1,000 calls)**: [`https://agentfuel402.ak10082247.workers.dev/v1/preview/leads`](https://agentfuel402.ak10082247.workers.dev/v1/preview/leads)
+- **⚡ AgentFuel402 Edge Feeds (Pay-per-Call Base/Solana USDC + Free Previews)**: [`https://agentfuel402.ak10082247.workers.dev/v1/preview/leads`](https://agentfuel402.ak10082247.workers.dev/v1/preview/leads)
 - **💳 Apify Store (Credit Card / Free Monthly Credits)**: [`https://apify.com/kuroxreal`](https://apify.com/kuroxreal)
 - **🛡️ RugShield Web Terminal**: [`https://rugshield-402.onrender.com`](https://rugshield-402.onrender.com)
 
@@ -481,12 +528,12 @@ def generate_alpha_signals_md(tokens: list[dict]):
 
 ## 📡 Live Token Risk Preview Feed
 
-| Chain | Symbol | Address | Liquidity | Risk Teaser | 1-Click Unlock Links & Solana Blinks |
+| Chain | Symbol | Address | Live Liquidity | RugShield Live Preview | 1-Click Unlock Links & Solana Blinks |
 | :---: | :---: | :--- | :---: | :---: | :--- |
 {rows_text}
 
 ---
-*Generated automatically by Kurox Big 3 Autonomous Cloud Engine.*
+*Generated automatically by Kurox Big 3 Autonomous Cloud Engine from live DexScreener & RugShield preview responses.*
 """
     with open("LIVE_SOLANA_BASE_SIGNALS.md", "w", encoding="utf-8") as f:
         f.write(md)
@@ -502,10 +549,10 @@ def generate_syndication_feeds(tokens: list[dict]):
     items_xml = []
 
     promo_url = "https://agentfuel402.ak10082247.workers.dev/"
-    promo_title = "⚡ AgentFuel402: B2B Intent Leads, Clean Markdown & $5.00 Agency Pass (x402 + Apify Card)"
+    promo_title = "⚡ AgentFuel402: B2B Intent Leads, Clean Markdown & REA API (x402 + Apify Card)"
     promo_desc = (
-        "Consume real-time B2B engineering buying intent leads ($0.01), prompt-safe Markdown ($0.005), "
-        "and SDK breaking-change diffs ($0.005) via x402 V2 on Base/Solana, a 1,000-call $5.00 USDC Agency Pass, "
+        "Consume real-time B2B engineering buying intent leads ($0.010), prompt-safe Markdown ($0.005), "
+        "and SDK breaking-change diffs ($0.005) via pay-per-call x402 V2 on Base/Solana "
         "or Credit Card on Apify Store (https://apify.com/kuroxreal)."
     )
     items_json.append({
@@ -532,18 +579,16 @@ def generate_syndication_feeds(tokens: list[dict]):
         chain = tok.get("chain", "solana").lower()
         sym = tok.get("symbol", "TOKEN")
         addr = tok.get("address", "")
-        seed = sum(ord(c) for c in addr)
-        risk_score = 18 + (seed % 67)
-        clusters = 2 + (seed % 5)
-        top10 = round(14.5 + (seed % 38) * 0.9, 1)
+        liq = tok.get("liquidity_usd")
+        liq_note = f"${liq:,.0f} live pool liquidity" if isinstance(liq, (int, float)) and liq > 0 else "live pool telemetry"
+        preview_note = tok.get("preview_status") or "Run live /v1/scan ($0.010 USDC)"
 
         term_url = f"https://rugshield-402.onrender.com/?token={addr}"
         action_url = f"https://rugshield-402.onrender.com/api/actions/scan?token={addr}"
-        title = f"[{chain.upper()}] ${sym} - Risk: {risk_score}/100 | Top-10 holds {top10}% ({clusters} clusters)"
+        title = f"[{chain.upper()}] ${sym} - {preview_note}"
         desc = (
-            f"Pre-trade safety intelligence for {chain.upper()} token ${sym} ({addr}). "
-            f"Top-10 holders control ~{top10}% across {clusters} detected Sybil clusters. "
-            f"Unlock institutional simulation ($0.01 USDC): {term_url} | Action API: {action_url}"
+            f"Pre-trade safety check for {chain.upper()} token ${sym} ({addr}) with {liq_note}. "
+            f"{preview_note}. Run full on-chain swap simulation ($0.010 USDC): {term_url} | Action API: {action_url}"
         )
 
         items_json.append({
