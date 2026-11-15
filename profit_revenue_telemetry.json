@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1.0",
-  "generated_utc": "2026-11-15T18:50:09.087587+00:00",
+  "generated_utc": "2026-11-15T21:17:41.350085+00:00",
   "scope": "Active Big-3 & Kurox Channels Only (AgentFuel402, CanaryGuard 402, RugShield 402, Kurox Stripe/npm, GEO Bureau)",
   "excluded_legacy": [
     "guard402",
@@ -61,7 +61,7 @@
         "health": {
           "ok": true,
           "status_code": 200,
-          "latency_ms": 48.1,
+          "latency_ms": 67.7,
           "version": "1.0.0"
         },
         "buffer_stats": null
@@ -76,65 +76,65 @@
         "health": {
           "ok": true,
           "status_code": 200,
-          "latency_ms": 92.3,
+          "latency_ms": 31.1,
           "version": "1.3.0"
         },
         "buffer_stats": {
           "buffer_count": 200,
           "paid_count": 0,
           "unpaid_probe_count": 200,
-          "avg_latency_ms": 0.82,
-          "latest_hit_utc": "2026-11-15T18:49:54.713Z",
+          "avg_latency_ms": 22.9,
+          "latest_hit_utc": "2026-11-15T21:17:22.356Z",
           "top_endpoints": [
             {
-              "endpoint": "/mcp",
-              "hits": 40
+              "endpoint": "/chat/completions",
+              "hits": 31
             },
             {
               "endpoint": "/v1/telemetry/deliveries",
-              "hits": 25
+              "hits": 11
             },
             {
               "endpoint": "/v1/sanitize",
-              "hits": 25
-            },
-            {
-              "endpoint": "/bounty.html",
               "hits": 10
             },
             {
-              "endpoint": "/openapi.json",
-              "hits": 8
+              "endpoint": "/mcp",
+              "hits": 9
             },
             {
-              "endpoint": "/",
-              "hits": 8
+              "endpoint": "/v1/yield/safe-allocation",
+              "hits": 5
+            },
+            {
+              "endpoint": "/v1/tokens/history-and-spread",
+              "hits": 5
             }
           ],
           "top_user_agents": [
             {
+              "agent": "AgentRankProbe",
+              "hits": 54
+            },
+            {
+              "agent": "Agent402 Crawler",
+              "hits": 36
+            },
+            {
               "agent": "PayAI-Bazaar/1.0",
-              "hits": 34
-            },
-            {
-              "agent": "lumiere-paycheck-prober/1.0",
-              "hits": 28
-            },
-            {
-              "agent": "Mozilla/5.0",
-              "hits": 27
+              "hits": 33
             },
             {
               "agent": "httpx / Syndicator",
+              "hits": 32
+            },
+            {
+              "agent": "Mozilla/5.0",
               "hits": 14
             },
             {
-              "agent": "node",
-              "hits": 9
-            },
-            {
-              "agent": "none",
-              "hits": 8
+              "agent": "BrickBlueBot/0.1",
+              "hits": 7
             }
           ]
         }
@@ -149,65 +149,65 @@
         "health": {
           "ok": true,
           "status_code": 200,
-          "latency_ms": 90.2,
+          "latency_ms": 56.8,
           "version": "1.3.0"
         },
         "buffer_stats": {
           "buffer_count": 200,
           "paid_count": 0,
           "unpaid_probe_count": 200,
-          "avg_latency_ms": 30.19,
-          "latest_hit_utc": "2026-11-15T18:49:54.815Z",
+          "avg_latency_ms": 9.33,
+          "latest_hit_utc": "2026-11-15T21:17:22.440Z",
           "top_endpoints": [
             {
-              "endpoint": "/v1/scan/preview",
-              "hits": 45
-            },
-            {
-              "endpoint": "/mcp",
-              "hits": 32
+              "endpoint": "/v1/scan",
+              "hits": 34
             },
             {
               "endpoint": "/v1/telemetry/deliveries",
-              "hits": 26
+              "hits": 32
             },
             {
-              "endpoint": "/v1/scan",
-              "hits": 23
+              "endpoint": "/mcp",
+              "hits": 18
             },
             {
-              "endpoint": "/mcp/.well-known/glama.json",
-              "hits": 11
+              "endpoint": "/v1/scan/preview",
+              "hits": 15
             },
             {
-              "endpoint": "/mcp/.well-known/glama.json/mcp",
-              "hits": 8
+              "endpoint": "/v1/audit/swap-simulation-proof",
+              "hits": 13
+            },
+            {
+              "endpoint": "/v1/audit/holder-cluster-map",
+              "hits": 12
             }
           ],
           "top_user_agents": [
             {
-              "agent": "httpx / Syndicator",
-              "hits": 54
-            },
-            {
-              "agent": "Ziwei-Seat/1.0",
-              "hits": 27
+              "agent": "Agent402 Crawler",
+              "hits": 60
             },
             {
               "agent": "Mozilla/5.0",
-              "hits": 21
+              "hits": 43
+            },
+            {
+              "agent": "httpx / Syndicator",
+              "hits": 18
+            },
+            {
+              "agent": "AgentRankProbe",
+              "hits": 16
             },
             {
               "agent": "PayAI-Bazaar/1.0",
               "hits": 12
             },
             {
-              "agent": "lumiere-paycheck-prober/1.0",
-              "hits": 12
-            },
-            {
-              "agent": "Agent402 Crawler",
-              "hits": 9
+              "agent": "none",
+              "hits": 6
             }
           ]
         }
@@ -221,70 +221,70 @@
       "rolling_unpaid_402_probes": 400,
       "top_endpoints": [
         {
-          "endpoint": "rugshield-402:/v1/scan/preview",
-          "hits": 45
-        },
-        {
-          "endpoint": "canaryguard-402:/mcp",
-          "hits": 40
-        },
-        {
-          "endpoint": "rugshield-402:/mcp",
-          "hits": 32
+          "endpoint": "rugshield-402:/v1/scan",
+          "hits": 34
         },
         {
           "endpoint": "rugshield-402:/v1/telemetry/deliveries",
-          "hits": 26
+          "hits": 32
         },
         {
-          "endpoint": "canaryguard-402:/v1/telemetry/deliveries",
-          "hits": 25
+          "endpoint": "canaryguard-402:/chat/completions",
+          "hits": 31
         },
         {
-          "endpoint": "canaryguard-402:/v1/sanitize",
-          "hits": 25
+          "endpoint": "rugshield-402:/mcp",
+          "hits": 18
         },
         {
-          "endpoint": "rugshield-402:/v1/scan",
-          "hits": 23
+          "endpoint": "rugshield-402:/v1/scan/preview",
+          "hits": 15
         },
         {
-          "endpoint": "rugshield-402:/mcp/.well-known/glama.json",
-          "hits": 11
+          "endpoint": "rugshield-402:/v1/audit/swap-simulation-proof",
+          "hits": 13
+        },
+        {
+          "endpoint": "rugshield-402:/v1/audit/holder-cluster-map",
+          "hits": 12
+        },
+        {
+          "endpoint": "rugshield-402:/v1/audit/liquidity-lock-verify",
+          "hits": 12
         }
       ],
       "top_user_agents": [
         {
-          "agent": "httpx / Syndicator",
-          "hits": 68
+          "agent": "Agent402 Crawler",
+          "hits": 96
+        },
+        {
+          "agent": "AgentRankProbe",
+          "hits": 70
         },
         {
           "agent": "Mozilla/5.0",
-          "hits": 48
+          "hits": 57
+        },
+        {
+          "agent": "httpx / Syndicator",
+          "hits": 50
         },
         {
           "agent": "PayAI-Bazaar/1.0",
-          "hits": 46
+          "hits": 45
         },
         {
-          "agent": "lumiere-paycheck-prober/1.0",
-          "hits": 40
+          "agent": "none",
+          "hits": 9
         },
         {
-          "agent": "Ziwei-Seat/1.0",
-          "hits": 27
+          "agent": "402explorer/0.1",
+          "hits": 9
         },
         {
-          "agent": "Agent402 Crawler",
-          "hits": 14
-        },
-        {
-          "agent": "node",
-          "hits": 14
-        },
-        {
-          "agent": "mcpbeat/0.1",
-          "hits": 12
+          "agent": "BrickBlueBot/0.1",
+          "hits": 7
         }
       ]
     }
@@ -297,7 +297,7 @@
   },
   "stripe": {
     "sync_mode": "live_api_secret",
-    "baseline_checked_utc": "2026-11-15T18:50:09.035212+00:00",
+    "baseline_checked_utc": "2026-11-15T21:17:41.000532+00:00",
     "available_usd": 0.0,
     "pending_usd": 0.0,
     "available_gbp": 0.0,
@@ -595,7 +595,7 @@
       },
       {
         "name": "@kurox_real/plugin-canaryguard",
-        "version": "1.0.7",
+        "version": "1.1.0",
         "url": "https://www.npmjs.com/package/@kurox_real/plugin-canaryguard",
         "downloads_1d": 475,
         "downloads_7d": 509,
@@ -603,7 +603,7 @@
       },
       {
         "name": "@kurox_real/canaryguard-client",
-        "version": "1.0.4",
+        "version": "1.1.2",
         "url": "https://www.npmjs.com/package/@kurox_real/canaryguard-client",
         "downloads_1d": 318,
         "downloads_7d": 365,
@@ -611,7 +611,7 @@
       },
       {
         "name": "@kurox_real/agentkit-canaryguard-402",
-        "version": "1.0.5",
+        "version": "1.1.0",
         "url": "https://www.npmjs.com/package/@kurox_real/agentkit-canaryguard-402",
         "downloads_1d": 339,
         "downloads_7d": 524,
@@ -657,7 +657,7 @@
         "stars": 0,
         "forks": 0,
         "open_issues": 0,
-        "pushed_at": "2026-11-15T14:37:07Z"
+        "pushed_at": "2026-11-15T20:09:02Z"
       },
       {
         "name": "ak10082247-max/canaryguard-402",
@@ -665,7 +665,7 @@
         "stars": 0,
         "forks": 8,
         "open_issues": 0,
-        "pushed_at": "2026-11-14T17:47:58Z"
+        "pushed_at": "2026-11-15T20:54:43Z"
       },
       {
         "name": "ak10082247-max/rugshield-402",
@@ -681,7 +681,7 @@
         "stars": 0,
         "forks": 0,
         "open_issues": 0,
-        "pushed_at": "2026-11-15T18:49:30Z"
+        "pushed_at": "2026-11-15T18:50:10Z"
       },
       {
         "name": "ak10082247-max/x402-solana-base-sniper-bot",
@@ -729,7 +729,7 @@
         "stars": 0,
         "forks": 0,
         "open_issues": 0,
-        "pushed_at": "2026-11-14T18:55:47Z"
+        "pushed_at": "2026-11-15T20:09:31Z"
       }
     ],
     "tracked_prs": [
