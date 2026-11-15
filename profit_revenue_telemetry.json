@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.0.0",
-  "generated_utc": "2026-11-15T18:28:35.951656+00:00",
+  "schema_version": "1.1.0",
+  "generated_utc": "2026-11-15T18:50:09.087587+00:00",
   "scope": "Active Big-3 & Kurox Channels Only (AgentFuel402, CanaryGuard 402, RugShield 402, Kurox Stripe/npm, GEO Bureau)",
   "excluded_legacy": [
     "guard402",
@@ -15,10 +15,15 @@
     "treasury_vault_base_usdc": 0.513,
     "treasury_vault_solana_usdc": 0.162,
     "treasury_vault_total_usdc": 0.675,
+    "treasury_base_eth": 0.0,
+    "treasury_solana_sol": 0.000987,
     "stripe_gross_usd": 0.0,
     "stripe_gross_gbp": 0.0,
+    "stripe_gross_usd_eq": 0.0,
+    "stripe_net_usd_eq": 0.0,
     "apify_verified_gross_usd": null,
     "verified_cumulative_gross_usd": 0.071,
+    "verified_cumulative_net_rev_usd": 0.071,
     "verified_monthly_fixed_infra_usd": 14.5,
     "estimated_monthly_net_vs_cumulative_usd": -14.43
   },
@@ -51,12 +56,12 @@
         "name": "AgentFuel402",
         "infra": "Cloudflare Workers Edge",
         "monthly_fixed_usd": 0.0,
-        "price_range": "$0.005 - $0.015 USDC",
-        "endpoints_summary": "5 routes + MCP JSON-RPC 2.0",
+        "price_range": "$0.005 - $0.020 USDC",
+        "endpoints_summary": "5 fuel + 4 preview + /mcp",
         "health": {
           "ok": true,
           "status_code": 200,
-          "latency_ms": 108.6,
+          "latency_ms": 48.1,
           "version": "1.0.0"
         },
         "buffer_stats": null
@@ -67,50 +72,46 @@
         "infra": "Render Starter + 1GB Disk",
         "monthly_fixed_usd": 7.25,
         "price_range": "$0.010 - $0.020 USDC",
-        "endpoints_summary": "34 routes + MCP + /v1/sanitize",
+        "endpoints_summary": "34 routes + /stats + /mcp",
         "health": {
           "ok": true,
           "status_code": 200,
-          "latency_ms": 113.6,
+          "latency_ms": 92.3,
           "version": "1.3.0"
         },
         "buffer_stats": {
           "buffer_count": 200,
           "paid_count": 0,
           "unpaid_probe_count": 200,
-          "avg_latency_ms": 0.86,
-          "latest_hit_utc": "2026-11-15T18:28:14.926Z",
+          "avg_latency_ms": 0.82,
+          "latest_hit_utc": "2026-11-15T18:49:54.713Z",
           "top_endpoints": [
             {
               "endpoint": "/mcp",
-              "hits": 33
+              "hits": 40
+            },
+            {
+              "endpoint": "/v1/telemetry/deliveries",
+              "hits": 25
             },
             {
               "endpoint": "/v1/sanitize",
-              "hits": 17
+              "hits": 25
             },
             {
               "endpoint": "/bounty.html",
+              "hits": 10
+            },
+            {
+              "endpoint": "/openapi.json",
               "hits": 8
             },
             {
               "endpoint": "/",
-              "hits": 7
-            },
-            {
-              "endpoint": "/v1/telemetry/deliveries",
-              "hits": 5
-            },
-            {
-              "endpoint": "/v1/json-repair-and-sanitize",
-              "hits": 5
+              "hits": 8
             }
           ],
           "top_user_agents": [
-            {
-              "agent": "AgentRankProbe",
-              "hits": 58
-            },
             {
               "agent": "PayAI-Bazaar/1.0",
               "hits": 34
@@ -120,16 +121,20 @@
               "hits": 28
             },
             {
-              "agent": "node",
-              "hits": 12
+              "agent": "Mozilla/5.0",
+              "hits": 27
             },
             {
-              "agent": "rokmcp-collector/0.2",
-              "hits": 8
+              "agent": "httpx / Syndicator",
+              "hits": 14
+            },
+            {
+              "agent": "node",
+              "hits": 9
             },
             {
               "agent": "none",
-              "hits": 7
+              "hits": 8
             }
           ]
         }
@@ -139,70 +144,70 @@
         "name": "RugShield 402",
         "infra": "Render Starter + 1GB Disk",
         "monthly_fixed_usd": 7.25,
-        "price_range": "$0.010 - $0.050 USDC",
-        "endpoints_summary": "12 routes + Base/Solana Swap Sim",
+        "price_range": "$0.010 - $0.100 USDC",
+        "endpoints_summary": "12 routes + Swap Sim + /mcp",
         "health": {
           "ok": true,
           "status_code": 200,
-          "latency_ms": 85.2,
+          "latency_ms": 90.2,
           "version": "1.3.0"
         },
         "buffer_stats": {
           "buffer_count": 200,
           "paid_count": 0,
           "unpaid_probe_count": 200,
-          "avg_latency_ms": 21.19,
-          "latest_hit_utc": "2026-11-15T18:28:15.073Z",
+          "avg_latency_ms": 30.19,
+          "latest_hit_utc": "2026-11-15T18:49:54.815Z",
           "top_endpoints": [
             {
               "endpoint": "/v1/scan/preview",
-              "hits": 30
-            },
-            {
-              "endpoint": "/v1/scan",
-              "hits": 27
+              "hits": 45
             },
             {
               "endpoint": "/mcp",
+              "hits": 32
+            },
+            {
+              "endpoint": "/v1/telemetry/deliveries",
               "hits": 26
             },
             {
+              "endpoint": "/v1/scan",
+              "hits": 23
+            },
+            {
               "endpoint": "/mcp/.well-known/glama.json",
-              "hits": 20
+              "hits": 11
             },
             {
               "endpoint": "/mcp/.well-known/glama.json/mcp",
-              "hits": 14
-            },
-            {
-              "endpoint": "/v1/audit/swap-simulation-proof",
-              "hits": 11
+              "hits": 8
             }
           ],
           "top_user_agents": [
             {
-              "agent": "Ziwei-Seat/1.0",
-              "hits": 48
-            },
-            {
               "agent": "httpx / Syndicator",
-              "hits": 36
+              "hits": 54
             },
             {
-              "agent": "Agent402 Crawler",
-              "hits": 23
+              "agent": "Ziwei-Seat/1.0",
+              "hits": 27
             },
             {
-              "agent": "AgentRankProbe",
-              "hits": 16
+              "agent": "Mozilla/5.0",
+              "hits": 21
+            },
+            {
+              "agent": "PayAI-Bazaar/1.0",
+              "hits": 12
             },
             {
               "agent": "lumiere-paycheck-prober/1.0",
               "hits": 12
             },
             {
-              "agent": "PayAI-Bazaar/1.0",
-              "hits": 12
+              "agent": "Agent402 Crawler",
+              "hits": 9
             }
           ]
         }
@@ -216,45 +221,45 @@
       "rolling_unpaid_402_probes": 400,
       "top_endpoints": [
         {
-          "endpoint": "canaryguard-402:/mcp",
-          "hits": 33
-        },
-        {
           "endpoint": "rugshield-402:/v1/scan/preview",
-          "hits": 30
+          "hits": 45
         },
         {
-          "endpoint": "rugshield-402:/v1/scan",
-          "hits": 27
+          "endpoint": "canaryguard-402:/mcp",
+          "hits": 40
         },
         {
           "endpoint": "rugshield-402:/mcp",
+          "hits": 32
+        },
+        {
+          "endpoint": "rugshield-402:/v1/telemetry/deliveries",
           "hits": 26
         },
         {
-          "endpoint": "rugshield-402:/mcp/.well-known/glama.json",
-          "hits": 20
+          "endpoint": "canaryguard-402:/v1/telemetry/deliveries",
+          "hits": 25
         },
         {
           "endpoint": "canaryguard-402:/v1/sanitize",
-          "hits": 17
+          "hits": 25
         },
         {
-          "endpoint": "rugshield-402:/mcp/.well-known/glama.json/mcp",
-          "hits": 14
+          "endpoint": "rugshield-402:/v1/scan",
+          "hits": 23
         },
         {
-          "endpoint": "rugshield-402:/v1/audit/swap-simulation-proof",
+          "endpoint": "rugshield-402:/mcp/.well-known/glama.json",
           "hits": 11
         }
       ],
       "top_user_agents": [
         {
-          "agent": "AgentRankProbe",
-          "hits": 74
+          "agent": "httpx / Syndicator",
+          "hits": 68
         },
         {
-          "agent": "Ziwei-Seat/1.0",
+          "agent": "Mozilla/5.0",
           "hits": 48
         },
         {
@@ -266,61 +271,181 @@
           "hits": 40
         },
         {
-          "agent": "httpx / Syndicator",
-          "hits": 39
+          "agent": "Ziwei-Seat/1.0",
+          "hits": 27
         },
         {
           "agent": "Agent402 Crawler",
-          "hits": 26
+          "hits": 14
         },
         {
           "agent": "node",
-          "hits": 16
+          "hits": 14
         },
         {
-          "agent": "rokmcp-collector/0.2",
-          "hits": 16
+          "agent": "mcpbeat/0.1",
+          "hits": 12
         }
       ]
     }
   },
+  "cloudflare": {
+    "sync_mode": "token_needed",
+    "requests_24h": null,
+    "requests_30d": null,
+    "errors_30d": null
+  },
   "stripe": {
-    "sync_mode": "verified_mcp_baseline",
-    "baseline_checked_utc": "2026-11-15T18:20:50Z",
+    "sync_mode": "live_api_secret",
+    "baseline_checked_utc": "2026-11-15T18:50:09.035212+00:00",
     "available_usd": 0.0,
     "pending_usd": 0.0,
     "available_gbp": 0.0,
     "pending_gbp": 0.0,
     "completed_charges": 0,
+    "refunds_count": 0,
     "gross_settled_usd": 0.0,
     "fees_usd": 0.0,
     "net_settled_usd": 0.0,
     "gross_settled_gbp": 0.0,
+    "fees_gbp": 0.0,
+    "net_settled_gbp": 0.0,
+    "gross_total_usd_eq": 0.0,
+    "net_total_usd_eq": 0.0,
+    "fx_gbp_to_usd": 1.3221,
+    "fx_source": "open.er-api.com",
+    "payouts_paid_usd": 0,
+    "payouts_paid_gbp": 0,
+    "sessions_total": 23,
+    "sessions_paid": 0,
+    "sessions_open": 0,
+    "sessions_expired": 23,
     "active_links_total": 10,
     "active_kurox_links": [
       {
-        "sku": "canaryguard-firewall-proxy-v1",
-        "name": "CanaryGuard AI Firewall Proxy v1.0.0",
-        "price": "$9 USD",
-        "url": "https://buy.stripe.com/cNi28r02SaFj3Na6V3bEA08",
-        "brand": "Kurox"
-      },
-      {
-        "sku": "rugshield-pretrade-scanner-v1",
-        "name": "RugShield Pre-Trade Scanner v1.0.0",
-        "price": "$9 USD",
-        "url": "https://buy.stripe.com/00w14n9Ds5kZerO6V3bEA09",
-        "brand": "Kurox"
-      },
-      {
+        "id": "plink_1Uc5utDmOa2iw8hhuoEnhsEE",
         "sku": "kurox-security-suite-bundle-v1",
         "name": "Kurox Security Source Bundle v1.0.0",
         "price": "$15 USD",
+        "currency": "USD",
         "url": "https://buy.stripe.com/3cI4gz9Ds9Bf0AYcfnbEA0a",
-        "brand": "Kurox"
+        "brand": "Kurox",
+        "sessions_opened": 0,
+        "sessions_paid": 0,
+        "sessions_expired": 0
+      },
+      {
+        "id": "plink_1Uc5unDmOa2iw8hh0LIRlI2Z",
+        "sku": "rugshield-pretrade-scanner-v1",
+        "name": "RugShield Pre-Trade Scanner v1.0.0",
+        "price": "$9 USD",
+        "currency": "USD",
+        "url": "https://buy.stripe.com/00w14n9Ds5kZerO6V3bEA09",
+        "brand": "Kurox",
+        "sessions_opened": 0,
+        "sessions_paid": 0,
+        "sessions_expired": 0
+      },
+      {
+        "id": "plink_1Uc5uVDmOa2iw8hhjr0BvNwp",
+        "sku": "canaryguard-firewall-proxy-v1",
+        "name": "CanaryGuard AI Firewall Proxy v1.0.0",
+        "price": "$9 USD",
+        "currency": "USD",
+        "url": "https://buy.stripe.com/cNi28r02SaFj3Na6V3bEA08",
+        "brand": "Kurox",
+        "sessions_opened": 0,
+        "sessions_paid": 0,
+        "sessions_expired": 0
       }
     ],
-    "note": "Live Stripe MCP verified $0.00/\u00a30.00 settled so far. Add optional STRIPE_READONLY_KEY repository secret for automatic 15-min Stripe auto-sync."
+    "active_geo_links": [
+      {
+        "id": "plink_1TzellDmOa2iw8hhnp69PnYY",
+        "sku": "payment_risk_1",
+        "name": "GEO Bureau Operational Dossier",
+        "price": "\u00a3 GBP",
+        "currency": "GBP",
+        "url": "https://buy.stripe.com/eVqdR9dTI9Bf4RebbjbEA06",
+        "brand": "GEO Bureau",
+        "sessions_opened": 0,
+        "sessions_paid": 0,
+        "sessions_expired": 0
+      },
+      {
+        "id": "plink_1TzelgDmOa2iw8hhDWO8260w",
+        "sku": "radar_weekly_subscription",
+        "name": "GEO Bureau Weekly Radar Subscription",
+        "price": "\u00a3/wk GBP",
+        "currency": "GBP",
+        "url": "https://buy.stripe.com/7sYdR916W7t71F2cfnbEA05",
+        "brand": "GEO Bureau",
+        "sessions_opened": 0,
+        "sessions_paid": 0,
+        "sessions_expired": 0
+      },
+      {
+        "id": "plink_1TzelRDmOa2iw8hhE0YH0kex",
+        "sku": "radar_15",
+        "name": "GEO Bureau Radar 15 Pack",
+        "price": "\u00a3 GBP",
+        "currency": "GBP",
+        "url": "https://buy.stripe.com/8x27sL02S6p3bfC6V3bEA04",
+        "brand": "GEO Bureau",
+        "sessions_opened": 0,
+        "sessions_paid": 0,
+        "sessions_expired": 0
+      },
+      {
+        "id": "plink_1TzelMDmOa2iw8hh5DEkRAhE",
+        "sku": "radar_5",
+        "name": "GEO Bureau Radar 5 Pack",
+        "price": "\u00a329 GBP",
+        "currency": "GBP",
+        "url": "https://buy.stripe.com/3cI3cv6rgbJnbfC7Z7bEA03",
+        "brand": "GEO Bureau",
+        "sessions_opened": 1,
+        "sessions_paid": 0,
+        "sessions_expired": 1
+      },
+      {
+        "id": "plink_1TzeCPDmOa2iw8hhB9PiZXL9",
+        "sku": "ukeducationitcontractsignals",
+        "name": "UK Education IT Contract Signals",
+        "price": "\u00a339/mo GBP",
+        "currency": "GBP",
+        "url": "https://buy.stripe.com/6oU14ng1Q3cR5Vi3IRbEA02",
+        "brand": "GEO Bureau",
+        "sessions_opened": 0,
+        "sessions_paid": 0,
+        "sessions_expired": 0
+      },
+      {
+        "id": "plink_1TzdyCDmOa2iw8hhQOriVEqi",
+        "sku": "paid_traffic_leak_check",
+        "name": "Paid Traffic Leak Check",
+        "price": "\u00a349 GBP",
+        "currency": "GBP",
+        "url": "https://buy.stripe.com/9B6dR9g1Q7t7erO0wFbEA01",
+        "brand": "GEO Bureau",
+        "sessions_opened": 1,
+        "sessions_paid": 0,
+        "sessions_expired": 1
+      },
+      {
+        "id": "plink_1Tfpa0DmOa2iw8hhNikxGhni",
+        "sku": "plink_1Tfpa0DmOa2iw8hhNikxGhni",
+        "name": "GEO Audit ($99 USD Legacy Link)",
+        "price": "$99 USD",
+        "currency": "USD",
+        "url": "https://buy.stripe.com/cNi7sL2b05kZfvSfrzbEA00",
+        "brand": "GEO Bureau",
+        "sessions_opened": 21,
+        "sessions_paid": 0,
+        "sessions_expired": 21
+      }
+    ],
+    "note": "Synced live from Stripe (USD + GBP @ 1.3221 FX, payouts & checkout session funnel \u2014 zero PII)."
   },
   "apify": {
     "actors": [
@@ -336,7 +461,8 @@
         "users_30d": 1,
         "last_run_at": "2026-11-15T01:04:28.497Z",
         "price_per_event_usd": 0.003,
-        "charged_events": null,
+        "own_runs_recorded": 7,
+        "external_runs_est": 34,
         "gross_usd": null
       },
       {
@@ -351,7 +477,8 @@
         "users_30d": 0,
         "last_run_at": "2026-11-12T16:12:14.245Z",
         "price_per_event_usd": 0.005,
-        "charged_events": null,
+        "own_runs_recorded": 7,
+        "external_runs_est": 2,
         "gross_usd": null
       },
       {
@@ -366,7 +493,8 @@
         "users_30d": 1,
         "last_run_at": "2026-11-15T14:00:45.285Z",
         "price_per_event_usd": 0.01,
-        "charged_events": null,
+        "own_runs_recorded": 16,
+        "external_runs_est": 8,
         "gross_usd": null
       },
       {
@@ -381,7 +509,8 @@
         "users_30d": 0,
         "last_run_at": "2026-11-12T16:09:11.006Z",
         "price_per_event_usd": 0.003,
-        "charged_events": null,
+        "own_runs_recorded": 16,
+        "external_runs_est": 1,
         "gross_usd": null
       },
       {
@@ -396,7 +525,8 @@
         "users_30d": 1,
         "last_run_at": "2026-11-15T14:00:44.979Z",
         "price_per_event_usd": 0.003,
-        "charged_events": null,
+        "own_runs_recorded": 17,
+        "external_runs_est": 8,
         "gross_usd": null
       },
       {
@@ -411,7 +541,8 @@
         "users_30d": 1,
         "last_run_at": "2026-11-15T17:20:33.045Z",
         "price_per_event_usd": 0.015,
-        "charged_events": null,
+        "own_runs_recorded": 4,
+        "external_runs_est": 7,
         "gross_usd": null
       }
     ],
@@ -420,9 +551,12 @@
       "total_runs": 127,
       "runs_30d": 49,
       "total_user_installs": 10,
-      "billing_mode": "public_stats_only",
-      "charged_events": null,
-      "gross_usd": null
+      "own_runs_recorded": 67,
+      "external_runs_est": 60,
+      "cycle_compute_usd": 0.0491,
+      "billing_mode": "token_usage_plus_store_stats",
+      "gross_usd": null,
+      "note": "Apify REST API v2 does not expose Creator Store dollar payout ledgers (404); check Apify Console Monetization for finalized payout USD."
     }
   },
   "npm": {
@@ -547,7 +681,7 @@
         "stars": 0,
         "forks": 0,
         "open_issues": 0,
-        "pushed_at": "2026-11-15T18:27:30Z"
+        "pushed_at": "2026-11-15T18:49:30Z"
       },
       {
         "name": "ak10082247-max/x402-solana-base-sniper-bot",
