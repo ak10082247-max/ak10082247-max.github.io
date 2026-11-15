@@ -337,17 +337,19 @@
             <thead>
               <tr>
                 <th>Actor</th>
-                <th class="num">$/Event (Net ~80%)</th>
+                <th class="num">$/Event (~80%)</th>
                 <th class="num">Runs (30d / All)</th>
+                <th class="num">Ext Est.</th>
                 <th class="num">Users</th>
                 <th>Last Run</th>
               </tr>
             </thead>
             <tbody id="apifyBody">
-              <tr><td colspan="5" style="color:var(--muted);">Loading Apify actors...</td></tr>
+              <tr><td colspan="6" style="color:var(--muted);">Loading Apify actors...</td></tr>
             </tbody>
           </table>
         </div>
+        <div class="note-box" id="apifyNote"></div>
       </div>
 
       <div class="card">
@@ -445,6 +447,8 @@
       liveOverrides: {
         baseUsdc: null,
         solanaUsdc: null,
+        baseEth: null,
+        solanaSol: null,
         health: {},
         buffers: {},
         apify: null,
@@ -574,6 +578,23 @@
         setPill("pillSol", "pill-ok", `Solana RPC: LIVE ($${state.liveOverrides.solanaUsdc.toFixed(3)})`);
       }).catch(() => setPill("pillSol", "pill-warn", "Solana RPC: cached"));
 
+      const ethBalCall = fetchJson(CONFIG.baseRpc, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ jsonrpc: "2.0", id: 2, method: "eth_getBalance", params: [CONFIG.baseMerchant, "latest"] }),
+      }).then((d) => {
+        if (d?.result) state.liveOverrides.baseEth = parseInt(d.result, 16) / 1e18;
+      }).catch(() => {});
+
+      const solBalCall = fetchJson(CONFIG.solanaRpc, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ jsonrpc: "2.0", id: 2, method: "getBalance", params: ["9wuMysgXwNhtQeqJgGByAiMYc4EjzZ5wUSmnjrrt3ffh"] }),
+      }).then((d) => {
+        const lam = d?.result?.value;
+        if (lam !== undefined && lam !== null) state.liveOverrides.solanaSol = Number(lam) / 1e9;
+      }).catch(() => {});
+
       const svcs = state.telemetry?.fleet?.services || [
         { id: "agentfuel402", name: "AgentFuel402", health_url: "https://agentfuel402.ak10082247.workers.dev/health" },
         { id: "canaryguard-402", name: "CanaryGuard 402", health_url: "https://canaryguard-402.onrender.com/health", telemetry_url: "https://canaryguard-402.onrender.com/v1/telemetry/deliveries" },
@@ -654,6 +675,7 @@
           runs_30d: Number(r30.TOTAL || 0),
           total_users: Number(st.totalUsers || 0),
           users_30d: Number(st.totalUsers30Days || 0),
+          external_runs_est: a.own_runs_recorded != null ? Math.max(0, Number(st.totalRuns || 0) - Number(a.own_runs_recorded)) : a.external_runs_est,
           last_run_at: st.lastRunStartedAt || a.last_run_at,
           price_per_event_usd: Number(evPrice || 0),
         };
@@ -693,7 +715,7 @@
           })
         : Promise.resolve();
 
-      await Promise.allSettled([baseCall, solCall, fleetCalls, apifyCall, npmCall]);
+      await Promise.allSettled([baseCall, solCall, ethBalCall, solBalCall, fleetCalls, apifyCall, npmCall]);
       setPill("browserPollPill", "pill-ok", `Browser Poll: ${new Date().toISOString().slice(11, 19)} UTC`);
       if (btn) btn.disabled = false;
       renderAll();
@@ -707,6 +729,8 @@
 
       const baseUsdc = state.liveOverrides.baseUsdc ?? T.profit_overview?.treasury_vault_base_usdc ?? parseFloat(TR.base_merchant_usdc || 0);
       const solUsdc = state.liveOverrides.solanaUsdc ?? T.profit_overview?.treasury_vault_solana_usdc ?? parseFloat(TR.solana_merchant_usdc || 0);
+      const baseEth = state.liveOverrides.baseEth ?? T.profit_overview?.treasury_base_eth ?? 0;
+      const solNative = state.liveOverrides.solanaSol ?? T.profit_overview?.treasury_solana_sol ?? 0;
       const totalVault = (baseUsdc || 0) + (solUsdc || 0);
 
       const extX402 = extDeliveries.length
@@ -714,11 +738,14 @@
         : Number(T.profit_overview?.verified_external_x402_usdc ?? parseFloat(TR.external_usdc_total || 0));
       const stripeUsd = Number(T.stripe?.gross_settled_usd || 0);
       const stripeGbp = Number(T.stripe?.gross_settled_gbp || 0);
+      const stripeUsdEq = Number(T.stripe?.gross_total_usd_eq ?? stripeUsd);
+      const stripeNetEq = Number(T.stripe?.net_total_usd_eq ?? T.stripe?.net_settled_usd ?? stripeUsd);
       const apifyGross = Number(T.apify?.summary?.gross_usd || 0);
-      const verifiedGross = extX402 + stripeUsd + apifyGross;
+      const verifiedGross = extX402 + stripeUsdEq + apifyGross;
+      const verifiedNetRev = extX402 + stripeNetEq + apifyGross;
 
       const fixedBurn = getBurnRate();
-      const netUsd = verifiedGross - fixedBurn;
+      const netUsd = verifiedNetRev - fixedBurn;
 
       const npmPkgs = (state.liveOverrides.npm || T.npm?.packages || []).slice().sort((a,b) => (b.downloads_30d||0) - (a.downloads_30d||0));
       const npm30d = npmPkgs.reduce((s, p) => s + Number(p.downloads_30d || 0), 0);
@@ -728,6 +755,8 @@
       const apifyActors = state.liveOverrides.apify || T.apify?.actors || [];
       const apifyRuns = apifyActors.reduce((s, a) => s + Number(a.total_runs || 0), 0);
       const apifyRuns30d = apifyActors.reduce((s, a) => s + Number(a.runs_30d || 0), 0);
+      const apifyExtRuns = apifyActors.reduce((s, a) => s + Number(a.external_runs_est || 0), 0);
+      const cfReq30 = T.cloudflare?.requests_30d;
 
       const services = (T.fleet?.services || []).map((svc) => ({
         ...svc,
@@ -736,20 +765,20 @@
       }));
       const probeHits = services.reduce((s, x) => s + Number(x.buffer_stats?.buffer_count || 0), 0);
       const probePaid = services.reduce((s, x) => s + Number(x.buffer_stats?.paid_count || 0), 0);
-      const totalTrafficTouchpoints = npm30d + apifyRuns30d + probeHits;
+      const totalTrafficTouchpoints = npm30d + apifyRuns30d + probeHits + (cfReq30 || 0);
 
       // Top KPIs
       document.getElementById("kpiGross").textContent = extX402 > 0 && verifiedGross < 1 ? fmtUsd(verifiedGross, 4) : fmtUsd(verifiedGross, 2);
       document.getElementById("kpiGrossSub").textContent =
-        `x402 external: ${fmtUsd(extX402, 4)} (${extDeliveries.length || T.profit_overview?.verified_external_x402_tx_count || 0} tx) • Stripe: ${fmtUsd(stripeUsd)} (£${stripeGbp.toFixed(2)}) • Apify: ${T.apify?.summary?.gross_usd !== null && T.apify?.summary?.gross_usd !== undefined ? fmtUsd(apifyGross) : "usage-only"}`;
+        `x402: ${fmtUsd(extX402, 4)} (${extDeliveries.length || T.profit_overview?.verified_external_x402_tx_count || 0} tx) • Stripe: ${fmtUsd(stripeUsd)} + £${stripeGbp.toFixed(2)} (${T.stripe?.completed_charges || 0} paid) • Apify: ${T.apify?.summary?.gross_usd != null ? fmtUsd(apifyGross) : `${apifyExtRuns} ext runs (console USD)`}`;
 
       document.getElementById("kpiVault").textContent = fmtUsd(totalVault, 6);
-      document.getElementById("kpiVaultSub").textContent = `Base: ${baseUsdc.toFixed(6)} USDC • Solana ATA: ${solUsdc.toFixed(6)} USDC`;
+      document.getElementById("kpiVaultSub").textContent = `Base: ${baseUsdc.toFixed(6)} USDC (${baseEth.toFixed(4)} ETH) • Sol: ${solUsdc.toFixed(6)} USDC (${solNative.toFixed(4)} SOL)`;
 
       const kpiNetEl = document.getElementById("kpiNet");
       kpiNetEl.textContent = fmtUsd(netUsd, 2);
       kpiNetEl.className = "kpi-val " + (netUsd >= 0 ? "val-green" : "val-rose");
-      const gap = Math.max(0, fixedBurn - verifiedGross);
+      const gap = Math.max(0, fixedBurn - verifiedNetRev);
       const packsNeeded = Math.ceil(gap / 9);
       const callsNeeded = Math.ceil(gap / 0.01);
       document.getElementById("kpiNetSub").textContent = gap > 0
@@ -757,34 +786,36 @@
         : "Fixed monthly overhead covered!";
 
       document.getElementById("kpiTraffic").textContent = fmtInt(totalTrafficTouchpoints);
-      document.getElementById("kpiTrafficSub").textContent = `${fmtInt(npm30d)} npm (30d) • ${fmtInt(apifyRuns)} Apify runs • ${fmtInt(probeHits)} Render 402 probes`;
+      document.getElementById("kpiTrafficSub").textContent = `${fmtInt(npm30d)} npm (30d) • ${fmtInt(apifyRuns)} Apify runs • ${fmtInt(probeHits)} Render probes${cfReq30 != null ? ` • ${fmtInt(cfReq30)} CF Edge` : ""}`;
 
       // Stripe badge
       const stripeMode = T.stripe?.sync_mode || "verified_mcp_baseline";
       setPill("pillStripe", stripeMode === "live_api_secret" ? "pill-ok" : "pill-info",
-        stripeMode === "live_api_secret" ? `Stripe: LIVE ($${stripeUsd.toFixed(2)})` : `Stripe: ${T.stripe?.active_links_total || 10} links ($0 settled)`);
+        stripeMode === "live_api_secret"
+          ? `Stripe: LIVE ($${stripeUsdEq.toFixed(2)} eq / ${T.stripe?.sessions_total || 0} checkouts)`
+          : `Stripe: ${T.stripe?.active_links_total || 10} links ($0 settled)`);
 
       // Channel Matrix
       const matrixRows = [
         {
           channel: "x402 Dual-Chain APIs (Big 3)",
-          model: "$0.005 - $0.050 USDC / call",
-          traffic: `${fmtInt(probeHits)} buffered probes (${probePaid} buffer paid) • ${extDeliveries.length} on-chain ext tx`,
+          model: "$0.005 - $0.100 USDC / call",
+          traffic: `${fmtInt(probeHits)} Render probes • ${cfReq30 != null ? `${fmtInt(cfReq30)} CF 30d req • ` : "CF token needed • "}${extDeliveries.length} on-chain ext tx`,
           rev: fmtUsd(extX402, 4),
           cost: fmtUsd(14.5, 2),
         },
         {
-          channel: "Stripe Self-Hosted Source Packs + GEO",
-          model: "$9 / $9 / $15 USD + 7 GBP offers",
-          traffic: `${T.stripe?.active_links_total || 10} active checkout links (${T.stripe?.completed_charges || 0} charges)`,
+          channel: "Stripe Self-Hosted Packs + GEO Bureau",
+          model: "$9/$15 USD + 7 GBP/USD links",
+          traffic: `${T.stripe?.active_links_total || 10} links • ${T.stripe?.sessions_total || 0} checkouts opened (${T.stripe?.sessions_paid || 0} paid)`,
           rev: `${fmtUsd(stripeUsd)} / £${stripeGbp.toFixed(2)}`,
           cost: "$0.00",
         },
         {
           channel: "Apify Store (6 PPE Actors)",
           model: "$0.003 - $0.015 / event (~80% net)",
-          traffic: `${fmtInt(apifyRuns)} all-time runs (${fmtInt(apifyRuns30d)} last 30d)`,
-          rev: T.apify?.summary?.gross_usd !== null && T.apify?.summary?.gross_usd !== undefined ? fmtUsd(apifyGross, 2) : "Token needed for USD",
+          traffic: `${fmtInt(apifyRuns)} total runs (${fmtInt(apifyExtRuns)} ext est.)`,
+          rev: "Check Console ($0.05 own usage)",
           cost: "$0.00",
         },
         {
@@ -857,10 +888,10 @@
         solana_owner: "9wuMysgXwNhtQeqJgGByAiMYc4EjzZ5wUSmnjrrt3ffh",
         solana_ata: CONFIG.solanaAta,
       };
-      document.getElementById("walletSummary").textContent = `Live total vault: $${totalVault.toFixed(6)} USDC`;
+      document.getElementById("walletSummary").textContent = `Live total vault: $${totalVault.toFixed(6)} USDC • ${baseEth.toFixed(4)} ETH • ${solNative.toFixed(4)} SOL`;
       document.getElementById("vaultChips").innerHTML = `
-        <span class="chip mono">Base Wallet: <a href="https://basescan.org/address/${esc(wallets.base)}" target="_blank" rel="noopener">${esc(wallets.base)}</a> (<strong>$${baseUsdc.toFixed(6)} USDC</strong>)</span>
-        <span class="chip mono">Solana ATA: <a href="https://solscan.io/account/${esc(wallets.solana_ata)}" target="_blank" rel="noopener">${esc(wallets.solana_ata)}</a> (<strong>$${solUsdc.toFixed(6)} USDC</strong>)</span>
+        <span class="chip mono">Base Wallet: <a href="https://basescan.org/address/${esc(wallets.base)}" target="_blank" rel="noopener">${esc(wallets.base)}</a> (<strong>$${baseUsdc.toFixed(6)} USDC</strong> &bull; ${baseEth.toFixed(5)} ETH)</span>
+        <span class="chip mono">Solana ATA: <a href="https://solscan.io/account/${esc(wallets.solana_ata)}" target="_blank" rel="noopener">${esc(wallets.solana_ata)}</a> (<strong>$${solUsdc.toFixed(6)} USDC</strong> &bull; ${solNative.toFixed(5)} SOL)</span>
       `;
 
       // External Ledger
@@ -889,19 +920,23 @@
       // Stripe
       const S = T.stripe || {};
       const badge = document.getElementById("stripeModeBadge");
-      badge.textContent = S.sync_mode === "live_api_secret" ? "Live CI Secret Connected" : "Verified MCP Baseline";
+      badge.textContent = S.sync_mode === "live_api_secret" ? "Live API Connected (15m CI)" : "Verified MCP Baseline";
       badge.className = "pill " + (S.sync_mode === "live_api_secret" ? "pill-ok" : "pill-info");
       document.getElementById("stripeStats").innerHTML = `
-        <div class="mini-box">Gross USD: <strong>${fmtUsd(S.gross_settled_usd || 0)}</strong></div>
-        <div class="mini-box">Gross GBP: <strong>&pound;${Number(S.gross_settled_gbp || 0).toFixed(2)}</strong></div>
-        <div class="mini-box">Available: <strong>${fmtUsd(S.available_usd || 0)} / &pound;${Number(S.available_gbp || 0).toFixed(2)}</strong></div>
-        <div class="mini-box">Active Links: <strong>${S.active_links_total || 10} live</strong></div>
+        <div class="mini-box">Net USD Eq: <strong>${fmtUsd(S.net_total_usd_eq || 0)}</strong> (Gross ${fmtUsd(S.gross_total_usd_eq || 0)})</div>
+        <div class="mini-box">Settled GBP: <strong>&pound;${Number(S.gross_settled_gbp || 0).toFixed(2)}</strong> (Net &pound;${Number(S.net_settled_gbp || 0).toFixed(2)})</div>
+        <div class="mini-box">Bank Payouts: <strong>${fmtUsd(S.payouts_paid_usd || 0)} / &pound;${Number(S.payouts_paid_gbp || 0).toFixed(2)}</strong></div>
+        <div class="mini-box">Checkout Funnel: <strong>${S.sessions_total || 0} opened</strong> &rarr; <strong>${S.sessions_paid || 0} paid</strong> (${S.sessions_expired || 0} expired)</div>
       `;
-      document.getElementById("stripeLinks").innerHTML = (S.active_kurox_links || []).map((lk) => `
+      const allLinks = [...(S.active_kurox_links || []), ...(S.active_geo_links || [])];
+      document.getElementById("stripeLinks").innerHTML = allLinks.map((lk) => `
         <div class="stripe-item">
           <div>
-            <strong>${esc(lk.name)}</strong>
-            <div style="font-size:0.76rem;color:var(--muted)">SKU: <code>${esc(lk.sku)}</code> • Email ZIP delivery</div>
+            <strong>[${esc(lk.brand || "Kurox")}] ${esc(lk.name)}</strong>
+            <div style="font-size:0.75rem;color:var(--muted)">
+              SKU: <code>${esc(lk.sku)}</code>
+              ${lk.sessions_opened ? ` &bull; <strong>${lk.sessions_opened} opened</strong> (${lk.sessions_paid || 0} paid)` : " &bull; 0 checkouts yet"}
+            </div>
           </div>
           <a class="btn" href="${safeUrl(lk.url)}" target="_blank" rel="noopener">${esc(lk.price)}</a>
         </div>
@@ -910,7 +945,8 @@
 
       // Apify
       const totUsers = apifyActors.reduce((s,a) => s + Number(a.total_users || 0), 0);
-      document.getElementById("apifyMeta").textContent = `${apifyActors.length} public actors • ${fmtInt(apifyRuns)} runs • ${totUsers} total user installs`;
+      const cycSpend = T.apify?.summary?.cycle_compute_usd;
+      document.getElementById("apifyMeta").textContent = `${apifyActors.length} actors • ${fmtInt(apifyRuns)} total runs (${fmtInt(apifyExtRuns)} ext est.) • ${totUsers} user installs${cycSpend != null ? ` • $${cycSpend.toFixed(2)}/$5 cycle usage` : ""}`;
       document.getElementById("apifyBody").innerHTML = apifyActors.map((a) => {
         const netEv = Number(a.price_per_event_usd || 0) * 0.8;
         return `
@@ -918,11 +954,13 @@
             <td><a href="${safeUrl(a.url || `https://apify.com/kuroxreal/${a.slug}`)}" target="_blank" rel="noopener"><strong>${esc(a.name || a.slug)}</strong></a></td>
             <td class="num mono">$${Number(a.price_per_event_usd || 0).toFixed(3)} <span style="color:var(--muted)">($${netEv.toFixed(4)})</span></td>
             <td class="num"><strong>${fmtInt(a.runs_30d || 0)}</strong> / ${fmtInt(a.total_runs || 0)}</td>
+            <td class="num"><strong>${a.external_runs_est != null ? fmtInt(a.external_runs_est) : "n/a"}</strong></td>
             <td class="num">${fmtInt(a.users_30d || 0)} / ${fmtInt(a.total_users || 0)}</td>
             <td class="mono" style="color:var(--muted)">${fmtAgo(a.last_run_at)}</td>
           </tr>
         `;
       }).join("");
+      document.getElementById("apifyNote").textContent = T.apify?.summary?.note || "Apify REST API v2 does not expose Creator Store dollar payout ledgers; external run delta tracks non-owner activity.";
 
       // npm
       const maxNpm = Math.max(1, ...npmPkgs.map((p) => Number(p.downloads_30d || 0)));

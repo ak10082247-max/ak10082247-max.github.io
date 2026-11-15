@@ -33,8 +33,8 @@ BIG3_SERVICES = [
         "health_url": "https://agentfuel402.ak10082247.workers.dev/health",
         "telemetry_url": None,
         "monthly_fixed_usd": 0.0,
-        "price_range": "$0.005 - $0.015 USDC",
-        "endpoints_summary": "5 routes + MCP JSON-RPC 2.0",
+        "price_range": "$0.005 - $0.020 USDC",
+        "endpoints_summary": "5 fuel + 4 preview + /mcp",
     },
     {
         "id": "canaryguard-402",
@@ -44,7 +44,7 @@ BIG3_SERVICES = [
         "telemetry_url": "https://canaryguard-402.onrender.com/v1/telemetry/deliveries",
         "monthly_fixed_usd": 7.25,
         "price_range": "$0.010 - $0.020 USDC",
-        "endpoints_summary": "34 routes + MCP + /v1/sanitize",
+        "endpoints_summary": "34 routes + /stats + /mcp",
     },
     {
         "id": "rugshield-402",
@@ -53,8 +53,8 @@ BIG3_SERVICES = [
         "health_url": "https://rugshield-402.onrender.com/health",
         "telemetry_url": "https://rugshield-402.onrender.com/v1/telemetry/deliveries",
         "monthly_fixed_usd": 7.25,
-        "price_range": "$0.010 - $0.050 USDC",
-        "endpoints_summary": "12 routes + Base/Solana Swap Sim",
+        "price_range": "$0.010 - $0.100 USDC",
+        "endpoints_summary": "12 routes + Swap Sim + /mcp",
     },
 ]
 
@@ -260,14 +260,36 @@ def fetch_fleet_health_and_probes(client: httpx.Client) -> dict:
 
 
 def fetch_apify_telemetry(client: httpx.Client) -> dict:
-    """Fetch public Apify actor store stats (plus optional charged events when token present)."""
+    """
+    Fetch public Apify actor store stats plus optional authenticated usage/own-runs metrics.
+    Note: Apify v2 /runs only returns the token owner's own runs, so third-party store
+    execution volume is estimated from (public totalRuns - own_runs_recorded) when owner runs < 100.
+    """
     token = (os.environ.get("APIFY_TOKEN") or "").strip()
     actors_out = []
     total_runs = 0
     total_runs_30d = 0
     total_users = 0
-    total_charged_events = 0
-    estimated_gross_usd = 0.0
+    total_own_runs = 0
+    total_ext_runs_est = 0
+    cycle_usage_usd = None
+
+    if token:
+        try:
+            ur = client.get(
+                "https://api.apify.com/v2/users/me/usage/monthly",
+                headers={"Authorization": f"Bearer {token}"},
+                timeout=8.0,
+            )
+            if ur.status_code == 200:
+                u_data = (ur.json() or {}).get("data") or {}
+                svc_u = u_data.get("monthlyServiceUsage") or {}
+                cycle_usage_usd = round(
+                    sum(float((v or {}).get("amountAfterVolumeDiscountUsd") or 0.0) for v in svc_u.values() if isinstance(v, dict)),
+                    4,
+                )
+        except Exception:
+            pass
 
     for slug, label in APIFY_ACTORS:
         item = {
@@ -282,11 +304,12 @@ def fetch_apify_telemetry(client: httpx.Client) -> dict:
             "users_30d": 0,
             "last_run_at": None,
             "price_per_event_usd": 0.0,
-            "charged_events": None,
+            "own_runs_recorded": None,
+            "external_runs_est": None,
             "gross_usd": None,
         }
         try:
-            r = client.get(f"https://api.apify.com/v2/acts/kuroxreal~{slug}", timeout=8.0)
+            r = client.get(f"https://api.apify.com/v2/acts/kuroxreal~{slug}", timeout=10.0)
             if r.status_code == 200:
                 d = (r.json() or {}).get("data") or {}
                 stats = d.get("stats") or {}
@@ -311,21 +334,19 @@ def fetch_apify_telemetry(client: httpx.Client) -> dict:
         if token:
             try:
                 rr = client.get(
-                    f"https://api.apify.com/v2/acts/kuroxreal~{slug}/runs?limit=50&desc=true",
+                    f"https://api.apify.com/v2/acts/kuroxreal~{slug}/runs?limit=100&desc=true",
                     headers={"Authorization": f"Bearer {token}"},
-                    timeout=8.0,
+                    timeout=10.0,
                 )
                 if rr.status_code == 200:
                     runs = ((rr.json() or {}).get("data") or {}).get("items") or []
-                    charged = sum(
-                        sum((run.get("chargedEventCounts") or {}).values())
-                        for run in runs
-                        if run.get("status") == "SUCCEEDED"
-                    )
-                    item["charged_events"] = charged
-                    item["gross_usd"] = round(charged * item["price_per_event_usd"], 4)
-                    total_charged_events += charged
-                    estimated_gross_usd += item["gross_usd"]
+                    own_n = len(runs)
+                    item["own_runs_recorded"] = own_n
+                    total_own_runs += own_n
+                    if own_n < 100 and item["total_runs"] >= own_n:
+                        ext_est = item["total_runs"] - own_n
+                        item["external_runs_est"] = ext_est
+                        total_ext_runs_est += ext_est
             except Exception:
                 pass
 
@@ -341,9 +362,12 @@ def fetch_apify_telemetry(client: httpx.Client) -> dict:
             "total_runs": total_runs,
             "runs_30d": total_runs_30d,
             "total_user_installs": total_users,
-            "billing_mode": "token_verified" if token else "public_stats_only",
-            "charged_events": total_charged_events if token else None,
-            "gross_usd": round(estimated_gross_usd, 4) if token else None,
+            "own_runs_recorded": total_own_runs if token else None,
+            "external_runs_est": total_ext_runs_est if token else None,
+            "cycle_compute_usd": cycle_usage_usd,
+            "billing_mode": "token_usage_plus_store_stats" if token else "public_stats_only",
+            "gross_usd": None,
+            "note": "Apify REST API v2 does not expose Creator Store dollar payout ledgers (404); check Apify Console Monetization for finalized payout USD.",
         },
     }
 
@@ -472,12 +496,69 @@ def fetch_github_telemetry(client: httpx.Client) -> dict:
     }
 
 
+def _stripe_paginate(client: httpx.Client, endpoint: str, headers: dict, max_pages: int = 10) -> list[dict]:
+    items = []
+    starting_after = None
+    sep = "&" if "?" in endpoint else "?"
+    for _ in range(max_pages):
+        url = f"https://api.stripe.com/v1/{endpoint}"
+        if starting_after:
+            url += f"{sep}starting_after={starting_after}"
+        r = client.get(url, headers=headers, timeout=12.0)
+        if r.status_code != 200:
+            break
+        payload = r.json() or {}
+        batch = payload.get("data") or []
+        items.extend(batch)
+        if not payload.get("has_more") or not batch:
+            break
+        starting_after = batch[-1].get("id")
+        if not starting_after:
+            break
+    return items
+
+
+def _fetch_gbp_usd_fx(client: httpx.Client) -> tuple[float, str]:
+    try:
+        r = client.get("https://open.er-api.com/v6/latest/GBP", timeout=6.0)
+        if r.status_code == 200:
+            rate = ((r.json() or {}).get("rates") or {}).get("USD")
+            if isinstance(rate, (int, float)) and 0.5 < rate < 3.0:
+                return round(float(rate), 4), "open.er-api.com"
+    except Exception:
+        pass
+    return 1.27, "fallback_1.27"
+
+
+def _label_payment_link(pl: dict) -> tuple[str, str, str]:
+    md = pl.get("metadata") or {}
+    brand = md.get("brand") or ("GEO Bureau" if pl.get("currency") == "gbp" else "Kurox / GEO")
+    sku = md.get("sku") or md.get("offer_code") or md.get("service_slug") or pl.get("id")
+    label_map = {
+        "canaryguard-firewall-proxy-v1": ("CanaryGuard AI Firewall Proxy v1.0.0", "$9 USD"),
+        "rugshield-pretrade-scanner-v1": ("RugShield Pre-Trade Scanner v1.0.0", "$9 USD"),
+        "kurox-security-suite-bundle-v1": ("Kurox Security Source Bundle v1.0.0", "$15 USD"),
+        "payment_risk_1": ("GEO Bureau Operational Dossier", "£ GBP"),
+        "radar_weekly_subscription": ("GEO Bureau Weekly Radar Subscription", "£/wk GBP"),
+        "radar_15": ("GEO Bureau Radar 15 Pack", "£ GBP"),
+        "radar_5": ("GEO Bureau Radar 5 Pack", "£29 GBP"),
+        "ukeducationitcontractsignals": ("UK Education IT Contract Signals", "£39/mo GBP"),
+        "paid_traffic_leak_check": ("Paid Traffic Leak Check", "£49 GBP"),
+    }
+    if sku in label_map:
+        return label_map[sku][0], label_map[sku][1], brand
+    if pl.get("id") == "plink_1Tfpa0DmOa2iw8hhNikxGhni":
+        return "GEO Audit ($99 USD Legacy Link)", "$99 USD", "GEO Bureau"
+    return str(sku), (pl.get("currency") or "usd").upper(), brand
+
+
 def fetch_stripe_aggregate(client: httpx.Client) -> dict:
     """
-    Aggregate livemode Stripe revenue ONLY when STRIPE_READONLY_KEY is set via CI secret.
-    Never exposes PII, customer emails, or secret values. Falls back to verified MCP baseline.
+    Aggregate livemode Stripe revenue across USD & GBP, payouts, and checkout funnel counts
+    when STRIPE_READONLY_KEY is set via CI secret. Never exposes PII, customer emails, or keys.
     """
     key = (os.environ.get("STRIPE_READONLY_KEY") or os.environ.get("STRIPE_SECRET_KEY") or "").strip()
+    fx_rate, fx_src = _fetch_gbp_usd_fx(client)
     baseline = {
         "sync_mode": "verified_mcp_baseline",
         "baseline_checked_utc": "2026-11-15T18:20:50Z",
@@ -486,44 +567,123 @@ def fetch_stripe_aggregate(client: httpx.Client) -> dict:
         "available_gbp": 0.0,
         "pending_gbp": 0.0,
         "completed_charges": 0,
+        "refunds_count": 0,
         "gross_settled_usd": 0.0,
         "fees_usd": 0.0,
         "net_settled_usd": 0.0,
         "gross_settled_gbp": 0.0,
-        "active_links_total": 10,
+        "fees_gbp": 0.0,
+        "net_settled_gbp": 0.0,
+        "gross_total_usd_eq": 0.0,
+        "net_total_usd_eq": 0.0,
+        "fx_gbp_to_usd": fx_rate,
+        "fx_source": fx_src,
+        "payouts_paid_usd": 0.0,
+        "payouts_paid_gbp": 0.0,
+        "sessions_total": 0,
+        "sessions_paid": 0,
+        "sessions_open": 0,
+        "sessions_expired": 0,
+        "active_links_total": len(STRIPE_ACTIVE_LINKS),
         "active_kurox_links": STRIPE_ACTIVE_LINKS,
-        "note": "Live Stripe MCP verified $0.00/£0.00 settled so far. Add optional STRIPE_READONLY_KEY repository secret for automatic 15-min Stripe auto-sync.",
+        "active_geo_links": [],
+        "note": "Add optional STRIPE_READONLY_KEY repository secret for automatic 15-min live Stripe sync.",
     }
     if not key:
         return baseline
 
     try:
         headers = {"Authorization": f"Bearer {key}"}
-        bal_r = client.get("https://api.stripe.com/v1/balance", headers=headers, timeout=10.0)
-        tx_r = client.get("https://api.stripe.com/v1/balance_transactions?limit=100", headers=headers, timeout=10.0)
-        if bal_r.status_code != 200 or tx_r.status_code != 200:
+        bal_r = client.get("https://api.stripe.com/v1/balance", headers=headers, timeout=12.0)
+        if bal_r.status_code != 200:
             baseline["sync_mode"] = f"stripe_http_{bal_r.status_code}"
             return baseline
 
         bal = bal_r.json()
-        txs = (tx_r.json() or {}).get("data") or []
+        txs = _stripe_paginate(client, "balance_transactions?limit=100", headers, max_pages=10)
+        payouts = _stripe_paginate(client, "payouts?limit=50", headers, max_pages=3)
+        sessions = _stripe_paginate(client, "checkout/sessions?limit=100", headers, max_pages=5)
+        plinks = _stripe_paginate(client, "payment_links?active=true&limit=50", headers, max_pages=3)
+
         avail_usd = sum(b.get("amount", 0) for b in bal.get("available") or [] if b.get("currency") == "usd") / 100.0
         pend_usd = sum(b.get("amount", 0) for b in bal.get("pending") or [] if b.get("currency") == "usd") / 100.0
         avail_gbp = sum(b.get("amount", 0) for b in bal.get("available") or [] if b.get("currency") == "gbp") / 100.0
         pend_gbp = sum(b.get("amount", 0) for b in bal.get("pending") or [] if b.get("currency") == "gbp") / 100.0
 
-        gross_usd, fees_usd, net_usd, gross_gbp, charges = 0.0, 0.0, 0.0, 0.0, 0
+        gross_usd, fees_usd, net_usd = 0.0, 0.0, 0.0
+        gross_gbp, fees_gbp, net_gbp = 0.0, 0.0, 0.0
+        charges, refunds = 0, 0
         for t in txs:
-            if t.get("type") in ("charge", "payment"):
+            ttype = t.get("type")
+            cur = t.get("currency")
+            amt = (t.get("amount") or 0) / 100.0
+            fee = (t.get("fee") or 0) / 100.0
+            net = (t.get("net") or 0) / 100.0
+            if ttype in ("charge", "payment"):
                 charges += 1
-                cur = t.get("currency")
                 if cur == "usd":
-                    gross_usd += (t.get("amount") or 0) / 100.0
-                    fees_usd += (t.get("fee") or 0) / 100.0
-                    net_usd += (t.get("net") or 0) / 100.0
+                    gross_usd += amt
+                    fees_usd += fee
+                    net_usd += net
                 elif cur == "gbp":
-                    gross_gbp += (t.get("amount") or 0) / 100.0
+                    gross_gbp += amt
+                    fees_gbp += fee
+                    net_gbp += net
+            elif ttype in ("refund", "adjustment") and cur in ("usd", "gbp"):
+                refunds += 1
+                if cur == "usd":
+                    net_usd += net
+                else:
+                    net_gbp += net
 
+        payouts_paid_usd = sum((p.get("amount") or 0) / 100.0 for p in payouts if p.get("status") == "paid" and p.get("currency") == "usd")
+        payouts_paid_gbp = sum((p.get("amount") or 0) / 100.0 for p in payouts if p.get("status") == "paid" and p.get("currency") == "gbp")
+
+        link_stats: dict[str, dict] = {}
+        s_paid, s_open, s_exp = 0, 0, 0
+        for s in sessions:
+            st = s.get("status") or ""
+            pst = s.get("payment_status") or ""
+            pl_id = s.get("payment_link") or "direct"
+            bucket = link_stats.setdefault(pl_id, {"total": 0, "paid": 0, "open": 0, "expired": 0})
+            bucket["total"] += 1
+            if pst == "paid":
+                s_paid += 1
+                bucket["paid"] += 1
+            elif st == "open":
+                s_open += 1
+                bucket["open"] += 1
+            elif st == "expired":
+                s_exp += 1
+                bucket["expired"] += 1
+
+        kurox_links = []
+        geo_links = []
+        for pl in plinks:
+            md = pl.get("metadata") or {}
+            if _is_excluded(json.dumps(md)):
+                continue
+            name, price_str, brand = _label_payment_link(pl)
+            st_b = link_stats.get(pl["id"], {"total": 0, "paid": 0, "open": 0, "expired": 0})
+            entry = {
+                "id": pl["id"],
+                "sku": md.get("sku") or md.get("offer_code") or md.get("service_slug") or pl["id"],
+                "name": name,
+                "price": price_str,
+                "currency": (pl.get("currency") or "usd").upper(),
+                "url": pl.get("url"),
+                "brand": brand,
+                "sessions_opened": st_b["total"],
+                "sessions_paid": st_b["paid"],
+                "sessions_expired": st_b["expired"],
+            }
+            if brand == "Kurox":
+                kurox_links.append(entry)
+            else:
+                geo_links.append(entry)
+
+        gross_usd_eq = round(gross_usd + gross_gbp * fx_rate, 2)
+        net_usd_eq = round(net_usd + net_gbp * fx_rate, 2)
         return {
             **baseline,
             "sync_mode": "live_api_secret",
@@ -533,15 +693,106 @@ def fetch_stripe_aggregate(client: httpx.Client) -> dict:
             "available_gbp": round(avail_gbp, 2),
             "pending_gbp": round(pend_gbp, 2),
             "completed_charges": charges,
+            "refunds_count": refunds,
             "gross_settled_usd": round(gross_usd, 2),
             "fees_usd": round(fees_usd, 2),
             "net_settled_usd": round(net_usd, 2),
             "gross_settled_gbp": round(gross_gbp, 2),
-            "note": "Synced live from Stripe /v1/balance and /v1/balance_transactions (aggregate only, zero PII).",
+            "fees_gbp": round(fees_gbp, 2),
+            "net_settled_gbp": round(net_gbp, 2),
+            "gross_total_usd_eq": gross_usd_eq,
+            "net_total_usd_eq": net_usd_eq,
+            "payouts_paid_usd": round(payouts_paid_usd, 2),
+            "payouts_paid_gbp": round(payouts_paid_gbp, 2),
+            "sessions_total": len(sessions),
+            "sessions_paid": s_paid,
+            "sessions_open": s_open,
+            "sessions_expired": s_exp,
+            "active_links_total": len(kurox_links) + len(geo_links),
+            "active_kurox_links": kurox_links or STRIPE_ACTIVE_LINKS,
+            "active_geo_links": geo_links,
+            "note": f"Synced live from Stripe (USD + GBP @ {fx_rate} FX, payouts & checkout session funnel — zero PII).",
         }
     except Exception as exc:
         baseline["note"] = f"Stripe sync fallback ({str(exc)[:80]})."
         return baseline
+
+
+def fetch_native_balances(client: httpx.Client) -> dict:
+    """Query native ETH (Base) and SOL (Solana) balances on merchant wallets."""
+    out = {"base_eth": 0.0, "solana_sol": 0.0}
+    try:
+        rb = client.post(
+            "https://mainnet.base.org",
+            json={"jsonrpc": "2.0", "id": 1, "method": "eth_getBalance", "params": ["0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6", "latest"]},
+            timeout=8.0,
+        )
+        if rb.status_code == 200 and rb.json().get("result"):
+            out["base_eth"] = round(int(rb.json()["result"], 16) / 1e18, 6)
+    except Exception:
+        pass
+    try:
+        rs = client.post(
+            "https://solana-rpc.publicnode.com",
+            json={"jsonrpc": "2.0", "id": 1, "method": "getBalance", "params": ["9wuMysgXwNhtQeqJgGByAiMYc4EjzZ5wUSmnjrrt3ffh"]},
+            timeout=8.0,
+        )
+        if rs.status_code == 200:
+            val = ((rs.json() or {}).get("result") or {}).get("value")
+            if val is not None:
+                out["solana_sol"] = round(int(val) / 1e9, 6)
+    except Exception:
+        pass
+    return out
+
+
+def fetch_cloudflare_worker_analytics(client: httpx.Client) -> dict:
+    """Query Cloudflare Workers GraphQL analytics for agentfuel402 when CF_API_TOKEN is set."""
+    cf_tok = (os.environ.get("CF_API_TOKEN") or "").strip()
+    acct_id = (os.environ.get("CF_ACCOUNT_ID") or "399816be9d4332789f68c30dfb87f390").strip()
+    if not cf_tok:
+        return {"sync_mode": "token_needed", "requests_24h": None, "requests_30d": None, "errors_30d": None}
+    try:
+        from datetime import timedelta
+        now = datetime.now(timezone.utc)
+        since_30 = (now - timedelta(days=30)).strftime("%Y-%m-%dT%H:%M:%SZ")
+        since_24 = (now - timedelta(hours=24)).strftime("%Y-%m-%dT%H:%M:%SZ")
+        until = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+        query = """
+        query($accountTag: string!, $since30: Time!, $since24: Time!, $until: Time!) {
+          viewer {
+            accounts(filter: {accountTag: $accountTag}) {
+              w30: workersInvocationsAdaptive(limit: 100, filter: {datetime_geq: $since30, datetime_leq: $until, scriptName: "agentfuel402"}) {
+                sum { requests errors subrequests }
+              }
+              w24: workersInvocationsAdaptive(limit: 100, filter: {datetime_geq: $since24, datetime_leq: $until, scriptName: "agentfuel402"}) {
+                sum { requests errors subrequests }
+              }
+            }
+          }
+        }
+        """
+        r = client.post(
+            "https://api.cloudflare.com/client/v4/graphql",
+            headers={"Authorization": f"Bearer {cf_tok}", "Content-Type": "application/json"},
+            json={"query": query, "variables": {"accountTag": acct_id, "since30": since_30, "since24": since_24, "until": until}},
+            timeout=10.0,
+        )
+        if r.status_code == 200:
+            accts = (((r.json() or {}).get("data") or {}).get("viewer") or {}).get("accounts") or []
+            if accts:
+                w30 = accts[0].get("w30") or []
+                w24 = accts[0].get("w24") or []
+                return {
+                    "sync_mode": "live_cf_graphql",
+                    "requests_30d": sum((x.get("sum") or {}).get("requests", 0) for x in w30),
+                    "errors_30d": sum((x.get("sum") or {}).get("errors", 0) for x in w30),
+                    "subrequests_30d": sum((x.get("sum") or {}).get("subrequests", 0) for x in w30),
+                    "requests_24h": sum((x.get("sum") or {}).get("requests", 0) for x in w24),
+                }
+        return {"sync_mode": f"cf_http_{r.status_code}", "requests_24h": None, "requests_30d": None}
+    except Exception as exc:
+        return {"sync_mode": f"cf_err:{str(exc)[:60]}", "requests_24h": None, "requests_30d": None}
 
 
 def write_profit_revenue_telemetry(
@@ -567,15 +818,19 @@ def write_profit_revenue_telemetry(
     npm = fetch_npm_telemetry(client)
     github = fetch_github_telemetry(client)
     stripe = fetch_stripe_aggregate(client)
+    native = fetch_native_balances(client)
+    cloudflare = fetch_cloudflare_worker_analytics(client)
 
     fixed_monthly_usd = round(sum(float(s.get("monthly_fixed_usd") or 0.0) for s in BIG3_SERVICES), 2)
-    verified_gross_usd = round(ext_x402_usdc + stripe["gross_settled_usd"], 6)
+    stripe_gross_usd_eq = float(stripe.get("gross_total_usd_eq") or stripe.get("gross_settled_usd") or 0.0)
+    stripe_net_usd_eq = float(stripe.get("net_total_usd_eq") or stripe.get("net_settled_usd") or 0.0)
     apify_gross = apify["summary"]["gross_usd"] or 0.0
-    verified_gross_usd = round(verified_gross_usd + apify_gross, 6)
-    est_net_monthly_usd = round(verified_gross_usd - fixed_monthly_usd, 2)
+    verified_gross_usd = round(ext_x402_usdc + stripe_gross_usd_eq + apify_gross, 6)
+    verified_net_rev_usd = round(ext_x402_usdc + stripe_net_usd_eq + apify_gross, 6)
+    est_net_monthly_usd = round(verified_net_rev_usd - fixed_monthly_usd, 2)
 
     snapshot = {
-        "schema_version": "1.0.0",
+        "schema_version": "1.1.0",
         "generated_utc": datetime.now(timezone.utc).isoformat(),
         "scope": "Active Big-3 & Kurox Channels Only (AgentFuel402, CanaryGuard 402, RugShield 402, Kurox Stripe/npm, GEO Bureau)",
         "excluded_legacy": list(EXCLUDED_KEYWORDS),
@@ -585,10 +840,15 @@ def write_profit_revenue_telemetry(
             "treasury_vault_base_usdc": round(base_usdc, 6),
             "treasury_vault_solana_usdc": round(sol_usdc, 6),
             "treasury_vault_total_usdc": round(base_usdc + sol_usdc, 6),
+            "treasury_base_eth": native["base_eth"],
+            "treasury_solana_sol": native["solana_sol"],
             "stripe_gross_usd": stripe["gross_settled_usd"],
             "stripe_gross_gbp": stripe["gross_settled_gbp"],
+            "stripe_gross_usd_eq": stripe_gross_usd_eq,
+            "stripe_net_usd_eq": stripe_net_usd_eq,
             "apify_verified_gross_usd": apify["summary"]["gross_usd"],
             "verified_cumulative_gross_usd": verified_gross_usd,
+            "verified_cumulative_net_rev_usd": verified_net_rev_usd,
             "verified_monthly_fixed_infra_usd": fixed_monthly_usd,
             "estimated_monthly_net_vs_cumulative_usd": est_net_monthly_usd,
         },
@@ -599,6 +859,7 @@ def write_profit_revenue_telemetry(
             {"service": "GitHub Pages / Actions / npm / Stripe / Apify", "plan": "Free Fixed Tier", "monthly_usd": 0.0},
         ],
         "fleet": fleet,
+        "cloudflare": cloudflare,
         "stripe": stripe,
         "apify": apify,
         "npm": npm,
