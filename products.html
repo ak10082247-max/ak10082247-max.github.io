@@ -34,6 +34,11 @@
     ul.features li::before { content: "✓ "; color: var(--success); font-weight: bold; }
     .btn { display: block; text-align: center; background: var(--accent); color: white; padding: 0.75rem 1.15rem; border-radius: 8px; text-decoration: none; font-weight: 600; }
     .btn:hover { background: var(--accent-hover); }
+    .btn-gold { background: linear-gradient(135deg, #059669, #0284c7); }
+    .btn-gold:hover { opacity: 0.94; }
+    .card-featured { border-color: #10b981; box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.35); }
+    .section-heading { font-size: 1.35rem; font-weight: 700; margin: 2rem 0 0.4rem; text-align: center; }
+    .section-sub { color: var(--text-muted); font-size: 0.95rem; text-align: center; margin-bottom: 1.4rem; }
     .payment-box { background: #131d31; border: 1px solid #1e3a8a; border-radius: 12px; padding: 1.75rem; }
     .address-card { background: #0b1120; border: 1px solid #1f2937; padding: 1rem; border-radius: 8px; margin-top: 0.75rem; font-family: monospace; font-size: 0.88rem; word-break: break-all; }
     .address-label { font-size: 0.75rem; color: #9ca3af; text-transform: uppercase; margin-bottom: 0.25rem; }
@@ -43,8 +48,64 @@
   <div class="container">
     <header>
       <h1>Kurox Access Tiers &amp; Pricing</h1>
-      <p class="subtitle">Instant access to AgentFuel402, CanaryGuard 402, and RugShield 402 via pay-per-call x402 USDC or Credit Card on Apify.</p>
+      <p class="subtitle">Self-hosted source licenses (one-time Stripe checkout), Apify Store actors, or pay-per-call x402 V2 APIs.</p>
     </header>
+
+    <h2 class="section-heading">Self-Hosted Commercial Source Packages (One-Time Purchase)</h2>
+    <p class="section-sub">Own the full TypeScript source code, run privately with zero SaaS fees, Apple Pay / Google Pay / Link &amp; Card accepted.</p>
+
+    <div class="grid">
+      <div class="card">
+        <div>
+          <span class="badge badge-blue">Self-Hosted AI Security</span>
+          <h2>CanaryGuard Firewall Proxy v1.0.0</h2>
+          <p style="color:#9ca3af;font-size:0.9rem;margin-top:0.4rem;">Deterministic prompt-injection firewall &amp; drop-in OpenAI-compatible Express reverse proxy with TypeScript + Python clients.</p>
+          <div class="price">$9 <span>USD one-time</span></div>
+          <ul class="features">
+            <li>Full TypeScript source code (.zip)</li>
+            <li>Drop-in <code>/v1/chat/completions</code> &amp; <code>/v1/sanitize</code></li>
+            <li>Zero-width Unicode &amp; role-delimiter scrubbing</li>
+            <li>SHA-256 &amp; optional HMAC-SHA256 receipts</li>
+          </ul>
+        </div>
+        <a href="https://buy.stripe.com/cNi28r02SaFj3Na6V3bEA08" class="btn" target="_blank" rel="noopener">Buy Source Pack — $9</a>
+      </div>
+
+      <div class="card card-featured">
+        <div>
+          <span class="badge badge-green">Best Value • Save $3</span>
+          <h2>Kurox Dual Security Bundle v1.0.0</h2>
+          <p style="color:#9ca3af;font-size:0.9rem;margin-top:0.4rem;">Complete self-hosted security stack: get BOTH CanaryGuard Firewall Proxy v1.0.0 and RugShield Pre-Trade Scanner v1.0.0.</p>
+          <div class="price">$15 <span>USD one-time</span></div>
+          <ul class="features">
+            <li>Both full TypeScript source ZIPs included</li>
+            <li>LLM prompt defense + Base &amp; Solana scanner</li>
+            <li>Full commercial &amp; white-label license</li>
+            <li>Emailed to your checkout address within 24h</li>
+          </ul>
+        </div>
+        <a href="https://buy.stripe.com/3cI4gz9Ds9Bf0AYcfnbEA0a" class="btn btn-gold" target="_blank" rel="noopener">Get Both Packages — $15</a>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="badge badge-purple">DeFi Anti-Honeypot</span>
+          <h2>RugShield Pre-Trade Scanner v1.0.0</h2>
+          <p style="color:#9ca3af;font-size:0.9rem;margin-top:0.4rem;">Local Base Uniswap V2 <code>eth_simulateV1</code> buy/sell tax simulator &amp; Solana SPL/Token-2022 mint/freeze authority inspector.</p>
+          <div class="price">$9 <span>USD one-time</span></div>
+          <ul class="features">
+            <li>Full TypeScript source code (.zip)</li>
+            <li>Stateful Base buy/sell simulation &amp; tax bps</li>
+            <li>Solana mint/freeze check + DexScreener pools</li>
+            <li>Fail-closed inconclusive safety handling</li>
+          </ul>
+        </div>
+        <a href="https://buy.stripe.com/00w14n9Ds5kZerO6V3bEA09" class="btn" target="_blank" rel="noopener">Buy Source Pack — $9</a>
+      </div>
+    </div>
+
+    <h2 class="section-heading">Cloud APIs, npm CLI &amp; Pay-Per-Call Access</h2>
+    <p class="section-sub">Or connect directly to hosted Edge &amp; Render endpoints via Apify Store or x402 V2 USDC.</p>
 
     <div class="grid">
       <div class="card">
