@@ -170,6 +170,8 @@ def syndicate_indexnow(client: httpx.Client):
     urls = [
         f"{BASE_SITE}/",
         f"{BASE_SITE}/products.html",
+        f"{BASE_SITE}/dashboard.html",
+        f"{BASE_SITE}/profit_revenue_telemetry.json",
         f"{BASE_SITE}/sitemap.xml",
         f"{BASE_SITE}/signals.json",
         f"{BASE_SITE}/feed.xml",
@@ -722,6 +724,9 @@ def main():
                 "external_usdc_total": f"{total_ext:.6f}",
                 "last_sync": datetime.now(timezone.utc).isoformat(),
             }, f, indent=2)
+
+        from telemetry_aggregator import write_profit_revenue_telemetry
+        write_profit_revenue_telemetry(client, balances, deliveries)
 
     print("Unified cloud cycle completed successfully.")
 

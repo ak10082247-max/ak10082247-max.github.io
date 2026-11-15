@@ -1,0 +1,764 @@
+{
+  "schema_version": "1.0.0",
+  "generated_utc": "2026-11-15T18:26:56.590560+00:00",
+  "scope": "Active Big-3 & Kurox Channels Only (AgentFuel402, CanaryGuard 402, RugShield 402, Kurox Stripe/npm, GEO Bureau)",
+  "excluded_legacy": [
+    "guard402",
+    "tollbooth",
+    "stealthguard",
+    "pulse402",
+    "agensi"
+  ],
+  "profit_overview": {
+    "verified_external_x402_usdc": 0.071,
+    "verified_external_x402_tx_count": 8,
+    "treasury_vault_base_usdc": 0.513,
+    "treasury_vault_solana_usdc": 0.162,
+    "treasury_vault_total_usdc": 0.675,
+    "stripe_gross_usd": 0.0,
+    "stripe_gross_gbp": 0.0,
+    "apify_verified_gross_usd": null,
+    "verified_cumulative_gross_usd": 0.071,
+    "verified_monthly_fixed_infra_usd": 14.5,
+    "estimated_monthly_net_vs_cumulative_usd": -14.43
+  },
+  "infra_baseline": [
+    {
+      "service": "CanaryGuard 402",
+      "plan": "Render Starter + 1GB Persistent Disk",
+      "monthly_usd": 7.25
+    },
+    {
+      "service": "RugShield 402",
+      "plan": "Render Starter + 1GB Persistent Disk",
+      "monthly_usd": 7.25
+    },
+    {
+      "service": "AgentFuel402",
+      "plan": "Cloudflare Workers Edge",
+      "monthly_usd": 0.0
+    },
+    {
+      "service": "GitHub Pages / Actions / npm / Stripe / Apify",
+      "plan": "Free Fixed Tier",
+      "monthly_usd": 0.0
+    }
+  ],
+  "fleet": {
+    "services": [
+      {
+        "id": "agentfuel402",
+        "name": "AgentFuel402",
+        "infra": "Cloudflare Workers Edge",
+        "monthly_fixed_usd": 0.0,
+        "price_range": "$0.005 - $0.015 USDC",
+        "endpoints_summary": "5 routes + MCP JSON-RPC 2.0",
+        "health": {
+          "ok": true,
+          "status_code": 200,
+          "latency_ms": 110.0,
+          "version": "1.0.0"
+        },
+        "buffer_stats": null
+      },
+      {
+        "id": "canaryguard-402",
+        "name": "CanaryGuard 402",
+        "infra": "Render Starter + 1GB Disk",
+        "monthly_fixed_usd": 7.25,
+        "price_range": "$0.010 - $0.020 USDC",
+        "endpoints_summary": "34 routes + MCP + /v1/sanitize",
+        "health": {
+          "ok": true,
+          "status_code": 200,
+          "latency_ms": 187.0,
+          "version": "1.3.0"
+        },
+        "buffer_stats": {
+          "buffer_count": 200,
+          "paid_count": 0,
+          "unpaid_probe_count": 200,
+          "avg_latency_ms": 0.82,
+          "latest_hit_utc": "2026-11-15T18:26:38.835Z",
+          "top_endpoints": [
+            {
+              "endpoint": "/mcp",
+              "hits": 34
+            },
+            {
+              "endpoint": "/v1/sanitize",
+              "hits": 21
+            },
+            {
+              "endpoint": "/bounty.html",
+              "hits": 8
+            },
+            {
+              "endpoint": "/v1/security/wallet-drainer-check",
+              "hits": 6
+            },
+            {
+              "endpoint": "/",
+              "hits": 6
+            },
+            {
+              "endpoint": "/openapi.json",
+              "hits": 6
+            }
+          ],
+          "top_user_agents": [
+            {
+              "agent": "AgentRankProbe",
+              "hits": 58
+            },
+            {
+              "agent": "PayAI-Bazaar/1.0",
+              "hits": 34
+            },
+            {
+              "agent": "Mozilla/5.0",
+              "hits": 17
+            },
+            {
+              "agent": "node",
+              "hits": 15
+            },
+            {
+              "agent": "lumiere-paycheck-prober/1.0",
+              "hits": 13
+            },
+            {
+              "agent": "rokmcp-collector/0.2",
+              "hits": 8
+            }
+          ]
+        }
+      },
+      {
+        "id": "rugshield-402",
+        "name": "RugShield 402",
+        "infra": "Render Starter + 1GB Disk",
+        "monthly_fixed_usd": 7.25,
+        "price_range": "$0.010 - $0.050 USDC",
+        "endpoints_summary": "12 routes + Base/Solana Swap Sim",
+        "health": {
+          "ok": true,
+          "status_code": 200,
+          "latency_ms": 218.0,
+          "version": "1.3.0"
+        },
+        "buffer_stats": {
+          "buffer_count": 200,
+          "paid_count": 0,
+          "unpaid_probe_count": 200,
+          "avg_latency_ms": 10.69,
+          "latest_hit_utc": "2026-11-15T18:26:39.037Z",
+          "top_endpoints": [
+            {
+              "endpoint": "/v1/scan",
+              "hits": 33
+            },
+            {
+              "endpoint": "/mcp",
+              "hits": 24
+            },
+            {
+              "endpoint": "/mcp/.well-known/glama.json",
+              "hits": 20
+            },
+            {
+              "endpoint": "/v1/scan/preview",
+              "hits": 15
+            },
+            {
+              "endpoint": "/mcp/.well-known/glama.json/mcp",
+              "hits": 14
+            },
+            {
+              "endpoint": "/v1/audit/swap-simulation-proof",
+              "hits": 13
+            }
+          ],
+          "top_user_agents": [
+            {
+              "agent": "Ziwei-Seat/1.0",
+              "hits": 48
+            },
+            {
+              "agent": "Agent402 Crawler",
+              "hits": 39
+            },
+            {
+              "agent": "httpx / Syndicator",
+              "hits": 19
+            },
+            {
+              "agent": "AgentRankProbe",
+              "hits": 16
+            },
+            {
+              "agent": "lumiere-paycheck-prober/1.0",
+              "hits": 12
+            },
+            {
+              "agent": "PayAI-Bazaar/1.0",
+              "hits": 12
+            }
+          ]
+        }
+      }
+    ],
+    "summary": {
+      "services_up": 3,
+      "services_total": 3,
+      "rolling_buffer_hits": 400,
+      "rolling_paid_hits": 0,
+      "rolling_unpaid_402_probes": 400,
+      "top_endpoints": [
+        {
+          "endpoint": "canaryguard-402:/mcp",
+          "hits": 34
+        },
+        {
+          "endpoint": "rugshield-402:/v1/scan",
+          "hits": 33
+        },
+        {
+          "endpoint": "rugshield-402:/mcp",
+          "hits": 24
+        },
+        {
+          "endpoint": "canaryguard-402:/v1/sanitize",
+          "hits": 21
+        },
+        {
+          "endpoint": "rugshield-402:/mcp/.well-known/glama.json",
+          "hits": 20
+        },
+        {
+          "endpoint": "rugshield-402:/v1/scan/preview",
+          "hits": 15
+        },
+        {
+          "endpoint": "rugshield-402:/mcp/.well-known/glama.json/mcp",
+          "hits": 14
+        },
+        {
+          "endpoint": "rugshield-402:/v1/audit/swap-simulation-proof",
+          "hits": 13
+        }
+      ],
+      "top_user_agents": [
+        {
+          "agent": "AgentRankProbe",
+          "hits": 74
+        },
+        {
+          "agent": "Ziwei-Seat/1.0",
+          "hits": 48
+        },
+        {
+          "agent": "PayAI-Bazaar/1.0",
+          "hits": 46
+        },
+        {
+          "agent": "Agent402 Crawler",
+          "hits": 44
+        },
+        {
+          "agent": "lumiere-paycheck-prober/1.0",
+          "hits": 25
+        },
+        {
+          "agent": "Mozilla/5.0",
+          "hits": 23
+        },
+        {
+          "agent": "httpx / Syndicator",
+          "hits": 20
+        },
+        {
+          "agent": "node",
+          "hits": 19
+        }
+      ]
+    }
+  },
+  "stripe": {
+    "sync_mode": "verified_mcp_baseline",
+    "baseline_checked_utc": "2026-11-15T18:20:50Z",
+    "available_usd": 0.0,
+    "pending_usd": 0.0,
+    "available_gbp": 0.0,
+    "pending_gbp": 0.0,
+    "completed_charges": 0,
+    "gross_settled_usd": 0.0,
+    "fees_usd": 0.0,
+    "net_settled_usd": 0.0,
+    "gross_settled_gbp": 0.0,
+    "active_links_total": 10,
+    "active_kurox_links": [
+      {
+        "sku": "canaryguard-firewall-proxy-v1",
+        "name": "CanaryGuard AI Firewall Proxy v1.0.0",
+        "price": "$9 USD",
+        "url": "https://buy.stripe.com/cNi28r02SaFj3Na6V3bEA08",
+        "brand": "Kurox"
+      },
+      {
+        "sku": "rugshield-pretrade-scanner-v1",
+        "name": "RugShield Pre-Trade Scanner v1.0.0",
+        "price": "$9 USD",
+        "url": "https://buy.stripe.com/00w14n9Ds5kZerO6V3bEA09",
+        "brand": "Kurox"
+      },
+      {
+        "sku": "kurox-security-suite-bundle-v1",
+        "name": "Kurox Security Source Bundle v1.0.0",
+        "price": "$15 USD",
+        "url": "https://buy.stripe.com/3cI4gz9Ds9Bf0AYcfnbEA0a",
+        "brand": "Kurox"
+      }
+    ],
+    "note": "Live Stripe MCP verified $0.00/\u00a30.00 settled so far. Add optional STRIPE_READONLY_KEY repository secret for automatic 15-min Stripe auto-sync."
+  },
+  "apify": {
+    "actors": [
+      {
+        "slug": "canaryguard-402",
+        "name": "CanaryGuard-402 Firewall",
+        "url": "https://apify.com/kuroxreal/canaryguard-402",
+        "total_runs": 41,
+        "runs_30d": 29,
+        "succeeded_30d": 29,
+        "total_users": 2,
+        "users_7d": 1,
+        "users_30d": 1,
+        "last_run_at": "2026-11-15T01:04:28.497Z",
+        "price_per_event_usd": 0.003,
+        "charged_events": null,
+        "gross_usd": null
+      },
+      {
+        "slug": "rugshield-402",
+        "name": "RugShield-402 Pre-Trade Scanner",
+        "url": "https://apify.com/kuroxreal/rugshield-402",
+        "total_runs": 9,
+        "runs_30d": 0,
+        "succeeded_30d": 0,
+        "total_users": 1,
+        "users_7d": 0,
+        "users_30d": 0,
+        "last_run_at": "2026-11-12T16:12:14.245Z",
+        "price_per_event_usd": 0.005,
+        "charged_events": null,
+        "gross_usd": null
+      },
+      {
+        "slug": "b2b-intent-leads-ppe",
+        "name": "B2B Intent Leads PPE",
+        "url": "https://apify.com/kuroxreal/b2b-intent-leads-ppe",
+        "total_runs": 24,
+        "runs_30d": 7,
+        "succeeded_30d": 7,
+        "total_users": 2,
+        "users_7d": 1,
+        "users_30d": 1,
+        "last_run_at": "2026-11-15T14:00:45.285Z",
+        "price_per_event_usd": 0.01,
+        "charged_events": null,
+        "gross_usd": null
+      },
+      {
+        "slug": "llm-clean-markdown-ppe",
+        "name": "LLM Clean Markdown PPE",
+        "url": "https://apify.com/kuroxreal/llm-clean-markdown-ppe",
+        "total_runs": 17,
+        "runs_30d": 0,
+        "succeeded_30d": 0,
+        "total_users": 1,
+        "users_7d": 0,
+        "users_30d": 0,
+        "last_run_at": "2026-11-12T16:09:11.006Z",
+        "price_per_event_usd": 0.003,
+        "charged_events": null,
+        "gross_usd": null
+      },
+      {
+        "slug": "ecom-price-stock-ppe",
+        "name": "E-Com Price & Stock PPE",
+        "url": "https://apify.com/kuroxreal/ecom-price-stock-ppe",
+        "total_runs": 25,
+        "runs_30d": 7,
+        "succeeded_30d": 7,
+        "total_users": 2,
+        "users_7d": 1,
+        "users_30d": 1,
+        "last_run_at": "2026-11-15T14:00:44.979Z",
+        "price_per_event_usd": 0.003,
+        "charged_events": null,
+        "gross_usd": null
+      },
+      {
+        "slug": "reverse-engineer-anything",
+        "name": "Reverse Engineer Anything",
+        "url": "https://apify.com/kuroxreal/reverse-engineer-anything",
+        "total_runs": 11,
+        "runs_30d": 6,
+        "succeeded_30d": 6,
+        "total_users": 2,
+        "users_7d": 1,
+        "users_30d": 1,
+        "last_run_at": "2026-11-15T17:20:33.045Z",
+        "price_per_event_usd": 0.015,
+        "charged_events": null,
+        "gross_usd": null
+      }
+    ],
+    "summary": {
+      "actors_count": 6,
+      "total_runs": 127,
+      "runs_30d": 49,
+      "total_user_installs": 10,
+      "billing_mode": "public_stats_only",
+      "charged_events": null,
+      "gross_usd": null
+    }
+  },
+  "npm": {
+    "packages": [
+      {
+        "name": "@kurox_real/x402-sniper-bot",
+        "version": "1.1.1",
+        "url": "https://www.npmjs.com/package/@kurox_real/x402-sniper-bot",
+        "downloads_1d": 738,
+        "downloads_7d": 1259,
+        "downloads_30d": 4062
+      },
+      {
+        "name": "elizaos-plugin-kurox-sentinel",
+        "version": "1.0.5",
+        "url": "https://www.npmjs.com/package/elizaos-plugin-kurox-sentinel",
+        "downloads_1d": 353,
+        "downloads_7d": 513,
+        "downloads_30d": 1270
+      },
+      {
+        "name": "@kurox_real/solana-agent-kit-guard",
+        "version": "1.1.0",
+        "url": "https://www.npmjs.com/package/@kurox_real/solana-agent-kit-guard",
+        "downloads_1d": 538,
+        "downloads_7d": 615,
+        "downloads_30d": 1042
+      },
+      {
+        "name": "@kurox_real/rugshield-client",
+        "version": "1.0.2",
+        "url": "https://www.npmjs.com/package/@kurox_real/rugshield-client",
+        "downloads_1d": 424,
+        "downloads_7d": 529,
+        "downloads_30d": 1033
+      },
+      {
+        "name": "@kurox_real/plugin-canaryguard",
+        "version": "1.0.7",
+        "url": "https://www.npmjs.com/package/@kurox_real/plugin-canaryguard",
+        "downloads_1d": 475,
+        "downloads_7d": 509,
+        "downloads_30d": 1002
+      },
+      {
+        "name": "@kurox_real/canaryguard-client",
+        "version": "1.0.4",
+        "url": "https://www.npmjs.com/package/@kurox_real/canaryguard-client",
+        "downloads_1d": 318,
+        "downloads_7d": 365,
+        "downloads_30d": 785
+      },
+      {
+        "name": "@kurox_real/agentkit-canaryguard-402",
+        "version": "1.0.5",
+        "url": "https://www.npmjs.com/package/@kurox_real/agentkit-canaryguard-402",
+        "downloads_1d": 339,
+        "downloads_7d": 524,
+        "downloads_30d": 774
+      },
+      {
+        "name": "@kurox_real/plugin-rugshield-402",
+        "version": "1.0.2",
+        "url": "https://www.npmjs.com/package/@kurox_real/plugin-rugshield-402",
+        "downloads_1d": 377,
+        "downloads_7d": 389,
+        "downloads_30d": 418
+      },
+      {
+        "name": "@kurox_real/agentkit-rugshield-402",
+        "version": "1.0.2",
+        "url": "https://www.npmjs.com/package/@kurox_real/agentkit-rugshield-402",
+        "downloads_1d": 350,
+        "downloads_7d": 370,
+        "downloads_30d": 413
+      },
+      {
+        "name": "@kurox_real/agentfuel402",
+        "version": "1.0.1",
+        "url": "https://www.npmjs.com/package/@kurox_real/agentfuel402",
+        "downloads_1d": 376,
+        "downloads_7d": 376,
+        "downloads_30d": 376
+      }
+    ],
+    "summary": {
+      "package_count": 10,
+      "downloads_1d": 4288,
+      "downloads_7d": 5449,
+      "downloads_30d": 11175
+    }
+  },
+  "github": {
+    "repos": [
+      {
+        "name": "ak10082247-max/agentfuel402",
+        "url": "https://github.com/ak10082247-max/agentfuel402",
+        "stars": 0,
+        "forks": 0,
+        "open_issues": 0,
+        "pushed_at": "2026-11-15T14:37:07Z"
+      },
+      {
+        "name": "ak10082247-max/canaryguard-402",
+        "url": "https://github.com/ak10082247-max/canaryguard-402",
+        "stars": 0,
+        "forks": 8,
+        "open_issues": 0,
+        "pushed_at": "2026-11-14T17:47:58Z"
+      },
+      {
+        "name": "ak10082247-max/rugshield-402",
+        "url": "https://github.com/ak10082247-max/rugshield-402",
+        "stars": 2,
+        "forks": 0,
+        "open_issues": 1,
+        "pushed_at": "2026-11-14T17:48:25Z"
+      },
+      {
+        "name": "ak10082247-max/ak10082247-max.github.io",
+        "url": "https://github.com/ak10082247-max/ak10082247-max.github.io",
+        "stars": 0,
+        "forks": 0,
+        "open_issues": 0,
+        "pushed_at": "2026-11-15T16:37:07Z"
+      },
+      {
+        "name": "ak10082247-max/x402-solana-base-sniper-bot",
+        "url": "https://github.com/ak10082247-max/x402-solana-base-sniper-bot",
+        "stars": 0,
+        "forks": 0,
+        "open_issues": 1,
+        "pushed_at": "2026-11-14T20:11:09Z"
+      },
+      {
+        "name": "ak10082247-max/elizaos-plugin-kurox-sentinel",
+        "url": "https://github.com/ak10082247-max/elizaos-plugin-kurox-sentinel",
+        "stars": 0,
+        "forks": 0,
+        "open_issues": 0,
+        "pushed_at": "2026-11-14T14:39:29Z"
+      },
+      {
+        "name": "ak10082247-max/solana-agent-kit-guard",
+        "url": "https://github.com/ak10082247-max/solana-agent-kit-guard",
+        "stars": 0,
+        "forks": 0,
+        "open_issues": 0,
+        "pushed_at": "2026-11-14T19:50:14Z"
+      },
+      {
+        "name": "ak10082247-max/plugin-canaryguard",
+        "url": "https://github.com/ak10082247-max/plugin-canaryguard",
+        "stars": 0,
+        "forks": 0,
+        "open_issues": 0,
+        "pushed_at": "2026-11-14T17:44:56Z"
+      },
+      {
+        "name": "ak10082247-max/agentkit-canaryguard",
+        "url": "https://github.com/ak10082247-max/agentkit-canaryguard",
+        "stars": 0,
+        "forks": 0,
+        "open_issues": 0,
+        "pushed_at": "2026-11-14T17:53:46Z"
+      },
+      {
+        "name": "ak10082247-max/qadam-flow",
+        "url": "https://github.com/ak10082247-max/qadam-flow",
+        "stars": 0,
+        "forks": 0,
+        "open_issues": 0,
+        "pushed_at": "2026-11-14T18:55:47Z"
+      }
+    ],
+    "tracked_prs": [
+      {
+        "repo": "coinbase/agentkit",
+        "number": 1559,
+        "label": "CanaryGuard Action Provider",
+        "status": "open",
+        "url": "https://github.com/coinbase/agentkit/pull/1559"
+      },
+      {
+        "repo": "coinbase/agentkit",
+        "number": 1631,
+        "label": "RugShield Action Provider",
+        "status": "open",
+        "url": "https://github.com/coinbase/agentkit/pull/1631"
+      },
+      {
+        "repo": "sendaifun/solana-agent-kit",
+        "number": 630,
+        "label": "RugShield Solana Token Guard",
+        "status": "open",
+        "url": "https://github.com/sendaifun/solana-agent-kit/pull/630"
+      },
+      {
+        "repo": "TensorBlock/awesome-mcp-servers",
+        "number": 5797,
+        "label": "RugShield 402 Directory",
+        "status": "merged",
+        "url": "https://github.com/TensorBlock/awesome-mcp-servers/pull/5797"
+      },
+      {
+        "repo": "TensorBlock/awesome-mcp-servers",
+        "number": 5796,
+        "label": "CanaryGuard 402 Directory",
+        "status": "merged",
+        "url": "https://github.com/TensorBlock/awesome-mcp-servers/pull/5796"
+      },
+      {
+        "repo": "TensorBlock/awesome-mcp-servers",
+        "number": 5795,
+        "label": "AgentFuel402 Directory",
+        "status": "merged",
+        "url": "https://github.com/TensorBlock/awesome-mcp-servers/pull/5795"
+      },
+      {
+        "repo": "Recall-Kitchen/awesome-x402-mcp-services",
+        "number": 149,
+        "label": "AgentFuel402 x402 MCP",
+        "status": "merged",
+        "url": "https://github.com/Recall-Kitchen/awesome-x402-mcp-services/pull/149"
+      },
+      {
+        "repo": "punkpeye/awesome-mcp-servers",
+        "number": 16339,
+        "label": "CanaryGuard 402 MCP",
+        "status": "merged",
+        "url": "https://github.com/punkpeye/awesome-mcp-servers/pull/16339"
+      },
+      {
+        "repo": "punkpeye/awesome-mcp-servers",
+        "number": 18833,
+        "label": "RugShield 402 Fintech MCP",
+        "status": "open",
+        "url": "https://github.com/punkpeye/awesome-mcp-servers/pull/18833"
+      },
+      {
+        "repo": "punkpeye/awesome-mcp-servers",
+        "number": 18918,
+        "label": "AgentFuel402 Data MCP",
+        "status": "open",
+        "url": "https://github.com/punkpeye/awesome-mcp-servers/pull/18918"
+      },
+      {
+        "repo": "punkpeye/awesome-remote-mcp-servers",
+        "number": 4137,
+        "label": "RugShield 402 Remote MCP",
+        "status": "open",
+        "url": "https://github.com/punkpeye/awesome-remote-mcp-servers/pull/4137"
+      },
+      {
+        "repo": "punkpeye/awesome-remote-mcp-servers",
+        "number": 4138,
+        "label": "CanaryGuard 402 Remote MCP",
+        "status": "open",
+        "url": "https://github.com/punkpeye/awesome-remote-mcp-servers/pull/4138"
+      },
+      {
+        "repo": "punkpeye/awesome-remote-mcp-servers",
+        "number": 4202,
+        "label": "AgentFuel402 Remote MCP",
+        "status": "open",
+        "url": "https://github.com/punkpeye/awesome-remote-mcp-servers/pull/4202"
+      },
+      {
+        "repo": "solana-foundation/awesome-solana-ai",
+        "number": 287,
+        "label": "RugShield 402 DeFi MCP",
+        "status": "open",
+        "url": "https://github.com/solana-foundation/awesome-solana-ai/pull/287"
+      },
+      {
+        "repo": "solana-foundation/awesome-solana-ai",
+        "number": 288,
+        "label": "AgentFuel402 Dev Tools",
+        "status": "open",
+        "url": "https://github.com/solana-foundation/awesome-solana-ai/pull/288"
+      },
+      {
+        "repo": "Merit-Systems/awesome-agentic-commerce",
+        "number": 823,
+        "label": "Kurox Sniper Bot MCP",
+        "status": "open",
+        "url": "https://github.com/Merit-Systems/awesome-agentic-commerce/pull/823"
+      },
+      {
+        "repo": "Merit-Systems/awesome-agentic-commerce",
+        "number": 871,
+        "label": "AgentFuel402 Example",
+        "status": "open",
+        "url": "https://github.com/Merit-Systems/awesome-agentic-commerce/pull/871"
+      },
+      {
+        "repo": "xpaysh/awesome-x402",
+        "number": 1818,
+        "label": "CanaryGuard x402 Audit",
+        "status": "open",
+        "url": "https://github.com/xpaysh/awesome-x402/pull/1818"
+      },
+      {
+        "repo": "xpaysh/awesome-x402",
+        "number": 1922,
+        "label": "RugShield x402 Audit",
+        "status": "open",
+        "url": "https://github.com/xpaysh/awesome-x402/pull/1922"
+      },
+      {
+        "repo": "xpaysh/awesome-x402",
+        "number": 2159,
+        "label": "AgentFuel402 Data APIs",
+        "status": "open",
+        "url": "https://github.com/xpaysh/awesome-x402/pull/2159"
+      },
+      {
+        "repo": "aiqadam/qadam-flow",
+        "number": 1066,
+        "label": "CanaryGuard Community Qadam",
+        "status": "open",
+        "url": "https://github.com/aiqadam/qadam-flow/pull/1066"
+      }
+    ],
+    "summary": {
+      "tracked_repos": 10,
+      "total_stars": 2,
+      "total_forks": 8,
+      "prs_merged": 5,
+      "prs_open": 16,
+      "prs_total": 21
+    }
+  },
+  "wallets": {
+    "base": "0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6",
+    "solana_owner": "9wuMysgXwNhtQeqJgGByAiMYc4EjzZ5wUSmnjrrt3ffh",
+    "solana_ata": "DD3A7jaXFeHcif9eYj6Vhomuxypat5Yxi8ow6wxz27yL"
+  }
+}
