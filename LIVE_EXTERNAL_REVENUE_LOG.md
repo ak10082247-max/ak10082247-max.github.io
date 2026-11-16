@@ -1,15 +1,15 @@
 # Kurox Big 3 x402 Revenue & Settlement Log
 
 > **Multi-Chain Merchant Treasury Flight Recorder**  
-> Last Synchronized: **2026-11-15 21:17:22 UTC**
+> Last Synchronized: **2026-11-16 01:14:57 UTC**
 
 ---
 
 ### 🏛️ Verified Merchant Treasury Wallets
-- **Base Mainnet (`eip155:8453`)**: [`0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6`](https://basescan.org/address/0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6) &bull; **`0.513000 USDC`**
+- **Base Mainnet (`eip155:8453`)**: [`0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6`](https://basescan.org/address/0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6) &bull; **`0.523000 USDC`**
 - **Solana Mainnet Owner**: `9wuMysgXwNhtQeqJgGByAiMYc4EjzZ5wUSmnjrrt3ffh`
 - **Solana Mainnet (`USDC ATA`)**: [`DD3A7jaXFeHcif9eYj6Vhomuxypat5Yxi8ow6wxz27yL`](https://solscan.io/account/DD3A7jaXFeHcif9eYj6Vhomuxypat5Yxi8ow6wxz27yL) &bull; **`0.162 USDC`**
-- **Verified External Settlements (Post-Rebind Active Vaults)**: **8 tx** &bull; **`$0.071000 USDC`**
+- **Verified External Settlements (Post-Rebind Active Vaults)**: **9 tx** &bull; **`$0.081000 USDC`**
 
 ---
 
@@ -17,6 +17,7 @@
 
 | Timestamp (UTC) | Server | Payer Wallet | Amount | Endpoint | Explorer Link |
 | :--- | :--- | :--- | :---: | :--- | :--- |
+| 2026-11-16 00:53:48 | CanaryGuard-402 | [`0x82cef1cd...`](https://basescan.org/address/0x82cef1cdc34d65cf690235dc24e823a6585a6f86) | `$0.0100 USDC` | `/v1/sanitize` | [`0x19b983cb...`](https://basescan.org/tx/0x19b983cb0d185ba7cab493e3bd1532f6bd956f76a29c383d73374fe6c40250a3) |
 | 2026-11-13 09:04:05 | Base x402 (on-chain) | [`0x171d8021...`](https://basescan.org/address/0x171d8021b98c53dcbb3c9c30cbbbeb1b01850fca) | `$0.0100 USDC` | `on-chain USDC` | [`0x6619b0e8...`](https://basescan.org/tx/0x6619b0e8cb026ebe8a97e30c5e401bd17dc988c1d2dddea3cf393ad911e9bc39) |
 | 2026-11-12 13:04:39 | Base x402 (on-chain) | [`0x171d8021...`](https://basescan.org/address/0x171d8021b98c53dcbb3c9c30cbbbeb1b01850fca) | `$0.0100 USDC` | `on-chain USDC` | [`0x489227cc...`](https://basescan.org/tx/0x489227cc7daf99c79c7cef357e1eb682b38fb2e8a6860541b3a4acb8a733bc5c) |
 | 2026-11-12 08:18:58 | Base x402 (on-chain) | [`0x171d8021...`](https://basescan.org/address/0x171d8021b98c53dcbb3c9c30cbbbeb1b01850fca) | `$0.0100 USDC` | `on-chain USDC` | [`0x8e21cd4d...`](https://basescan.org/tx/0x8e21cd4d1b74132b9026ac8d00665dac9143dbd85156d77728dac6acaa4efdf1) |
