@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1.0",
-  "generated_utc": "2026-11-16T08:02:13.626659+00:00",
+  "generated_utc": "2026-11-16T18:29:57.967704+00:00",
   "scope": "Active Big-3 & Kurox Channels Only (AgentFuel402, CanaryGuard 402, RugShield 402, Kurox Stripe/npm, GEO Bureau)",
   "excluded_legacy": [
     "guard402",
@@ -61,7 +61,7 @@
         "health": {
           "ok": true,
           "status_code": 200,
-          "latency_ms": 39.6,
+          "latency_ms": 176.1,
           "version": "1.0.0"
         },
         "buffer_stats": null
@@ -76,65 +76,65 @@
         "health": {
           "ok": true,
           "status_code": 200,
-          "latency_ms": 102.5,
+          "latency_ms": 74.7,
           "version": "1.3.0"
         },
         "buffer_stats": {
           "buffer_count": 200,
           "paid_count": 1,
           "unpaid_probe_count": 200,
-          "avg_latency_ms": 15.65,
-          "latest_hit_utc": "2026-11-16T08:01:49.674Z",
+          "avg_latency_ms": 40.69,
+          "latest_hit_utc": "2026-11-16T18:29:34.208Z",
           "top_endpoints": [
             {
               "endpoint": "/chat/completions",
-              "hits": 28
-            },
-            {
-              "endpoint": "/v1/sanitize",
-              "hits": 11
-            },
-            {
-              "endpoint": "/openapi.json",
-              "hits": 10
-            },
-            {
-              "endpoint": "/robots.txt",
-              "hits": 10
+              "hits": 64
             },
             {
               "endpoint": "/mcp",
-              "hits": 10
+              "hits": 20
             },
             {
-              "endpoint": "/v1/alpha/safe-base-trending",
-              "hits": 9
+              "endpoint": "/v1/sanitize",
+              "hits": 14
+            },
+            {
+              "endpoint": "/v1/telemetry/deliveries",
+              "hits": 13
+            },
+            {
+              "endpoint": "/openapi.json",
+              "hits": 4
+            },
+            {
+              "endpoint": "/bounty.html",
+              "hits": 4
             }
           ],
           "top_user_agents": [
             {
-              "agent": "Agent402 Crawler",
-              "hits": 145
-            },
-            {
               "agent": "httpx / Syndicator",
-              "hits": 29
+              "hits": 65
             },
             {
-              "agent": "node",
-              "hits": 4
+              "agent": "AgentRankProbe",
+              "hits": 54
+            },
+            {
+              "agent": "Agent402 Crawler",
+              "hits": 22
             },
             {
               "agent": "Mozilla/5.0",
-              "hits": 4
+              "hits": 17
             },
             {
-              "agent": "Moonglade/1.0",
-              "hits": 4
+              "agent": "node",
+              "hits": 9
             },
             {
-              "agent": "Enerlio GmbH FACTANKER marc@enerlio.de",
-              "hits": 3
+              "agent": "ASPERN-mcp-latency/1.0",
+              "hits": 5
             }
           ]
         }
@@ -149,65 +149,65 @@
         "health": {
           "ok": true,
           "status_code": 200,
-          "latency_ms": 109.6,
+          "latency_ms": 55.1,
           "version": "1.3.0"
         },
         "buffer_stats": {
           "buffer_count": 200,
           "paid_count": 0,
           "unpaid_probe_count": 200,
-          "avg_latency_ms": 9.78,
-          "latest_hit_utc": "2026-11-16T08:01:49.709Z",
+          "avg_latency_ms": 10.38,
+          "latest_hit_utc": "2026-11-16T18:29:34.320Z",
           "top_endpoints": [
             {
               "endpoint": "/v1/scan",
               "hits": 32
             },
             {
-              "endpoint": "/v1/audit/cross-chain-bridge-risk",
-              "hits": 21
+              "endpoint": "/v1/telemetry/deliveries",
+              "hits": 19
             },
             {
-              "endpoint": "/api/v1/token-screener",
-              "hits": 20
+              "endpoint": "/mcp",
+              "hits": 18
             },
             {
               "endpoint": "/v1/risk/institutional-token-report",
-              "hits": 20
+              "hits": 17
             },
             {
-              "endpoint": "/v1/audit/swap-simulation-proof",
-              "hits": 20
+              "endpoint": "/v1/audit/liquidity-lock-verify",
+              "hits": 16
             },
             {
-              "endpoint": "/v1/audit/holder-cluster-map",
-              "hits": 20
+              "endpoint": "/api/v1/token-screener",
+              "hits": 16
             }
           ],
           "top_user_agents": [
             {
               "agent": "Agent402 Crawler",
-              "hits": 170
+              "hits": 107
+            },
+            {
+              "agent": "Mozilla/5.0",
+              "hits": 21
             },
             {
               "agent": "httpx / Syndicator",
               "hits": 16
             },
             {
-              "agent": "warden-survey/0.1",
+              "agent": "AgentRankProbe",
+              "hits": 16
+            },
+            {
+              "agent": "PayAI-Bazaar/1.0",
+              "hits": 10
+            },
+            {
+              "agent": "x402-observer/1.0",
               "hits": 3
-            },
-            {
-              "agent": "mcpcensusbot/1.0",
-              "hits": 3
-            },
-            {
-              "agent": "algebra-executor/1",
-              "hits": 2
-            },
-            {
-              "agent": "lumiere-paycheck-prober/1.0",
-              "hits": 1
             }
           ]
         }
@@ -221,70 +221,70 @@
       "rolling_unpaid_402_probes": 400,
       "top_endpoints": [
         {
+          "endpoint": "canaryguard-402:/chat/completions",
+          "hits": 64
+        },
+        {
           "endpoint": "rugshield-402:/v1/scan",
           "hits": 32
         },
         {
-          "endpoint": "canaryguard-402:/chat/completions",
-          "hits": 28
-        },
-        {
-          "endpoint": "rugshield-402:/v1/audit/cross-chain-bridge-risk",
-          "hits": 21
-        },
-        {
-          "endpoint": "rugshield-402:/api/v1/token-screener",
+          "endpoint": "canaryguard-402:/mcp",
           "hits": 20
+        },
+        {
+          "endpoint": "rugshield-402:/v1/telemetry/deliveries",
+          "hits": 19
+        },
+        {
+          "endpoint": "rugshield-402:/mcp",
+          "hits": 18
         },
         {
           "endpoint": "rugshield-402:/v1/risk/institutional-token-report",
-          "hits": 20
-        },
-        {
-          "endpoint": "rugshield-402:/v1/audit/swap-simulation-proof",
-          "hits": 20
-        },
-        {
-          "endpoint": "rugshield-402:/v1/audit/holder-cluster-map",
-          "hits": 20
+          "hits": 17
         },
         {
           "endpoint": "rugshield-402:/v1/audit/liquidity-lock-verify",
-          "hits": 20
+          "hits": 16
+        },
+        {
+          "endpoint": "rugshield-402:/api/v1/token-screener",
+          "hits": 16
         }
       ],
       "top_user_agents": [
         {
           "agent": "Agent402 Crawler",
-          "hits": 315
+          "hits": 129
         },
         {
           "agent": "httpx / Syndicator",
-          "hits": 45
+          "hits": 81
         },
         {
-          "agent": "warden-survey/0.1",
-          "hits": 6
-        },
-        {
-          "agent": "node",
-          "hits": 4
+          "agent": "AgentRankProbe",
+          "hits": 70
         },
         {
           "agent": "Mozilla/5.0",
-          "hits": 4
+          "hits": 38
         },
         {
-          "agent": "Moonglade/1.0",
-          "hits": 4
+          "agent": "node",
+          "hits": 11
         },
         {
-          "agent": "Enerlio GmbH FACTANKER marc@enerlio.de",
-          "hits": 3
+          "agent": "PayAI-Bazaar/1.0",
+          "hits": 10
         },
         {
-          "agent": "algebra-executor/1",
-          "hits": 3
+          "agent": "none",
+          "hits": 7
+        },
+        {
+          "agent": "SentinelOracle/0.1",
+          "hits": 6
         }
       ]
     }
@@ -297,7 +297,7 @@
   },
   "stripe": {
     "sync_mode": "live_api_secret",
-    "baseline_checked_utc": "2026-11-16T08:02:13.537216+00:00",
+    "baseline_checked_utc": "2026-11-16T18:29:57.728349+00:00",
     "available_usd": 0.0,
     "pending_usd": 0.0,
     "available_gbp": 0.0,
@@ -485,16 +485,16 @@
         "slug": "b2b-intent-leads-ppe",
         "name": "B2B Intent Leads PPE",
         "url": "https://apify.com/kuroxreal/b2b-intent-leads-ppe",
-        "total_runs": 24,
-        "runs_30d": 7,
-        "succeeded_30d": 7,
+        "total_runs": 25,
+        "runs_30d": 8,
+        "succeeded_30d": 8,
         "total_users": 2,
         "users_7d": 1,
         "users_30d": 1,
-        "last_run_at": "2026-11-15T14:00:45.285Z",
+        "last_run_at": "2026-11-16T14:08:31.107Z",
         "price_per_event_usd": 0.01,
         "own_runs_recorded": 16,
-        "external_runs_est": 8,
+        "external_runs_est": 9,
         "gross_usd": null
       },
       {
@@ -517,42 +517,42 @@
         "slug": "ecom-price-stock-ppe",
         "name": "E-Com Price & Stock PPE",
         "url": "https://apify.com/kuroxreal/ecom-price-stock-ppe",
-        "total_runs": 25,
-        "runs_30d": 7,
-        "succeeded_30d": 7,
+        "total_runs": 26,
+        "runs_30d": 8,
+        "succeeded_30d": 8,
         "total_users": 2,
         "users_7d": 1,
         "users_30d": 1,
-        "last_run_at": "2026-11-15T14:00:44.979Z",
+        "last_run_at": "2026-11-16T14:08:31.024Z",
         "price_per_event_usd": 0.003,
         "own_runs_recorded": 17,
-        "external_runs_est": 8,
+        "external_runs_est": 9,
         "gross_usd": null
       },
       {
         "slug": "reverse-engineer-anything",
         "name": "Reverse Engineer Anything",
         "url": "https://apify.com/kuroxreal/reverse-engineer-anything",
-        "total_runs": 11,
-        "runs_30d": 7,
-        "succeeded_30d": 7,
+        "total_runs": 12,
+        "runs_30d": 8,
+        "succeeded_30d": 8,
         "total_users": 2,
         "users_7d": 1,
         "users_30d": 1,
-        "last_run_at": "2026-11-15T17:20:33.045Z",
+        "last_run_at": "2026-11-16T17:22:35.960Z",
         "price_per_event_usd": 0.015,
         "own_runs_recorded": 4,
-        "external_runs_est": 7,
+        "external_runs_est": 8,
         "gross_usd": null
       }
     ],
     "summary": {
       "actors_count": 6,
-      "total_runs": 128,
-      "runs_30d": 50,
+      "total_runs": 131,
+      "runs_30d": 53,
       "total_user_installs": 10,
       "own_runs_recorded": 67,
-      "external_runs_est": 61,
+      "external_runs_est": 64,
       "cycle_compute_usd": 0.0493,
       "billing_mode": "token_usage_plus_store_stats",
       "gross_usd": null,
@@ -681,7 +681,7 @@
         "stars": 0,
         "forks": 0,
         "open_issues": 0,
-        "pushed_at": "2026-11-16T01:15:21Z"
+        "pushed_at": "2026-11-16T08:02:14Z"
       },
       {
         "name": "ak10082247-max/x402-solana-base-sniper-bot",
