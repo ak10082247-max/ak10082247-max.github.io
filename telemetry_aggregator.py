@@ -158,6 +158,14 @@ STRIPE_ACTIVE_LINKS = [
         "url": "https://agentfuel402.ak10082247.workers.dev/v1/checkout/bundle?sku=dual",
         "brand": "Kurox",
     },
+    {
+        "sku": "b2b-tech-intent-leads-csv-v1",
+        "name": "Live B2B Tech Intent & Hiring Leads Pack (.csv)",
+        "price": "$19 USD",
+        "currency": "USD",
+        "url": "https://agentfuel402.ak10082247.workers.dev/v1/checkout/bundle?sku=csv-pack",
+        "brand": "Kurox",
+    },
 ]
 
 
