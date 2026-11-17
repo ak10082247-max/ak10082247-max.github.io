@@ -109,7 +109,7 @@ TRACKED_PRS = [
     ("punkpeye/awesome-remote-mcp-servers", 4202, "AgentFuel402 Remote MCP"),
     ("solana-foundation/awesome-solana-ai", 287, "RugShield 402 DeFi MCP"),
     ("solana-foundation/awesome-solana-ai", 288, "AgentFuel402 Dev Tools"),
-    ("Merit-Systems/awesome-agentic-commerce", 823, "Kurox Sniper Bot MCP"),
+    ("Merit-Systems/awesome-agentic-commerce", 823, "Kurox Fleet (RugShield, CanaryGuard, AgentFuel402)"),
     ("Merit-Systems/awesome-agentic-commerce", 871, "AgentFuel402 Example"),
     ("xpaysh/awesome-x402", 1818, "CanaryGuard x402 Audit"),
     ("xpaysh/awesome-x402", 1922, "RugShield x402 Audit"),
@@ -119,24 +119,43 @@ TRACKED_PRS = [
 
 STRIPE_ACTIVE_LINKS = [
     {
+        "sku": "kurox-api-starter-30d",
+        "name": "Unified API Key — Starter (30d)",
+        "price": "$5 USD",
+        "currency": "USD",
+        "url": "https://agentfuel402.ak10082247.workers.dev/v1/checkout/api-key?plan=starter",
+        "brand": "Kurox",
+    },
+    {
+        "sku": "kurox-api-pro-90d",
+        "name": "Unified API Key — Pro (90d)",
+        "price": "$19 USD",
+        "currency": "USD",
+        "url": "https://agentfuel402.ak10082247.workers.dev/v1/checkout/api-key?plan=pro",
+        "brand": "Kurox",
+    },
+    {
         "sku": "canaryguard-firewall-proxy-v1",
         "name": "CanaryGuard AI Firewall Proxy v1.0.0",
         "price": "$9 USD",
-        "url": "https://buy.stripe.com/cNi28r02SaFj3Na6V3bEA08",
+        "currency": "USD",
+        "url": "https://agentfuel402.ak10082247.workers.dev/v1/checkout/bundle?sku=canaryguard",
         "brand": "Kurox",
     },
     {
         "sku": "rugshield-pretrade-scanner-v1",
         "name": "RugShield Pre-Trade Scanner v1.0.0",
         "price": "$9 USD",
-        "url": "https://buy.stripe.com/00w14n9Ds5kZerO6V3bEA09",
+        "currency": "USD",
+        "url": "https://agentfuel402.ak10082247.workers.dev/v1/checkout/bundle?sku=rugshield",
         "brand": "Kurox",
     },
     {
         "sku": "kurox-security-suite-bundle-v1",
-        "name": "Kurox Security Source Bundle v1.0.0",
+        "name": "Kurox Dual Security Bundle v1.0.0",
         "price": "$15 USD",
-        "url": "https://buy.stripe.com/3cI4gz9Ds9Bf0AYcfnbEA0a",
+        "currency": "USD",
+        "url": "https://agentfuel402.ak10082247.workers.dev/v1/checkout/bundle?sku=dual",
         "brand": "Kurox",
     },
 ]
@@ -644,28 +663,44 @@ def fetch_stripe_aggregate(client: httpx.Client) -> dict:
         for s in sessions:
             st = s.get("status") or ""
             pst = s.get("payment_status") or ""
+            s_sku = (s.get("metadata") or {}).get("sku") or ""
             pl_id = s.get("payment_link") or "direct"
-            bucket = link_stats.setdefault(pl_id, {"total": 0, "paid": 0, "open": 0, "expired": 0})
-            bucket["total"] += 1
+            for key_id in [k for k in (pl_id, s_sku) if k]:
+                bucket = link_stats.setdefault(key_id, {"total": 0, "paid": 0, "open": 0, "expired": 0})
+                bucket["total"] += 1
+                if pst == "paid":
+                    bucket["paid"] += 1
+                elif st == "open":
+                    bucket["open"] += 1
+                elif st == "expired":
+                    bucket["expired"] += 1
             if pst == "paid":
                 s_paid += 1
-                bucket["paid"] += 1
             elif st == "open":
                 s_open += 1
-                bucket["open"] += 1
             elif st == "expired":
                 s_exp += 1
-                bucket["expired"] += 1
 
-        kurox_links = []
+        kurox_links = [
+            {
+                **item,
+                "id": f"checkout_{item['sku']}",
+                "sessions_opened": link_stats.get(item["sku"], {}).get("total", 0),
+                "sessions_paid": link_stats.get(item["sku"], {}).get("paid", 0),
+                "sessions_expired": link_stats.get(item["sku"], {}).get("expired", 0),
+            }
+            for item in STRIPE_ACTIVE_LINKS
+        ]
         geo_links = []
         for pl in plinks:
             md = pl.get("metadata") or {}
             if _is_excluded(json.dumps(md)):
                 continue
             name, price_str, brand = _label_payment_link(pl)
+            if brand == "Kurox":
+                continue
             st_b = link_stats.get(pl["id"], {"total": 0, "paid": 0, "open": 0, "expired": 0})
-            entry = {
+            geo_links.append({
                 "id": pl["id"],
                 "sku": md.get("sku") or md.get("offer_code") or md.get("service_slug") or pl["id"],
                 "name": name,
@@ -676,11 +711,7 @@ def fetch_stripe_aggregate(client: httpx.Client) -> dict:
                 "sessions_opened": st_b["total"],
                 "sessions_paid": st_b["paid"],
                 "sessions_expired": st_b["expired"],
-            }
-            if brand == "Kurox":
-                kurox_links.append(entry)
-            else:
-                geo_links.append(entry)
+            })
 
         gross_usd_eq = round(gross_usd + gross_gbp * fx_rate, 2)
         net_usd_eq = round(net_usd + net_gbp * fx_rate, 2)
