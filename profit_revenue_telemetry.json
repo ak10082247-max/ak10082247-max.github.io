@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1.0",
-  "generated_utc": "2026-11-20T12:51:01.626680+00:00",
+  "generated_utc": "2026-11-20T20:53:17.291401+00:00",
   "scope": "Active Big-3 & Kurox Channels Only (AgentFuel402, CanaryGuard 402, RugShield 402, Kurox Stripe/npm, GEO Bureau)",
   "excluded_legacy": [
     "guard402",
@@ -61,7 +61,7 @@
         "health": {
           "ok": true,
           "status_code": 200,
-          "latency_ms": 62.7,
+          "latency_ms": 106.7,
           "version": "1.0.0"
         },
         "buffer_stats": null
@@ -76,65 +76,65 @@
         "health": {
           "ok": true,
           "status_code": 200,
-          "latency_ms": 79.6,
+          "latency_ms": 80.3,
           "version": "1.3.0"
         },
         "buffer_stats": {
           "buffer_count": 200,
           "paid_count": 2,
           "unpaid_probe_count": 200,
-          "avg_latency_ms": 44.52,
-          "latest_hit_utc": "2026-11-20T12:50:38.000Z",
+          "avg_latency_ms": 61.98,
+          "latest_hit_utc": "2026-11-20T20:52:51.917Z",
           "top_endpoints": [
             {
               "endpoint": "/chat/completions",
-              "hits": 95
-            },
-            {
-              "endpoint": "/v1/telemetry/deliveries",
-              "hits": 14
-            },
-            {
-              "endpoint": "/v1/sanitize",
-              "hits": 13
+              "hits": 83
             },
             {
               "endpoint": "/mcp",
-              "hits": 9
+              "hits": 31
+            },
+            {
+              "endpoint": "/v1/sanitize",
+              "hits": 24
             },
             {
               "endpoint": "/bounty.html",
-              "hits": 4
+              "hits": 8
             },
             {
               "endpoint": "/",
-              "hits": 4
+              "hits": 5
+            },
+            {
+              "endpoint": "/openapi.json",
+              "hits": 3
             }
           ],
           "top_user_agents": [
             {
               "agent": "httpx / Syndicator",
-              "hits": 96
+              "hits": 86
             },
             {
               "agent": "node",
-              "hits": 26
+              "hits": 36
             },
             {
-              "agent": "Mozilla/5.0",
-              "hits": 14
-            },
-            {
-              "agent": "lumiere-paycheck-prober/1.0",
-              "hits": 12
-            },
-            {
-              "agent": "AgentRankProbe",
-              "hits": 12
-            },
-            {
-              "agent": "sarnai-sales/0.1",
+              "agent": "none",
               "hits": 7
+            },
+            {
+              "agent": "nohumans.directory-probe/1.0",
+              "hits": 7
+            },
+            {
+              "agent": "SentinelOracle/0.1",
+              "hits": 6
+            },
+            {
+              "agent": "BotsRated-probe/0.3",
+              "hits": 5
             }
           ]
         }
@@ -149,65 +149,65 @@
         "health": {
           "ok": true,
           "status_code": 200,
-          "latency_ms": 51.9,
+          "latency_ms": 69.3,
           "version": "1.3.0"
         },
         "buffer_stats": {
           "buffer_count": 200,
           "paid_count": 0,
           "unpaid_probe_count": 200,
-          "avg_latency_ms": 11.96,
-          "latest_hit_utc": "2026-11-20T12:50:38.063Z",
+          "avg_latency_ms": 14.88,
+          "latest_hit_utc": "2026-11-20T20:52:51.819Z",
           "top_endpoints": [
             {
               "endpoint": "/mcp",
-              "hits": 63
-            },
-            {
-              "endpoint": "/v1/telemetry/deliveries",
               "hits": 39
             },
             {
               "endpoint": "/v1/scan",
-              "hits": 29
+              "hits": 26
+            },
+            {
+              "endpoint": "/v1/chat/completions",
+              "hits": 21
             },
             {
               "endpoint": "/v1/scan/preview",
               "hits": 17
             },
             {
-              "endpoint": "/api/v1/smart-money/dex-trades",
-              "hits": 7
+              "endpoint": "/v1/audit/swap-simulation-proof",
+              "hits": 8
             },
             {
-              "endpoint": "/v1/audit/swap-simulation-proof",
-              "hits": 7
+              "endpoint": "/dashboard/billing/credit_grants",
+              "hits": 4
             }
           ],
           "top_user_agents": [
             {
               "agent": "Mozilla/5.0",
-              "hits": 38
-            },
-            {
-              "agent": "lumiere-paycheck-prober/1.0",
-              "hits": 24
+              "hits": 94
             },
             {
               "agent": "httpx / Syndicator",
-              "hits": 17
+              "hits": 19
             },
             {
-              "agent": "AgentRankProbe",
-              "hits": 12
-            },
-            {
-              "agent": "SentinelOracle/0.1",
-              "hits": 12
+              "agent": "lumiere-paycheck-prober/1.0",
+              "hits": 13
             },
             {
               "agent": "nohumans.directory-probe/1.0",
               "hits": 9
+            },
+            {
+              "agent": "mcpbeat/0.1",
+              "hits": 6
+            },
+            {
+              "agent": "SentinelOracle/0.1",
+              "hits": 6
             }
           ]
         }
@@ -222,68 +222,68 @@
       "top_endpoints": [
         {
           "endpoint": "canaryguard-402:/chat/completions",
-          "hits": 95
+          "hits": 83
         },
         {
           "endpoint": "rugshield-402:/mcp",
-          "hits": 63
-        },
-        {
-          "endpoint": "rugshield-402:/v1/telemetry/deliveries",
           "hits": 39
         },
         {
+          "endpoint": "canaryguard-402:/mcp",
+          "hits": 31
+        },
+        {
           "endpoint": "rugshield-402:/v1/scan",
-          "hits": 29
+          "hits": 26
+        },
+        {
+          "endpoint": "canaryguard-402:/v1/sanitize",
+          "hits": 24
+        },
+        {
+          "endpoint": "rugshield-402:/v1/chat/completions",
+          "hits": 21
         },
         {
           "endpoint": "rugshield-402:/v1/scan/preview",
           "hits": 17
         },
         {
-          "endpoint": "canaryguard-402:/v1/telemetry/deliveries",
-          "hits": 14
-        },
-        {
-          "endpoint": "canaryguard-402:/v1/sanitize",
-          "hits": 13
-        },
-        {
-          "endpoint": "canaryguard-402:/mcp",
-          "hits": 9
+          "endpoint": "canaryguard-402:/bounty.html",
+          "hits": 8
         }
       ],
       "top_user_agents": [
         {
           "agent": "httpx / Syndicator",
-          "hits": 113
+          "hits": 105
         },
         {
           "agent": "Mozilla/5.0",
-          "hits": 52
-        },
-        {
-          "agent": "lumiere-paycheck-prober/1.0",
-          "hits": 36
+          "hits": 98
         },
         {
           "agent": "node",
-          "hits": 32
+          "hits": 38
         },
         {
-          "agent": "AgentRankProbe",
-          "hits": 24
+          "agent": "lumiere-paycheck-prober/1.0",
+          "hits": 16
+        },
+        {
+          "agent": "nohumans.directory-probe/1.0",
+          "hits": 16
         },
         {
           "agent": "SentinelOracle/0.1",
-          "hits": 15
+          "hits": 12
         },
         {
           "agent": "none",
           "hits": 10
         },
         {
-          "agent": "nohumans.directory-probe/1.0",
+          "agent": "mcpbeat/0.1",
           "hits": 9
         }
       ]
@@ -297,7 +297,7 @@
   },
   "stripe": {
     "sync_mode": "live_api_secret",
-    "baseline_checked_utc": "2026-11-20T12:51:01.373361+00:00",
+    "baseline_checked_utc": "2026-11-20T20:53:17.159641+00:00",
     "available_usd": 0.0,
     "pending_usd": 0.0,
     "available_gbp": 0.0,
@@ -316,10 +316,10 @@
     "fx_source": "open.er-api.com",
     "payouts_paid_usd": 0,
     "payouts_paid_gbp": 0,
-    "sessions_total": 106,
+    "sessions_total": 107,
     "sessions_paid": 0,
-    "sessions_open": 45,
-    "sessions_expired": 61,
+    "sessions_open": 36,
+    "sessions_expired": 71,
     "active_links_total": 13,
     "active_kurox_links": [
       {
@@ -521,16 +521,16 @@
         "slug": "b2b-intent-leads-ppe",
         "name": "B2B Intent Leads PPE",
         "url": "https://apify.com/kuroxreal/b2b-intent-leads-ppe",
-        "total_runs": 29,
-        "runs_30d": 11,
-        "succeeded_30d": 11,
+        "total_runs": 30,
+        "runs_30d": 12,
+        "succeeded_30d": 12,
         "total_users": 2,
         "users_7d": 1,
         "users_30d": 1,
-        "last_run_at": "2026-11-19T14:14:38.584Z",
+        "last_run_at": "2026-11-20T14:16:41.297Z",
         "price_per_event_usd": 0.01,
         "own_runs_recorded": 2,
-        "external_runs_est": 27,
+        "external_runs_est": 28,
         "gross_usd": null
       },
       {
@@ -553,43 +553,43 @@
         "slug": "ecom-price-stock-ppe",
         "name": "E-Com Price & Stock PPE",
         "url": "https://apify.com/kuroxreal/ecom-price-stock-ppe",
-        "total_runs": 30,
-        "runs_30d": 11,
-        "succeeded_30d": 11,
+        "total_runs": 31,
+        "runs_30d": 12,
+        "succeeded_30d": 12,
         "total_users": 2,
         "users_7d": 1,
         "users_30d": 1,
-        "last_run_at": "2026-11-19T14:14:38.502Z",
+        "last_run_at": "2026-11-20T14:16:41.327Z",
         "price_per_event_usd": 0.003,
         "own_runs_recorded": 3,
-        "external_runs_est": 27,
+        "external_runs_est": 28,
         "gross_usd": null
       },
       {
         "slug": "reverse-engineer-anything",
         "name": "Reverse Engineer Anything",
         "url": "https://apify.com/kuroxreal/reverse-engineer-anything",
-        "total_runs": 15,
-        "runs_30d": 11,
-        "succeeded_30d": 11,
+        "total_runs": 16,
+        "runs_30d": 12,
+        "succeeded_30d": 12,
         "total_users": 2,
         "users_7d": 1,
         "users_30d": 1,
-        "last_run_at": "2026-11-19T17:28:33.426Z",
+        "last_run_at": "2026-11-20T17:30:36.358Z",
         "price_per_event_usd": 0.015,
         "own_runs_recorded": 4,
-        "external_runs_est": 11,
+        "external_runs_est": 12,
         "gross_usd": null
       }
     ],
     "summary": {
       "actors_count": 6,
-      "total_runs": 147,
-      "runs_30d": 62,
+      "total_runs": 150,
+      "runs_30d": 65,
       "total_user_installs": 10,
       "own_runs_recorded": 13,
-      "external_runs_est": 134,
-      "cycle_compute_usd": 0.0773,
+      "external_runs_est": 137,
+      "cycle_compute_usd": 0.0776,
       "billing_mode": "token_usage_plus_store_stats",
       "gross_usd": null,
       "note": "Apify REST API v2 does not expose Creator Store dollar payout ledgers (404); check Apify Console Monetization for finalized payout USD."
@@ -698,10 +698,10 @@
       {
         "name": "ak10082247-max/agentfuel402",
         "url": "https://github.com/ak10082247-max/agentfuel402",
-        "stars": 0,
+        "stars": 1,
         "forks": 0,
         "open_issues": 0,
-        "pushed_at": "2026-11-20T11:51:30Z"
+        "pushed_at": "2026-11-20T20:30:37Z"
       },
       {
         "name": "ak10082247-max/canaryguard-402",
@@ -722,10 +722,10 @@
       {
         "name": "ak10082247-max/ak10082247-max.github.io",
         "url": "https://github.com/ak10082247-max/ak10082247-max.github.io",
-        "stars": 0,
+        "stars": 1,
         "forks": 0,
         "open_issues": 0,
-        "pushed_at": "2026-11-20T04:08:27Z"
+        "pushed_at": "2026-11-20T12:51:02Z"
       },
       {
         "name": "ak10082247-max/x402-solana-base-sniper-bot",
@@ -927,7 +927,7 @@
     ],
     "summary": {
       "tracked_repos": 10,
-      "total_stars": 2,
+      "total_stars": 4,
       "total_forks": 8,
       "prs_merged": 5,
       "prs_open": 15,
