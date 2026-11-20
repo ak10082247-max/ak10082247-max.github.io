@@ -1,7 +1,47 @@
 {
-  "last_base_block": 59786533,
+  "last_base_block": 59943305,
   "last_solana_signature": "4Zh8osKA84PsDumVLG41MuKwbSyY2Qx85m1ZdCoouoLKiGtKf63rP6cYdZyZP9N1XJ95AT7z4TDjLA7vE7NuHzhL",
   "external_deliveries": [
+    {
+      "timestamp": "2026-11-20T08:01:54+00:00",
+      "chain": "base",
+      "server": "Base x402 (on-chain)",
+      "payer": "0x171d8021b98c53dcbb3c9c30cbbbeb1b01850fca",
+      "amount_usdc": 0.02,
+      "endpoint": "on-chain USDC",
+      "tx_hash": "0xd4bf5166d3c7e03b47a745a8349207907cf73c8478af5dbef0c96e4dc4ff5aba",
+      "block": 59856696
+    },
+    {
+      "timestamp": "2026-11-20T07:59:24+00:00",
+      "chain": "base",
+      "server": "Base x402 (on-chain)",
+      "payer": "0x171d8021b98c53dcbb3c9c30cbbbeb1b01850fca",
+      "amount_usdc": 0.005,
+      "endpoint": "on-chain USDC",
+      "tx_hash": "0x3280e50d07a588f85f74aef1f87ce1b23c8099b82aee48f654505fcd5bc72296",
+      "block": 59855944
+    },
+    {
+      "timestamp": "2026-11-20T07:59:22+00:00",
+      "chain": "base",
+      "server": "Base x402 (on-chain)",
+      "payer": "0x171d8021b98c53dcbb3c9c30cbbbeb1b01850fca",
+      "amount_usdc": 0.005,
+      "endpoint": "on-chain USDC",
+      "tx_hash": "0x797e0f7e2ca3fab8588009d62257529dd6e209a49ba640337f7d0a928247cf6c",
+      "block": 59855932
+    },
+    {
+      "timestamp": "2026-11-20T07:59:19+00:00",
+      "chain": "base",
+      "server": "Base x402 (on-chain)",
+      "payer": "0x171d8021b98c53dcbb3c9c30cbbbeb1b01850fca",
+      "amount_usdc": 0.005,
+      "endpoint": "on-chain USDC",
+      "tx_hash": "0x711eef15d54fcac04fb14c4e739cc2335b619f572ab36174b61f7f8e1b0c5ae5",
+      "block": 59855917
+    },
     {
       "timestamp": "2026-11-20T00:52:29+00:00",
       "chain": "base",
