@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1.0",
-  "generated_utc": "2026-11-21T01:55:43.116772+00:00",
+  "generated_utc": "2026-11-21T09:04:45.856425+00:00",
   "scope": "Active Big-3 & Kurox Channels Only (AgentFuel402, CanaryGuard 402, RugShield 402, Kurox Stripe/npm, GEO Bureau)",
   "excluded_legacy": [
     "guard402",
@@ -61,7 +61,7 @@
         "health": {
           "ok": true,
           "status_code": 200,
-          "latency_ms": 44.6,
+          "latency_ms": 51.6,
           "version": "1.0.0"
         },
         "buffer_stats": null
@@ -76,65 +76,65 @@
         "health": {
           "ok": true,
           "status_code": 200,
-          "latency_ms": 276.6,
+          "latency_ms": 100.1,
           "version": "1.3.0"
         },
         "buffer_stats": {
           "buffer_count": 200,
           "paid_count": 3,
           "unpaid_probe_count": 200,
-          "avg_latency_ms": 50.17,
-          "latest_hit_utc": "2026-11-21T01:55:20.034Z",
+          "avg_latency_ms": 42.2,
+          "latest_hit_utc": "2026-11-21T09:04:24.615Z",
           "top_endpoints": [
             {
               "endpoint": "/chat/completions",
-              "hits": 88
+              "hits": 91
             },
             {
               "endpoint": "/mcp",
-              "hits": 16
+              "hits": 24
             },
             {
               "endpoint": "/v1/sanitize",
               "hits": 12
             },
             {
-              "endpoint": "/.well-known/mcp.json",
+              "endpoint": "/bounty.html",
               "hits": 8
             },
             {
-              "endpoint": "/.well-known/mcp.json/mcp",
-              "hits": 7
+              "endpoint": "/",
+              "hits": 5
             },
             {
-              "endpoint": "/bounty.html",
+              "endpoint": "/api/v1/smart-money/dex-trades",
               "hits": 5
             }
           ],
           "top_user_agents": [
             {
               "agent": "httpx / Syndicator",
-              "hits": 89
+              "hits": 92
             },
             {
-              "agent": "Ziwei-Seat/1.0",
-              "hits": 36
+              "agent": "subPAY.ai-payability-check/1.0",
+              "hits": 34
             },
             {
-              "agent": "axios/1.14.0",
-              "hits": 18
-            },
-            {
-              "agent": "Mozilla/5.0",
-              "hits": 6
-            },
-            {
-              "agent": "VirixLabResearch/1.0",
-              "hits": 5
+              "agent": "AgentRankProbe",
+              "hits": 14
             },
             {
               "agent": "node",
-              "hits": 4
+              "hits": 7
+            },
+            {
+              "agent": "BrickBlueBot/0.1",
+              "hits": 7
+            },
+            {
+              "agent": "none",
+              "hits": 6
             }
           ]
         }
@@ -149,19 +149,19 @@
         "health": {
           "ok": true,
           "status_code": 200,
-          "latency_ms": 87.9,
+          "latency_ms": 83.4,
           "version": "1.3.0"
         },
         "buffer_stats": {
           "buffer_count": 200,
           "paid_count": 0,
           "unpaid_probe_count": 200,
-          "avg_latency_ms": 13.54,
-          "latest_hit_utc": "2026-11-21T01:55:20.133Z",
+          "avg_latency_ms": 13.12,
+          "latest_hit_utc": "2026-11-21T09:04:24.724Z",
           "top_endpoints": [
             {
               "endpoint": "/mcp",
-              "hits": 71
+              "hits": 64
             },
             {
               "endpoint": "/v1/scan",
@@ -169,45 +169,45 @@
             },
             {
               "endpoint": "/v1/scan/preview",
-              "hits": 17
+              "hits": 18
             },
             {
               "endpoint": "/v1/audit/swap-simulation-proof",
-              "hits": 14
-            },
-            {
-              "endpoint": "/v1/audit/liquidity-lock-verify",
-              "hits": 7
+              "hits": 10
             },
             {
               "endpoint": "/api/v1/smart-money/dex-trades",
-              "hits": 6
+              "hits": 9
+            },
+            {
+              "endpoint": "/api/v1/tgm/holders",
+              "hits": 7
             }
           ],
           "top_user_agents": [
             {
               "agent": "httpx / Syndicator",
-              "hits": 19
+              "hits": 17
+            },
+            {
+              "agent": "nohumans.directory-probe/1.0",
+              "hits": 16
             },
             {
               "agent": "SentinelOracle/0.1",
               "hits": 15
             },
             {
-              "agent": "nohumans.directory-probe/1.0",
+              "agent": "Mozilla/5.0",
               "hits": 14
             },
             {
-              "agent": "Mozilla/5.0",
+              "agent": "AgentRankProbe",
               "hits": 12
             },
             {
-              "agent": "x402-discovery-probe/1.10.0",
+              "agent": "subPAY.ai-payability-check/1.0",
               "hits": 12
-            },
-            {
-              "agent": "mcpbeat/0.1",
-              "hits": 9
             }
           ]
         }
@@ -222,49 +222,49 @@
       "top_endpoints": [
         {
           "endpoint": "canaryguard-402:/chat/completions",
-          "hits": 88
+          "hits": 91
         },
         {
           "endpoint": "rugshield-402:/mcp",
-          "hits": 71
+          "hits": 64
         },
         {
           "endpoint": "rugshield-402:/v1/scan",
           "hits": 41
         },
         {
-          "endpoint": "rugshield-402:/v1/scan/preview",
-          "hits": 17
-        },
-        {
           "endpoint": "canaryguard-402:/mcp",
-          "hits": 16
+          "hits": 24
         },
         {
-          "endpoint": "rugshield-402:/v1/audit/swap-simulation-proof",
-          "hits": 14
+          "endpoint": "rugshield-402:/v1/scan/preview",
+          "hits": 18
         },
         {
           "endpoint": "canaryguard-402:/v1/sanitize",
           "hits": 12
         },
         {
-          "endpoint": "canaryguard-402:/.well-known/mcp.json",
-          "hits": 8
+          "endpoint": "rugshield-402:/v1/audit/swap-simulation-proof",
+          "hits": 10
+        },
+        {
+          "endpoint": "rugshield-402:/api/v1/smart-money/dex-trades",
+          "hits": 9
         }
       ],
       "top_user_agents": [
         {
           "agent": "httpx / Syndicator",
-          "hits": 108
+          "hits": 109
         },
         {
-          "agent": "Ziwei-Seat/1.0",
-          "hits": 36
+          "agent": "subPAY.ai-payability-check/1.0",
+          "hits": 46
         },
         {
-          "agent": "axios/1.14.0",
-          "hits": 18
+          "agent": "AgentRankProbe",
+          "hits": 26
         },
         {
           "agent": "Mozilla/5.0",
@@ -276,14 +276,14 @@
         },
         {
           "agent": "nohumans.directory-probe/1.0",
-          "hits": 14
+          "hits": 16
         },
         {
           "agent": "mcpbeat/0.1",
           "hits": 12
         },
         {
-          "agent": "x402-discovery-probe/1.10.0",
+          "agent": "lumiere-paycheck-prober/1.0",
           "hits": 12
         }
       ]
@@ -297,7 +297,7 @@
   },
   "stripe": {
     "sync_mode": "live_api_secret",
-    "baseline_checked_utc": "2026-11-21T01:55:43.059498+00:00",
+    "baseline_checked_utc": "2026-11-21T09:04:45.798685+00:00",
     "available_usd": 0.0,
     "pending_usd": 0.0,
     "available_gbp": 0.0,
@@ -316,10 +316,10 @@
     "fx_source": "open.er-api.com",
     "payouts_paid_usd": 0,
     "payouts_paid_gbp": 0,
-    "sessions_total": 108,
+    "sessions_total": 118,
     "sessions_paid": 0,
-    "sessions_open": 4,
-    "sessions_expired": 104,
+    "sessions_open": 13,
+    "sessions_expired": 105,
     "active_links_total": 13,
     "active_kurox_links": [
       {
@@ -330,7 +330,7 @@
         "url": "https://agentfuel402.ak10082247.workers.dev/v1/checkout/api-key?plan=starter",
         "brand": "Kurox",
         "id": "checkout_kurox-api-starter-30d",
-        "sessions_opened": 12,
+        "sessions_opened": 13,
         "sessions_paid": 0,
         "sessions_expired": 11
       },
@@ -342,7 +342,7 @@
         "url": "https://agentfuel402.ak10082247.workers.dev/v1/checkout/api-key?plan=pro",
         "brand": "Kurox",
         "id": "checkout_kurox-api-pro-90d",
-        "sessions_opened": 4,
+        "sessions_opened": 9,
         "sessions_paid": 0,
         "sessions_expired": 4
       },
@@ -354,7 +354,7 @@
         "url": "https://agentfuel402.ak10082247.workers.dev/v1/checkout/bundle?sku=canaryguard",
         "brand": "Kurox",
         "id": "checkout_canaryguard-firewall-proxy-v1",
-        "sessions_opened": 8,
+        "sessions_opened": 9,
         "sessions_paid": 0,
         "sessions_expired": 8
       },
@@ -366,7 +366,7 @@
         "url": "https://agentfuel402.ak10082247.workers.dev/v1/checkout/bundle?sku=rugshield",
         "brand": "Kurox",
         "id": "checkout_rugshield-pretrade-scanner-v1",
-        "sessions_opened": 5,
+        "sessions_opened": 6,
         "sessions_paid": 0,
         "sessions_expired": 5
       },
@@ -378,9 +378,9 @@
         "url": "https://agentfuel402.ak10082247.workers.dev/v1/checkout/bundle?sku=dual",
         "brand": "Kurox",
         "id": "checkout_kurox-security-suite-bundle-v1",
-        "sessions_opened": 11,
+        "sessions_opened": 12,
         "sessions_paid": 0,
-        "sessions_expired": 9
+        "sessions_expired": 10
       },
       {
         "sku": "b2b-tech-intent-leads-csv-v1",
@@ -390,7 +390,7 @@
         "url": "https://agentfuel402.ak10082247.workers.dev/v1/checkout/bundle?sku=csv-pack",
         "brand": "Kurox",
         "id": "checkout_b2b-tech-intent-leads-csv-v1",
-        "sessions_opened": 5,
+        "sessions_opened": 6,
         "sessions_paid": 0,
         "sessions_expired": 5
       }
@@ -701,7 +701,7 @@
         "stars": 1,
         "forks": 0,
         "open_issues": 0,
-        "pushed_at": "2026-11-20T20:30:37Z"
+        "pushed_at": "2026-11-21T02:25:51Z"
       },
       {
         "name": "ak10082247-max/canaryguard-402",
@@ -725,7 +725,7 @@
         "stars": 1,
         "forks": 0,
         "open_issues": 0,
-        "pushed_at": "2026-11-20T20:53:18Z"
+        "pushed_at": "2026-11-21T01:55:44Z"
       },
       {
         "name": "ak10082247-max/x402-solana-base-sniper-bot",
