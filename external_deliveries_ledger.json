@@ -1,7 +1,17 @@
 {
-  "last_base_block": 60087969,
+  "last_base_block": 60178717,
   "last_solana_signature": "4Zh8osKA84PsDumVLG41MuKwbSyY2Qx85m1ZdCoouoLKiGtKf63rP6cYdZyZP9N1XJ95AT7z4TDjLA7vE7NuHzhL",
   "external_deliveries": [
+    {
+      "timestamp": "2026-11-21T00:52:41+00:00",
+      "chain": "base",
+      "server": "CanaryGuard-402",
+      "payer": "0x82cef1cdc34d65cf690235dc24e823a6585a6f86",
+      "amount_usdc": 0.01,
+      "endpoint": "/v1/sanitize",
+      "tx_hash": "0x8519b5c4cb1a794be9d02a7cc6dd88b7a4a51130de1fe9a89ee9bee48a6338f3",
+      "block": 60159927
+    },
     {
       "timestamp": "2026-11-20T08:01:54+00:00",
       "chain": "base",
