@@ -1,8 +1,8 @@
 {
-  "base_merchant_usdc": "0.010000",
+  "base_merchant_usdc": "0.020000",
   "solana_merchant_usdc": "0",
-  "timestamp": "2026-11-21T21:58:30.586708+00:00",
-  "external_deliveries_count": 18,
-  "external_usdc_total": "0.166000",
-  "last_sync": "2026-11-21T21:58:32.071253+00:00"
+  "timestamp": "2026-11-22T01:57:19.309036+00:00",
+  "external_deliveries_count": 19,
+  "external_usdc_total": "0.176000",
+  "last_sync": "2026-11-22T01:57:20.712632+00:00"
 }
