@@ -1,15 +1,15 @@
 # Kurox Big 3 x402 Revenue & Settlement Log
 
 > **Multi-Chain Merchant Treasury Flight Recorder**  
-> Last Synchronized: **2026-11-23 03:07:34 UTC**
+> Last Synchronized: **2026-11-23 12:28:29 UTC**
 
 ---
 
 ### 🏛️ Verified Merchant Treasury Wallets
-- **Base Mainnet (`eip155:8453`)**: [`0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6`](https://basescan.org/address/0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6) &bull; **`0.020000 USDC`**
+- **Base Mainnet (`eip155:8453`)**: [`0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6`](https://basescan.org/address/0x80E0Ae84679b7f11bE171DaADd492FBECf628cd6) &bull; **`0.035000 USDC`**
 - **Solana Mainnet Owner**: `9wuMysgXwNhtQeqJgGByAiMYc4EjzZ5wUSmnjrrt3ffh`
 - **Solana Mainnet (`USDC ATA`)**: [`DD3A7jaXFeHcif9eYj6Vhomuxypat5Yxi8ow6wxz27yL`](https://solscan.io/account/DD3A7jaXFeHcif9eYj6Vhomuxypat5Yxi8ow6wxz27yL) &bull; **`0 USDC`**
-- **Verified External Settlements (Post-Rebind Active Vaults)**: **19 tx** &bull; **`$0.176000 USDC`**
+- **Verified External Settlements (Post-Rebind Active Vaults)**: **21 tx** &bull; **`$0.191000 USDC`**
 
 ---
 
@@ -17,6 +17,8 @@
 
 | Timestamp (UTC) | Server | Payer Wallet | Amount | Endpoint | Explorer Link |
 | :--- | :--- | :--- | :---: | :--- | :--- |
+| 2026-11-23 08:41:22 | Base x402 (on-chain) | [`0x171d8021...`](https://basescan.org/address/0x171d8021b98c53dcbb3c9c30cbbbeb1b01850fca) | `$0.0050 USDC` | `on-chain USDC` | [`0x01966366...`](https://basescan.org/tx/0x019663664b936c2220c0333287609902909d964dfe116f69ff746234030a8882) |
+| 2026-11-23 03:50:14 | CanaryGuard-402 | [`0x82cef1cd...`](https://basescan.org/address/0x82cef1cdc34d65cf690235dc24e823a6585a6f86) | `$0.0100 USDC` | `/v1/sanitize` | [`0x9cce0878...`](https://basescan.org/tx/0x9cce0878d45d6094dc48599d270fc235ea8fefced2bc6be5a3e51660903e2fae) |
 | 2026-11-22 00:52:22 | CanaryGuard-402 | [`0x82cef1cd...`](https://basescan.org/address/0x82cef1cdc34d65cf690235dc24e823a6585a6f86) | `$0.0100 USDC` | `/v1/sanitize` | [`0x0822693c...`](https://basescan.org/tx/0x0822693cedca527a24adaf5e708b59f5bf990c147884bec72b16d749eb0a2f51) |
 | 2026-11-21 00:52:41 | CanaryGuard-402 | [`0x82cef1cd...`](https://basescan.org/address/0x82cef1cdc34d65cf690235dc24e823a6585a6f86) | `$0.0100 USDC` | `/v1/sanitize` | [`0x8519b5c4...`](https://basescan.org/tx/0x8519b5c4cb1a794be9d02a7cc6dd88b7a4a51130de1fe9a89ee9bee48a6338f3) |
 | 2026-11-20 08:01:54 | Base x402 (on-chain) | [`0x171d8021...`](https://basescan.org/address/0x171d8021b98c53dcbb3c9c30cbbbeb1b01850fca) | `$0.0200 USDC` | `on-chain USDC` | [`0xd4bf5166...`](https://basescan.org/tx/0xd4bf5166d3c7e03b47a745a8349207907cf73c8478af5dbef0c96e4dc4ff5aba) |
