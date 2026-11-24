@@ -1,7 +1,7 @@
 # Kurox Big 3 x402 Revenue & Settlement Log
 
 > **Multi-Chain Merchant Treasury Flight Recorder**  
-> Last Synchronized: **2026-11-24 00:12:59 UTC**
+> Last Synchronized: **2026-11-24 09:55:22 UTC**
 
 ---
 
