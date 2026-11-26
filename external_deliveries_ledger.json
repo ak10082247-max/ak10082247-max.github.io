@@ -1,7 +1,17 @@
 {
-  "last_base_block": 62280458,
+  "last_base_block": 62383338,
   "last_solana_signature": "4Zh8osKA84PsDumVLG41MuKwbSyY2Qx85m1ZdCoouoLKiGtKf63rP6cYdZyZP9N1XJ95AT7z4TDjLA7vE7NuHzhL",
   "external_deliveries": [
+    {
+      "timestamp": "2026-11-26T03:18:53+00:00",
+      "chain": "base",
+      "server": "Base x402 (on-chain)",
+      "payer": "0xa1d1c0cf717402ff3651aa4873ccf96410b01978",
+      "amount_usdc": 0.005,
+      "endpoint": "on-chain USDC",
+      "tx_hash": "0x09f851cf375fd456ed8af850275dcc9d45751ee9309c8984d9b199c9f295ee51",
+      "block": 62363788
+    },
     {
       "timestamp": "2026-11-24T10:35:52+00:00",
       "chain": "base",
