@@ -10,7 +10,7 @@
       "url": "https://agentfuel402.ak10082247.workers.dev/",
       "title": "\u26a1 AgentFuel402: B2B Intent Leads, Clean Markdown & REA API (x402 + Apify Card)",
       "content_text": "Consume real-time B2B engineering buying intent leads ($0.010), prompt-safe Markdown ($0.005), and SDK breaking-change diffs ($0.005) via pay-per-call x402 V2 on Base/Solana or Credit Card on Apify Store (https://apify.com/kuroxreal).",
-      "date_published": "2026-11-27T04:51:12.294858+00:00",
+      "date_published": "2026-11-27T14:35:42.554618+00:00",
       "tags": [
         "agentfuel402",
         "x402",
@@ -37,8 +37,8 @@
       "id": "4obGGXRMVyqpWZr12UzyaBdNkgdYwz2GiY8enmd2pump",
       "url": "https://rugshield-402.onrender.com/?token=4obGGXRMVyqpWZr12UzyaBdNkgdYwz2GiY8enmd2pump",
       "title": "[SOLANA] $Santaball - not_performed (pay $0.010 USDC for full swap simulation)",
-      "content_text": "Pre-trade safety check for SOLANA token $Santaball (4obGGXRMVyqpWZr12UzyaBdNkgdYwz2GiY8enmd2pump) with $62,343 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=4obGGXRMVyqpWZr12UzyaBdNkgdYwz2GiY8enmd2pump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=4obGGXRMVyqpWZr12UzyaBdNkgdYwz2GiY8enmd2pump",
-      "date_published": "2026-11-27T04:51:12.294858+00:00",
+      "content_text": "Pre-trade safety check for SOLANA token $Santaball (4obGGXRMVyqpWZr12UzyaBdNkgdYwz2GiY8enmd2pump) with $1,739 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=4obGGXRMVyqpWZr12UzyaBdNkgdYwz2GiY8enmd2pump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=4obGGXRMVyqpWZr12UzyaBdNkgdYwz2GiY8enmd2pump",
+      "date_published": "2026-11-27T14:35:42.554618+00:00",
       "tags": [
         "solana",
         "x402",
@@ -59,11 +59,36 @@
       ]
     },
     {
+      "id": "4tPsVjDAqgDjb5TzGazEDMvM2GK2xDvCG2LxpX8opump",
+      "url": "https://rugshield-402.onrender.com/?token=4tPsVjDAqgDjb5TzGazEDMvM2GK2xDvCG2LxpX8opump",
+      "title": "[SOLANA] $VOLALITY - not_performed (pay $0.010 USDC for full swap simulation)",
+      "content_text": "Pre-trade safety check for SOLANA token $VOLALITY (4tPsVjDAqgDjb5TzGazEDMvM2GK2xDvCG2LxpX8opump) with $2,162 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=4tPsVjDAqgDjb5TzGazEDMvM2GK2xDvCG2LxpX8opump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=4tPsVjDAqgDjb5TzGazEDMvM2GK2xDvCG2LxpX8opump",
+      "date_published": "2026-11-27T14:35:42.554618+00:00",
+      "tags": [
+        "solana",
+        "x402",
+        "security",
+        "honeypot"
+      ],
+      "attachments": [
+        {
+          "url": "https://rugshield-402.onrender.com/?token=4tPsVjDAqgDjb5TzGazEDMvM2GK2xDvCG2LxpX8opump",
+          "mime_type": "text/html",
+          "title": "Web Terminal"
+        },
+        {
+          "url": "https://rugshield-402.onrender.com/api/actions/scan?token=4tPsVjDAqgDjb5TzGazEDMvM2GK2xDvCG2LxpX8opump",
+          "mime_type": "application/json",
+          "title": "Solana Action"
+        }
+      ]
+    },
+    {
       "id": "CvXQ9qEriGgTbMWyF8L1U7oqn9ev8A49N1dzNE8cpump",
       "url": "https://rugshield-402.onrender.com/?token=CvXQ9qEriGgTbMWyF8L1U7oqn9ev8A49N1dzNE8cpump",
       "title": "[SOLANA] $CINU - not_performed (pay $0.010 USDC for full swap simulation)",
-      "content_text": "Pre-trade safety check for SOLANA token $CINU (CvXQ9qEriGgTbMWyF8L1U7oqn9ev8A49N1dzNE8cpump) with $51,882 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=CvXQ9qEriGgTbMWyF8L1U7oqn9ev8A49N1dzNE8cpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=CvXQ9qEriGgTbMWyF8L1U7oqn9ev8A49N1dzNE8cpump",
-      "date_published": "2026-11-27T04:51:12.294858+00:00",
+      "content_text": "Pre-trade safety check for SOLANA token $CINU (CvXQ9qEriGgTbMWyF8L1U7oqn9ev8A49N1dzNE8cpump) with $33,053 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=CvXQ9qEriGgTbMWyF8L1U7oqn9ev8A49N1dzNE8cpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=CvXQ9qEriGgTbMWyF8L1U7oqn9ev8A49N1dzNE8cpump",
+      "date_published": "2026-11-27T14:35:42.554618+00:00",
       "tags": [
         "solana",
         "x402",
@@ -87,8 +112,8 @@
       "id": "DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump",
       "url": "https://rugshield-402.onrender.com/?token=DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump",
       "title": "[SOLANA] $CBUCKS - not_performed (pay $0.010 USDC for full swap simulation)",
-      "content_text": "Pre-trade safety check for SOLANA token $CBUCKS (DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump) with $308,196 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump",
-      "date_published": "2026-11-27T04:51:12.294858+00:00",
+      "content_text": "Pre-trade safety check for SOLANA token $CBUCKS (DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump) with $305,598 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump",
+      "date_published": "2026-11-27T14:35:42.554618+00:00",
       "tags": [
         "solana",
         "x402",
@@ -112,8 +137,8 @@
       "id": "6ppi7LfHkAhHkQwS3kT1zjCsGYQyK4uvpp3pE6Xmpump",
       "url": "https://rugshield-402.onrender.com/?token=6ppi7LfHkAhHkQwS3kT1zjCsGYQyK4uvpp3pE6Xmpump",
       "title": "[SOLANA] $CRAB - not_performed (pay $0.010 USDC for full swap simulation)",
-      "content_text": "Pre-trade safety check for SOLANA token $CRAB (6ppi7LfHkAhHkQwS3kT1zjCsGYQyK4uvpp3pE6Xmpump) with $2,109 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=6ppi7LfHkAhHkQwS3kT1zjCsGYQyK4uvpp3pE6Xmpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=6ppi7LfHkAhHkQwS3kT1zjCsGYQyK4uvpp3pE6Xmpump",
-      "date_published": "2026-11-27T04:51:12.294858+00:00",
+      "content_text": "Pre-trade safety check for SOLANA token $CRAB (6ppi7LfHkAhHkQwS3kT1zjCsGYQyK4uvpp3pE6Xmpump) with $1,916 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=6ppi7LfHkAhHkQwS3kT1zjCsGYQyK4uvpp3pE6Xmpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=6ppi7LfHkAhHkQwS3kT1zjCsGYQyK4uvpp3pE6Xmpump",
+      "date_published": "2026-11-27T14:35:42.554618+00:00",
       "tags": [
         "solana",
         "x402",
@@ -134,11 +159,11 @@
       ]
     },
     {
-      "id": "RecRFwNXRbTuDwDnvokNv5h4hLQubaDZMJwKfshpump",
-      "url": "https://rugshield-402.onrender.com/?token=RecRFwNXRbTuDwDnvokNv5h4hLQubaDZMJwKfshpump",
-      "title": "[SOLANA] $MOSTO - not_performed (pay $0.010 USDC for full swap simulation)",
-      "content_text": "Pre-trade safety check for SOLANA token $MOSTO (RecRFwNXRbTuDwDnvokNv5h4hLQubaDZMJwKfshpump) with live pool telemetry. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=RecRFwNXRbTuDwDnvokNv5h4hLQubaDZMJwKfshpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=RecRFwNXRbTuDwDnvokNv5h4hLQubaDZMJwKfshpump",
-      "date_published": "2026-11-27T04:51:12.294858+00:00",
+      "id": "AqmdZvNtiDbMq5SifeZGNc8ydDidp1sLr6AtbqqCs5S2",
+      "url": "https://rugshield-402.onrender.com/?token=AqmdZvNtiDbMq5SifeZGNc8ydDidp1sLr6AtbqqCs5S2",
+      "title": "[SOLANA] $RUGR - not_performed (pay $0.010 USDC for full swap simulation)",
+      "content_text": "Pre-trade safety check for SOLANA token $RUGR (AqmdZvNtiDbMq5SifeZGNc8ydDidp1sLr6AtbqqCs5S2) with live pool telemetry. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=AqmdZvNtiDbMq5SifeZGNc8ydDidp1sLr6AtbqqCs5S2 | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=AqmdZvNtiDbMq5SifeZGNc8ydDidp1sLr6AtbqqCs5S2",
+      "date_published": "2026-11-27T14:35:42.554618+00:00",
       "tags": [
         "solana",
         "x402",
@@ -147,23 +172,23 @@
       ],
       "attachments": [
         {
-          "url": "https://rugshield-402.onrender.com/?token=RecRFwNXRbTuDwDnvokNv5h4hLQubaDZMJwKfshpump",
+          "url": "https://rugshield-402.onrender.com/?token=AqmdZvNtiDbMq5SifeZGNc8ydDidp1sLr6AtbqqCs5S2",
           "mime_type": "text/html",
           "title": "Web Terminal"
         },
         {
-          "url": "https://rugshield-402.onrender.com/api/actions/scan?token=RecRFwNXRbTuDwDnvokNv5h4hLQubaDZMJwKfshpump",
+          "url": "https://rugshield-402.onrender.com/api/actions/scan?token=AqmdZvNtiDbMq5SifeZGNc8ydDidp1sLr6AtbqqCs5S2",
           "mime_type": "application/json",
           "title": "Solana Action"
         }
       ]
     },
     {
-      "id": "CErq2oGNSJWVovVMjx8k1wuL6qR75q1teSxJNqrCpump",
-      "url": "https://rugshield-402.onrender.com/?token=CErq2oGNSJWVovVMjx8k1wuL6qR75q1teSxJNqrCpump",
-      "title": "[SOLANA] $JAZZ - not_performed (pay $0.010 USDC for full swap simulation)",
-      "content_text": "Pre-trade safety check for SOLANA token $JAZZ (CErq2oGNSJWVovVMjx8k1wuL6qR75q1teSxJNqrCpump) with $2,160 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=CErq2oGNSJWVovVMjx8k1wuL6qR75q1teSxJNqrCpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=CErq2oGNSJWVovVMjx8k1wuL6qR75q1teSxJNqrCpump",
-      "date_published": "2026-11-27T04:51:12.294858+00:00",
+      "id": "GXpQZkap4ExgQTTX4SXfETV7nt1YZKEZSakqos3hpump",
+      "url": "https://rugshield-402.onrender.com/?token=GXpQZkap4ExgQTTX4SXfETV7nt1YZKEZSakqos3hpump",
+      "title": "[SOLANA] $TWORBIT - not_performed (pay $0.010 USDC for full swap simulation)",
+      "content_text": "Pre-trade safety check for SOLANA token $TWORBIT (GXpQZkap4ExgQTTX4SXfETV7nt1YZKEZSakqos3hpump) with $50,635 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=GXpQZkap4ExgQTTX4SXfETV7nt1YZKEZSakqos3hpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=GXpQZkap4ExgQTTX4SXfETV7nt1YZKEZSakqos3hpump",
+      "date_published": "2026-11-27T14:35:42.554618+00:00",
       "tags": [
         "solana",
         "x402",
@@ -172,37 +197,12 @@
       ],
       "attachments": [
         {
-          "url": "https://rugshield-402.onrender.com/?token=CErq2oGNSJWVovVMjx8k1wuL6qR75q1teSxJNqrCpump",
+          "url": "https://rugshield-402.onrender.com/?token=GXpQZkap4ExgQTTX4SXfETV7nt1YZKEZSakqos3hpump",
           "mime_type": "text/html",
           "title": "Web Terminal"
         },
         {
-          "url": "https://rugshield-402.onrender.com/api/actions/scan?token=CErq2oGNSJWVovVMjx8k1wuL6qR75q1teSxJNqrCpump",
-          "mime_type": "application/json",
-          "title": "Solana Action"
-        }
-      ]
-    },
-    {
-      "id": "6is11V1KgpybgPdMkYGBacbiT62kqunsvnLDNzDfpump",
-      "url": "https://rugshield-402.onrender.com/?token=6is11V1KgpybgPdMkYGBacbiT62kqunsvnLDNzDfpump",
-      "title": "[SOLANA] $MONA - not_performed (pay $0.010 USDC for full swap simulation)",
-      "content_text": "Pre-trade safety check for SOLANA token $MONA (6is11V1KgpybgPdMkYGBacbiT62kqunsvnLDNzDfpump) with $8,507 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=6is11V1KgpybgPdMkYGBacbiT62kqunsvnLDNzDfpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=6is11V1KgpybgPdMkYGBacbiT62kqunsvnLDNzDfpump",
-      "date_published": "2026-11-27T04:51:12.294858+00:00",
-      "tags": [
-        "solana",
-        "x402",
-        "security",
-        "honeypot"
-      ],
-      "attachments": [
-        {
-          "url": "https://rugshield-402.onrender.com/?token=6is11V1KgpybgPdMkYGBacbiT62kqunsvnLDNzDfpump",
-          "mime_type": "text/html",
-          "title": "Web Terminal"
-        },
-        {
-          "url": "https://rugshield-402.onrender.com/api/actions/scan?token=6is11V1KgpybgPdMkYGBacbiT62kqunsvnLDNzDfpump",
+          "url": "https://rugshield-402.onrender.com/api/actions/scan?token=GXpQZkap4ExgQTTX4SXfETV7nt1YZKEZSakqos3hpump",
           "mime_type": "application/json",
           "title": "Solana Action"
         }
@@ -213,7 +213,7 @@
       "url": "https://rugshield-402.onrender.com/?token=J25aXtTx91Eg3MNe6P2bP4Qyvu7yYDeEFmRyw3UTpump",
       "title": "[SOLANA] $FLOKIMAS - not_performed (pay $0.010 USDC for full swap simulation)",
       "content_text": "Pre-trade safety check for SOLANA token $FLOKIMAS (J25aXtTx91Eg3MNe6P2bP4Qyvu7yYDeEFmRyw3UTpump) with live pool telemetry. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=J25aXtTx91Eg3MNe6P2bP4Qyvu7yYDeEFmRyw3UTpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=J25aXtTx91Eg3MNe6P2bP4Qyvu7yYDeEFmRyw3UTpump",
-      "date_published": "2026-11-27T04:51:12.294858+00:00",
+      "date_published": "2026-11-27T14:35:42.554618+00:00",
       "tags": [
         "solana",
         "x402",
@@ -234,11 +234,11 @@
       ]
     },
     {
-      "id": "HpKjCnvJbgZ2ymjDvae5ZZ29t21FqECWN8ohWCFcpump",
-      "url": "https://rugshield-402.onrender.com/?token=HpKjCnvJbgZ2ymjDvae5ZZ29t21FqECWN8ohWCFcpump",
-      "title": "[SOLANA] $SHIA - not_performed (pay $0.010 USDC for full swap simulation)",
-      "content_text": "Pre-trade safety check for SOLANA token $SHIA (HpKjCnvJbgZ2ymjDvae5ZZ29t21FqECWN8ohWCFcpump) with $15,595 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=HpKjCnvJbgZ2ymjDvae5ZZ29t21FqECWN8ohWCFcpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=HpKjCnvJbgZ2ymjDvae5ZZ29t21FqECWN8ohWCFcpump",
-      "date_published": "2026-11-27T04:51:12.294858+00:00",
+      "id": "2va3NUJtEcPemDYg2N1RgA79rPKGTGGJKo3gTY5zpump",
+      "url": "https://rugshield-402.onrender.com/?token=2va3NUJtEcPemDYg2N1RgA79rPKGTGGJKo3gTY5zpump",
+      "title": "[SOLANA] $WOOPY - not_performed (pay $0.010 USDC for full swap simulation)",
+      "content_text": "Pre-trade safety check for SOLANA token $WOOPY (2va3NUJtEcPemDYg2N1RgA79rPKGTGGJKo3gTY5zpump) with $65,365 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=2va3NUJtEcPemDYg2N1RgA79rPKGTGGJKo3gTY5zpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=2va3NUJtEcPemDYg2N1RgA79rPKGTGGJKo3gTY5zpump",
+      "date_published": "2026-11-27T14:35:42.554618+00:00",
       "tags": [
         "solana",
         "x402",
@@ -247,37 +247,12 @@
       ],
       "attachments": [
         {
-          "url": "https://rugshield-402.onrender.com/?token=HpKjCnvJbgZ2ymjDvae5ZZ29t21FqECWN8ohWCFcpump",
+          "url": "https://rugshield-402.onrender.com/?token=2va3NUJtEcPemDYg2N1RgA79rPKGTGGJKo3gTY5zpump",
           "mime_type": "text/html",
           "title": "Web Terminal"
         },
         {
-          "url": "https://rugshield-402.onrender.com/api/actions/scan?token=HpKjCnvJbgZ2ymjDvae5ZZ29t21FqECWN8ohWCFcpump",
-          "mime_type": "application/json",
-          "title": "Solana Action"
-        }
-      ]
-    },
-    {
-      "id": "EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump",
-      "url": "https://rugshield-402.onrender.com/?token=EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump",
-      "title": "[SOLANA] $PumpMas - not_performed (pay $0.010 USDC for full swap simulation)",
-      "content_text": "Pre-trade safety check for SOLANA token $PumpMas (EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump) with $26,239 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump",
-      "date_published": "2026-11-27T04:51:12.294858+00:00",
-      "tags": [
-        "solana",
-        "x402",
-        "security",
-        "honeypot"
-      ],
-      "attachments": [
-        {
-          "url": "https://rugshield-402.onrender.com/?token=EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump",
-          "mime_type": "text/html",
-          "title": "Web Terminal"
-        },
-        {
-          "url": "https://rugshield-402.onrender.com/api/actions/scan?token=EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump",
+          "url": "https://rugshield-402.onrender.com/api/actions/scan?token=2va3NUJtEcPemDYg2N1RgA79rPKGTGGJKo3gTY5zpump",
           "mime_type": "application/json",
           "title": "Solana Action"
         }
@@ -287,8 +262,8 @@
       "id": "6C9r2gzu8Pr54hTevHo3x5gSj9JqtpApj7obJnrtpump",
       "url": "https://rugshield-402.onrender.com/?token=6C9r2gzu8Pr54hTevHo3x5gSj9JqtpApj7obJnrtpump",
       "title": "[SOLANA] $ROCKET - not_performed (pay $0.010 USDC for full swap simulation)",
-      "content_text": "Pre-trade safety check for SOLANA token $ROCKET (6C9r2gzu8Pr54hTevHo3x5gSj9JqtpApj7obJnrtpump) with $89,458 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=6C9r2gzu8Pr54hTevHo3x5gSj9JqtpApj7obJnrtpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=6C9r2gzu8Pr54hTevHo3x5gSj9JqtpApj7obJnrtpump",
-      "date_published": "2026-11-27T04:51:12.294858+00:00",
+      "content_text": "Pre-trade safety check for SOLANA token $ROCKET (6C9r2gzu8Pr54hTevHo3x5gSj9JqtpApj7obJnrtpump) with $88,780 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=6C9r2gzu8Pr54hTevHo3x5gSj9JqtpApj7obJnrtpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=6C9r2gzu8Pr54hTevHo3x5gSj9JqtpApj7obJnrtpump",
+      "date_published": "2026-11-27T14:35:42.554618+00:00",
       "tags": [
         "solana",
         "x402",
@@ -309,36 +284,11 @@
       ]
     },
     {
-      "id": "9TKbd3VFaMSXsEAicD9JVQWpWwAoLi4fSgWmZL2cpump",
-      "url": "https://rugshield-402.onrender.com/?token=9TKbd3VFaMSXsEAicD9JVQWpWwAoLi4fSgWmZL2cpump",
-      "title": "[SOLANA] $Snowball - not_performed (pay $0.010 USDC for full swap simulation)",
-      "content_text": "Pre-trade safety check for SOLANA token $Snowball (9TKbd3VFaMSXsEAicD9JVQWpWwAoLi4fSgWmZL2cpump) with $62,983 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=9TKbd3VFaMSXsEAicD9JVQWpWwAoLi4fSgWmZL2cpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=9TKbd3VFaMSXsEAicD9JVQWpWwAoLi4fSgWmZL2cpump",
-      "date_published": "2026-11-27T04:51:12.294858+00:00",
-      "tags": [
-        "solana",
-        "x402",
-        "security",
-        "honeypot"
-      ],
-      "attachments": [
-        {
-          "url": "https://rugshield-402.onrender.com/?token=9TKbd3VFaMSXsEAicD9JVQWpWwAoLi4fSgWmZL2cpump",
-          "mime_type": "text/html",
-          "title": "Web Terminal"
-        },
-        {
-          "url": "https://rugshield-402.onrender.com/api/actions/scan?token=9TKbd3VFaMSXsEAicD9JVQWpWwAoLi4fSgWmZL2cpump",
-          "mime_type": "application/json",
-          "title": "Solana Action"
-        }
-      ]
-    },
-    {
       "id": "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
       "url": "https://rugshield-402.onrender.com/?token=9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
       "title": "[SOLANA] $JOB - not_performed (pay $0.010 USDC for full swap simulation)",
-      "content_text": "Pre-trade safety check for SOLANA token $JOB (9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump) with $146,189 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
-      "date_published": "2026-11-27T04:51:12.294858+00:00",
+      "content_text": "Pre-trade safety check for SOLANA token $JOB (9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump) with $143,351 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
+      "date_published": "2026-11-27T14:35:42.554618+00:00",
       "tags": [
         "solana",
         "x402",
@@ -359,11 +309,61 @@
       ]
     },
     {
+      "id": "PgFtGGquvnv2zEkjG2N2QPvBTBrafuExGYEqahRpump",
+      "url": "https://rugshield-402.onrender.com/?token=PgFtGGquvnv2zEkjG2N2QPvBTBrafuExGYEqahRpump",
+      "title": "[SOLANA] $BRUH - not_performed (pay $0.010 USDC for full swap simulation)",
+      "content_text": "Pre-trade safety check for SOLANA token $BRUH (PgFtGGquvnv2zEkjG2N2QPvBTBrafuExGYEqahRpump) with $183,105 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=PgFtGGquvnv2zEkjG2N2QPvBTBrafuExGYEqahRpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=PgFtGGquvnv2zEkjG2N2QPvBTBrafuExGYEqahRpump",
+      "date_published": "2026-11-27T14:35:42.554618+00:00",
+      "tags": [
+        "solana",
+        "x402",
+        "security",
+        "honeypot"
+      ],
+      "attachments": [
+        {
+          "url": "https://rugshield-402.onrender.com/?token=PgFtGGquvnv2zEkjG2N2QPvBTBrafuExGYEqahRpump",
+          "mime_type": "text/html",
+          "title": "Web Terminal"
+        },
+        {
+          "url": "https://rugshield-402.onrender.com/api/actions/scan?token=PgFtGGquvnv2zEkjG2N2QPvBTBrafuExGYEqahRpump",
+          "mime_type": "application/json",
+          "title": "Solana Action"
+        }
+      ]
+    },
+    {
+      "id": "Ejbu9xDBN3XuDiLj9A61sctiVzYocF3TpKojiBPvpump",
+      "url": "https://rugshield-402.onrender.com/?token=Ejbu9xDBN3XuDiLj9A61sctiVzYocF3TpKojiBPvpump",
+      "title": "[SOLANA] $Suki - not_performed (pay $0.010 USDC for full swap simulation)",
+      "content_text": "Pre-trade safety check for SOLANA token $Suki (Ejbu9xDBN3XuDiLj9A61sctiVzYocF3TpKojiBPvpump) with $7,787 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=Ejbu9xDBN3XuDiLj9A61sctiVzYocF3TpKojiBPvpump | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=Ejbu9xDBN3XuDiLj9A61sctiVzYocF3TpKojiBPvpump",
+      "date_published": "2026-11-27T14:35:42.554618+00:00",
+      "tags": [
+        "solana",
+        "x402",
+        "security",
+        "honeypot"
+      ],
+      "attachments": [
+        {
+          "url": "https://rugshield-402.onrender.com/?token=Ejbu9xDBN3XuDiLj9A61sctiVzYocF3TpKojiBPvpump",
+          "mime_type": "text/html",
+          "title": "Web Terminal"
+        },
+        {
+          "url": "https://rugshield-402.onrender.com/api/actions/scan?token=Ejbu9xDBN3XuDiLj9A61sctiVzYocF3TpKojiBPvpump",
+          "mime_type": "application/json",
+          "title": "Solana Action"
+        }
+      ]
+    },
+    {
       "id": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
       "url": "https://rugshield-402.onrender.com/?token=DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
       "title": "[SOLANA] $Bonk - not_performed (pay $0.010 USDC for full swap simulation)",
-      "content_text": "Pre-trade safety check for SOLANA token $Bonk (DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263) with $216,876 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263 | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
-      "date_published": "2026-11-27T04:51:12.294858+00:00",
+      "content_text": "Pre-trade safety check for SOLANA token $Bonk (DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263) with $217,124 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263 | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "date_published": "2026-11-27T14:35:42.554618+00:00",
       "tags": [
         "solana",
         "x402",
@@ -387,8 +387,8 @@
       "id": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
       "url": "https://rugshield-402.onrender.com/?token=EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
       "title": "[SOLANA] $$WIF - not_performed (pay $0.010 USDC for full swap simulation)",
-      "content_text": "Pre-trade safety check for SOLANA token $$WIF (EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm) with $3,982,001 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
-      "date_published": "2026-11-27T04:51:12.294858+00:00",
+      "content_text": "Pre-trade safety check for SOLANA token $$WIF (EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm) with $4,044,158 live pool liquidity. not_performed (pay $0.010 USDC for full swap simulation). Run full on-chain swap simulation ($0.010 USDC): https://rugshield-402.onrender.com/?token=EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm | Action API: https://rugshield-402.onrender.com/api/actions/scan?token=EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+      "date_published": "2026-11-27T14:35:42.554618+00:00",
       "tags": [
         "solana",
         "x402",
